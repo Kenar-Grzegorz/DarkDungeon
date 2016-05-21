@@ -8,7 +8,7 @@ import static java.lang.Math.random;
 
 /**
  *
- * added by Florian
+ * added by Florian K
  */
 public class MapControl {
     public int Move(int character,int location,int monster,int health){
