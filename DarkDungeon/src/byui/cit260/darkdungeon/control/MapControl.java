@@ -22,7 +22,9 @@ public class MapControl {
                     {return -1;}
             
             int Move = character + location + monster + health;
+            return Move;
     }
+    
     public boolean validLocation(int character,int  location){
         
             if (character<1)
