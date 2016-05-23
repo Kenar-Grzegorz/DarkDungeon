@@ -34,14 +34,14 @@ public class MapControl {
                     {return Boolean.FALSE;}
              int validLocation = (int) random();
              if (validLocation>= 1) {return Boolean.TRUE;}
-                else {return Boolean.TRUE;}
+                else {return Boolean.FALSE;}
             
            
     }
      public boolean openLock(){
          int openLock = (int) Math.random();
-             if (openLock<= 1) {return Boolean.FALSE;}
-                else {return Boolean.TRUE;}
+             if (openLock>= 1) {return Boolean.TRUE;}
+                else {return Boolean.FALSE;}
          
      }
 }
