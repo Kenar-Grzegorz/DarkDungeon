@@ -36,7 +36,7 @@ public class MapControlTest {
         int result = instance.Move(character, location, monster, health);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -57,7 +57,7 @@ public class MapControlTest {
         boolean result = instance.validLocation(character, location);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -75,7 +75,7 @@ public class MapControlTest {
         boolean result = instance.openLock();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
+
     }
     
 }
