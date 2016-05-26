@@ -19,6 +19,8 @@ public class Battle implements Serializable {
     //class instance variables
     public Item fireScroll = new Item("The power of Fire surges throughout your body", 45, 0, 5);
     public Item potion = new Item("A devine glow covers your body", 0,25,3);
+    public Item omniSlash = new Item("You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
+    public Item armageddon = new Item("Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
     private Boolean isAlive;
 
     public Battle() {
@@ -76,12 +78,47 @@ public class Battle implements Serializable {
             System.out.println("====================================");
             System.out.println("| Options:                         |");
             System.out.println("|            a. Attack             |");
+            System.out.println("|            s. Specials/Abilities |");
             System.out.println("|            i. Item Sack          |");
             System.out.println("|            r. Run Away           |");
             System.out.println("====================================");
             System.out.print("Make your Selection ~~~>");
             String action = input.nextLine();
             switch (action) {
+                case "s":
+                    System.out.println("====================================");
+                    System.out.println("|         Specials/Abilities       |");
+                    System.out.println("====================================");
+                    System.out.println("| Options:                         |");
+                    System.out.println("|            o. OmniSlash         |");
+                    System.out.println("|            b. Armaggeddon        |");
+                    System.out.println("|            x. Exit               |");
+                    System.out.println("====================================");
+                    System.out.print("Make your Selection ~~~>");
+                    String action3 = input.nextLine();
+                    if (action3.equals("o")) {
+                        if (character.getManaAmount()>omniSlash.getItemAmount()){
+                            System.out.println("*  You have activated OmniSlash  *\n");System.out.println(omniSlash.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+                            character.setManaAmount(character.getManaAmount()-omniSlash.getItemAmount());
+                            if (omniSlash.getItemDamage()>monster.getHealth()) {monster.setHealth(0);}
+                            else {monster.setHealth(monster.getHealth()-omniSlash.getItemDamage());
+                            }
+                            System.out.println("You have hit the "+monster.getMonsterName()+" for "+omniSlash.getItemDamage()+" of Damage!!\n");
+                            System.out.println("*  You have " + character.getManaAmount() + " mana left.  *\n");
+                        }
+                    }
+                    else if (action3.equals("b")) {
+                        if (character.getManaAmount()>armageddon.getItemAmount()){
+                            System.out.println("*  You have activated Armageddon  *\n");System.out.println(armageddon.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+                            character.setManaAmount(character.getManaAmount()-armageddon.getItemAmount());
+                            if (armageddon.getItemDamage()>monster.getHealth()) {monster.setHealth(0);}
+                            else {monster.setHealth(monster.getHealth()-armageddon.getItemDamage());
+                            }
+                            System.out.println("You have hit the "+monster.getMonsterName()+" for "+armageddon.getItemDamage()+" of Damage!!\n");
+                            System.out.println("*  You have " + character.getManaAmount() + " mana left.  *\n");
+                        }
+                    }
+                    break;
                 case "i":
                     System.out.println("====================================");
                     System.out.println("|             ITEMS                |");
@@ -100,7 +137,7 @@ public class Battle implements Serializable {
                         potion.setItemAmount(potionAmount);
                         System.out.println("*  You have " + potion.getItemAmount() + " potions left.  *\n");
                     }
-                    else if (action2.equals("f"))
+                    else if (action2.equals("f")) {
                         if (character.getManaAmount()>fireScroll.getItemAmount()){
                             System.out.println("*  You have used a firescroll  *\n");System.out.println(fireScroll.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
                             character.setManaAmount(character.getManaAmount()-fireScroll.getItemAmount());
@@ -110,6 +147,7 @@ public class Battle implements Serializable {
                             System.out.println("You have hit the "+monster.getMonsterName()+" for "+fireScroll.getItemDamage()+" of Damage!!\n");
                             System.out.println("*  You have " + character.getManaAmount() + " mana left.  *\n");
                         }
+                    }
                     break;
                 case "a":
                     monster.defend(character);
@@ -121,7 +159,7 @@ public class Battle implements Serializable {
                     System.out.println("\tInvalid command!");
                     break;
             }
-            if (monster.isAlive()&&(action.equals("a"))) {
+            if (monster.isAlive()) {
                 character.defend(monster);
             }
             System.out.println("(" + character.getStatus() + " / " + monster.getStatus() + ")");
