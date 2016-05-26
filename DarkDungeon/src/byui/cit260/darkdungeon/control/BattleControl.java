@@ -41,7 +41,7 @@ public class BattleControl {
         
         return randomNum;
     }
-     //added by Greg
+     //added by Greg for individual project
     public static int superAttack(int health, int defense, int damageAmount) {
         if (health < 1) {return -1;} 
         if (damageAmount < 5 || damageAmount > 100) {return -1;}
@@ -50,6 +50,7 @@ public class BattleControl {
         else {health -= (damageAmount-defense);}
         return health;
     }
+    //added by Greg
     public static boolean flee(int min, int max) {
         if (min > max) {return Boolean.FALSE;}
         if ((min < 0 || min > 10) || (max < 0 || max > 10)) {return Boolean.FALSE;}
@@ -57,4 +58,5 @@ public class BattleControl {
         if (value>= 3) {return Boolean.TRUE;}
         else {return Boolean.TRUE;}
     }
+    
 }

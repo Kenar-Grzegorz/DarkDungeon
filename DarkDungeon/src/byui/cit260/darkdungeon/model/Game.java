@@ -31,15 +31,19 @@ public class Game {
     
     public void enter() {
         Scanner nScan = new Scanner(System.in);
+        
+        //Viariables and Instances
+        String name;
+        boolean run = Boolean.TRUE;
         CharacterSelection warrior = new CharacterSelection();
         Monster monster = new Monster();
         Battle game = new Battle();
-        System.out.println("You are in a new game");
-        String name;
-        boolean run = Boolean.TRUE;
         Player playerOne = new Player();
-        Item potion = new Item("A devine glow covers your body", 0,25,3);
+        //Item potion = new Item("A devine glow covers your body", 0,25,3);
         
+        
+//Game printout starts here
+        System.out.println("You are in a new game");
         // Banner will go here
 
 
@@ -81,14 +85,14 @@ public class Game {
             warrior = CharacterSelection.warriorCreate(name);
             System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
             monster = Monster.newMonsterInstance();
-            game.battleStart(playerOne, potion, warrior, monster);
+            game.battleStart(playerOne, warrior, monster);
 
         }
         else if (input.equals("2")) {
             warrior = CharacterSelection.paladinCreate(name);
             System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
             monster = Monster.newMonsterInstance();
-            game.battleStart(playerOne, potion, warrior, monster);
+            game.battleStart(playerOne, warrior, monster);
 
         }
         else if (input.equals("3")) {

@@ -17,6 +17,8 @@ import java.util.Scanner;
 public class Battle implements Serializable {
     
     //class instance variables
+    public Item fireScroll = new Item("The power of Fire surges throughout your body", 45, 0, 5);
+    public Item potion = new Item("A devine glow covers your body", 0,25,3);
     private Boolean isAlive;
 
     public Battle() {
@@ -60,37 +62,67 @@ public class Battle implements Serializable {
         return "Battle{" + "isAlive=" + isAlive + '}';
     }
     
-    public void battleStart(Player player, Item item, CharacterSelection character, Monster monster) {  
+    public void battleStart(Player player, CharacterSelection character, Monster monster) {  
         Monster.newMonsterInstance();
         Scanner input = new Scanner(System.in);
         System.out.println(player.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
         System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
                 + monster.getStatus() + ")");
         
+        OUTER:
         while (character.isAlive() && monster.isAlive()) {
-            System.out.print("Attack (a) \nHeal (h) \nRun (r) \n");
+            System.out.println("====================================");
+            System.out.println("|             Battle               |");
+            System.out.println("====================================");
+            System.out.println("| Options:                         |");
+            System.out.println("|            a. Attack             |");
+            System.out.println("|            i. Item Sack          |");
+            System.out.println("|            r. Run Away           |");
+            System.out.println("====================================");
+            System.out.print("Make your Selection ~~~>");
             String action = input.nextLine();
-            if (action.equals("h")) {
-                //character.heal();
-                if (item.getItemAmount()>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");}
-                int potionAmount = character.heal(item.getItemAmount(),item.getItemHeal());
-                item.setItemAmount(potionAmount);
-                System.out.println("*  You have " + item.getItemAmount() + " potions left.  *\n");
-            } 
-            else if (action.equals("a")) {
-                monster.defend(character);
+            switch (action) {
+                case "i":
+                    System.out.println("====================================");
+                    System.out.println("|             ITEMS                |");
+                    System.out.println("====================================");
+                    System.out.println("| Options:                         |");
+                    System.out.println("|            p. Potion             |");
+                    System.out.println("|            f. Fire Scroll        |");
+                    System.out.println("|            x. Exit               |");
+                    System.out.println("====================================");
+                    System.out.print("Make your Selection ~~~>");
+                    String action2 = input.nextLine();
+                    if (action2.equals("p")) {
+                        //character.heal();
+                        if (potion.getItemAmount()>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");}
+                        int potionAmount = character.heal(potion.getItemAmount(),potion.getItemHeal());
+                        potion.setItemAmount(potionAmount);
+                        System.out.println("*  You have " + potion.getItemAmount() + " potions left.  *\n");
+                    }
+                    else if (action2.equals("f"))
+                        if (character.getManaAmount()>fireScroll.getItemAmount()){
+                            System.out.println("*  You have used a firescroll  *\n");System.out.println(fireScroll.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+                            character.setManaAmount(character.getManaAmount()-fireScroll.getItemAmount());
+                            if (fireScroll.getItemDamage()>monster.getHealth()) {monster.setHealth(0);}
+                            else {monster.setHealth(monster.getHealth()-fireScroll.getItemDamage());
+                            }
+                            System.out.println("You have hit the "+monster.getMonsterName()+" for "+fireScroll.getItemDamage()+" of Damage!!\n");
+                            System.out.println("*  You have " + character.getManaAmount() + " mana left.  *\n");
+                        }
+                    break;
+                case "a":
+                    monster.defend(character);
+                    break;
+                case "r":
+                    System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
+                    break OUTER;
+                default:
+                    System.out.println("\tInvalid command!");
+                    break;
             }
-            else if(action.equals("r")) {
-                System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
-                break;
-            }
-            else {System.out.println("\tInvalid command!");
-            }
-            if (monster.isAlive()) {
+            if (monster.isAlive()&&(action.equals("a"))) {
                 character.defend(monster);
-            }
-            
-            else {System.out.println("\tInvalid command!");
             }
             System.out.println("(" + character.getStatus() + " / " + monster.getStatus() + ")");
         }
