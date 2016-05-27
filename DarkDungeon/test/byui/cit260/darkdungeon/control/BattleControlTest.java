@@ -182,11 +182,11 @@ public class BattleControlTest {
      * Test of random method, of class BattleControl. ~~ Greg K
      */
     @Test
-    public void testAbility() {
+    public void testSuperAttack() {
         /*******************************
          * Test case #1
          *******************************/
-        System.out.println("ability");
+        System.out.println("SuperAttack");
         System.out.println("\tTest case #1");
         int health = 100;
         int damage = 20;

@@ -32,7 +32,7 @@ public class BattleControl {
         }
     }
 
-    //Added by Greg
+    //Added by Greg for individual project
     public static int random(int min, int max) {
         if (min > max) {return -1;}
         if ((min < 0 || min > 200) || (max < 0 || max > 200)) {return -1;}

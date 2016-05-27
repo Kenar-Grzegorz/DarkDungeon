@@ -11,6 +11,7 @@ import java.util.Objects;
  * CIT 260  First Assignment
  */
 public class Item implements Serializable {
+    private String itemName;
     private String itemDescription;
     private String itemType;
     private int itemDamage;
@@ -20,12 +21,21 @@ public class Item implements Serializable {
     public Item() {
     }
     
-    public Item(String itemDescription, int itemDamage, int itemHeal, int itemAmount) {
+    public Item(String itemName, String itemDescription, int itemDamage, int itemHeal, int itemAmount) {
+        this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemDamage = itemDamage;
         this.itemHeal = itemHeal;
         this.itemAmount = itemAmount;
         
+    }
+    
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
     
     public String getItemDescription() {

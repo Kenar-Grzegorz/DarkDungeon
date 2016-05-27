@@ -211,6 +211,9 @@ public class CharacterSelection implements Serializable {
     public String getStatus() {
         return "Player HP: " + health;
     }
+    public String getManaStatus() {
+        return "Player Mana: " + manaAmount;
+    }
     public void defend(Monster monster) {
         int attackStrength = monster.attack();
         health = (health > attackStrength) ? health - attackStrength : 0;
@@ -225,7 +228,7 @@ public class CharacterSelection implements Serializable {
      }
 
      public static CharacterSelection paladinCreate(String nameSet) {
-        return new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,3,40,60);
+        return new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60);
      }
 }
 
