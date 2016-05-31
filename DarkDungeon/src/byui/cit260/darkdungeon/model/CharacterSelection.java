@@ -223,11 +223,11 @@ public class CharacterSelection implements Serializable {
             System.out.println("\t" + getCharacterName() + " has been defeated, try again next time");
         }
     }
-    public static CharacterSelection warriorCreate(String nameSet) {
+    public static CharacterSelection warriorCreate() {
         return new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50);
      }
 
-     public static CharacterSelection paladinCreate(String nameSet) {
+     public static CharacterSelection paladinCreate() {
         return new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60);
      }
 }

@@ -5,6 +5,8 @@
  */
 package byui.cit260.darkdungeon.vew;
 
+import byui.cit260.darkdungeon.model.*;
+import byui.cit260.darkdungeon.control.*;
 import java.util.Scanner;
 
 /**
@@ -16,7 +18,10 @@ public class StartProgramView {
     private String promptMessage;
 
     public StartProgramView() {
-        this.promptMessage = "\nPlease enter your name: ";
+        this.promptMessage = "===================================="
+                         + "\n| Please Choose your Name          |"
+                         + "\n===================================="
+                         + "\nPlease enter your name~~~> ";
         this.displayBaner();
     }
 
@@ -66,7 +71,7 @@ public class StartProgramView {
         boolean valid = false; // initialize to not valid
         
         while (!valid) { // loop while an invalid value is entered
-            System.out.println("\n"+ this.promptMessage);
+            System.out.print(this.promptMessage);
             value = keyboard.nextLine(); //get next line typed
             value = value.trim(); //trim off leading and trailing blanks
             if (value.length() <1) { //value is blank
@@ -84,7 +89,31 @@ public class StartProgramView {
             System.out.println("\nInvalid players name: "
             +"The name must be greater than one character in length");
             return false;
-        }return true;
+        }
+        // call createPlayer() control function
+        Player player = GameControl.createPlayer(playersName);
+        if (player == null) { //if unsuccessfull
+            System.out.println("\nError Creating the plater.");
+            return false;
+        }
+        this.displayNextView(player);
+        return true;
+    }
+
+    private void displayNextView(Player player) {
+        System.out.println("\n\t==============================================="
+                          +"\n\t=  Welcome to the game " + player.getName() 
+                          +"\n\t=  I hope your not afraid of the dark!"
+                          +"\n\t===============================================");
+        //Create main menu object
+        MainMenuView mainMenuView = new MainMenuView();
+        //Display the main menu view
+        mainMenuView.displayMainMenuView();
+        System.out.println("\n**************************************"  
+                                                +"********************");
+        System.out.println("\t # THANKS FOR PLAYING!! Goodbye #");
+        System.out.println("**************************************"
+                                                +"********************/n");
     }
     
     

@@ -12,6 +12,9 @@ import byui.cit260.darkdungeon.vew.*;
  * CIT 260  First Assignment
  */
 public class DarkDungeonGame {
+    private static Game currentGame = null;
+    private static Player player = null;
+    
     public static void main(String[] args) {
     /*
     //test the player class - Greg and Bill.
@@ -94,6 +97,22 @@ public class DarkDungeonGame {
     //game.enter();
     StartProgramView startProgramView = new StartProgramView();
     startProgramView.displayStartProgramView();
+    } 
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        DarkDungeonGame.player = player;
+    }
+    
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        DarkDungeonGame.currentGame = currentGame;
     }
     
 }

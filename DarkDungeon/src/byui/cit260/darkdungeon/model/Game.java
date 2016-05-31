@@ -82,14 +82,14 @@ public class Game {
             input = nScan.nextLine();
         }    
         if(input.equals("1")) {
-            warrior = CharacterSelection.warriorCreate(name);
+            warrior = CharacterSelection.warriorCreate();
             System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
             monster = Monster.newMonsterInstance();
             game.battleStart(playerOne, warrior, monster);
 
         }
         else if (input.equals("2")) {
-            warrior = CharacterSelection.paladinCreate(name);
+            warrior = CharacterSelection.paladinCreate();
             System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
             monster = Monster.newMonsterInstance();
             game.battleStart(playerOne, warrior, monster);
