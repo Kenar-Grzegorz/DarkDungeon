@@ -143,6 +143,7 @@ public class Monster implements Serializable {
     }
     
     public String getStatus() {
+        System.out.println("this is a test");
         return "Monster HP: " + health;
     }
     public void defend(CharacterSelection character) {

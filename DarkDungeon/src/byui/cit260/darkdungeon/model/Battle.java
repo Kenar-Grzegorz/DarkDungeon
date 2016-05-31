@@ -90,7 +90,7 @@ public class Battle implements Serializable {
                     System.out.println("|         Specials/Abilities       |");
                     System.out.println("====================================");
                     System.out.println("| Options:                         |");
-                    System.out.println("|            o. OmniSlash         |");
+                    System.out.println("|            o. OmniSlash          |");
                     System.out.println("|            a. Armaggeddon        |");
                     System.out.println("|            x. Exit               |");
                     System.out.println("====================================");

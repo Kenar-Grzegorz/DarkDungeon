@@ -5,6 +5,7 @@ package darkdungeongame;
 
 import byui.cit260.darkdungeon.model.*;
 import byui.cit260.darkdungeon.control.*;
+import byui.cit260.darkdungeon.vew.*;
 
 /**
  * @authors Greg Kenar, William Murray, Florian Kausche
@@ -87,9 +88,12 @@ public class DarkDungeonGame {
     int answerRandom = Game.rand(numOne, numTwo);
     System.out.println(answerRandom);
     */
-    Game game = new Game();
-    game.enter();
     
+    
+    //Game game = new Game();
+    //game.enter();
+    StartProgramView startProgramView = new StartProgramView();
+    startProgramView.displayStartProgramView();
     }
     
 }
