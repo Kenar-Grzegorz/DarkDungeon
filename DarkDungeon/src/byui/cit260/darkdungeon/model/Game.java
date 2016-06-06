@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.model;
 
 
+import byui.cit260.darkdungeon.vew.GameMenuView;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ public class Game {
         boolean run = Boolean.TRUE;
         CharacterSelection warrior = new CharacterSelection();
         Monster monster = new Monster();
-        Battle game = new Battle();
+        GameMenuView game = new GameMenuView();
         Player playerOne = new Player();
         //Item potion = new Item("A devine glow covers your body", 0,25,3);
         

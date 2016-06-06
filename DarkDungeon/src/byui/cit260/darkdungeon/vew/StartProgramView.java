@@ -58,6 +58,7 @@ public class StartProgramView {
         do {
             //get player name
             String playersName = this.getPlayersName();
+            
             if (playersName.toUpperCase().equals("q")) //quit
                 return; // exit game
             //do the requested action
@@ -81,6 +82,7 @@ public class StartProgramView {
             break; //end of loop
             
         }
+        
         return value; // return the value
     }
 
@@ -106,6 +108,7 @@ public class StartProgramView {
                           +"\n\t=  I hope your not afraid of the dark!"
                           +"\n\t===============================================");
         //Create main menu object
+        
         MainMenuView mainMenuView = new MainMenuView();
         //Display the main menu view
         mainMenuView.displayMainMenuView();

@@ -5,8 +5,11 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.vew.GameMenuView;
 import byui.cit260.darkdungeon.model.CharacterSelection;
+import byui.cit260.darkdungeon.model.Monster;
 import byui.cit260.darkdungeon.model.Player;
+import byui.cit260.darkdungeon.vew.CharacterSelectView;
 import darkdungeongame.DarkDungeonGame;
 
 /**
@@ -14,7 +17,7 @@ import darkdungeongame.DarkDungeonGame;
  * @author gregg
  */
 public class GameControl {
-
+    
     public static Player createPlayer(String name) {
         if (name == null) {
             return null;
@@ -26,8 +29,11 @@ public class GameControl {
         return player;
     }
 
-    public static void createNewGame(Player player) {
-        System.out.println("New Game called");
+    public static void createNewGame(Player player,CharacterSelection warrior) {
+        GameMenuView game = new GameMenuView();
+        Monster monster = new Monster();
+        monster = Monster.newMonsterInstance();
+        game.battleStart(player, warrior, monster);
     }
 
     public static CharacterSelection createWarrior() {
@@ -39,4 +45,6 @@ public class GameControl {
         return warrior;
     
     }
+
+    
 }

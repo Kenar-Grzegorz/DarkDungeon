@@ -7,6 +7,7 @@ package byui.cit260.darkdungeon.vew;
 
 import byui.cit260.darkdungeon.control.*;
 import byui.cit260.darkdungeon.model.*;
+import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Scanner;
  */
 public class CharacterSelectView {
     CharacterSelection warrior = GameControl.createWarrior();
+    
     private String menu;
-
     public CharacterSelectView() {
         this.menu = "\n"
                 + "\n===================================="
@@ -40,6 +41,7 @@ public class CharacterSelectView {
                 return; // exit game
             //display next view
             done = this.doAction(menuOption);
+            
         } while (!done);
         
        
@@ -70,12 +72,16 @@ public class CharacterSelectView {
         
         switch (choice) {
             case "1": //Warrior
-                this.doNext();
                 warrior = GameControl.createWarrior();
+                this.doNext();
+                GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
+                
+                
                 break;
             case "2": //Paladin
-                this.doNext();
                 warrior = GameControl.createPaladin();
+                this.doNext();
+                GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
                 break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -86,10 +92,9 @@ public class CharacterSelectView {
 
     private void doNext() {
         
-        
         System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        
+        
     }
 
     
