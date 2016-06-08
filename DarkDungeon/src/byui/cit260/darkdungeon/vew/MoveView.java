@@ -18,15 +18,15 @@ public class MoveView {
     private final String menu;
     public MoveView() {
         this.menu = "\n"
-                  + "\n|--------------------------------------"
+                  + "\n|=====================================|"
                   + "\n|               Movement              |"
-                  + "\n|--------------------------------------"
+                  + "\n|=====================================|"
                   + "\n|    N - North                        |"
                   + "\n|    S - South                        |"
                   + "\n|    E - East                         |"
                   + "\n|    W - West                         |"
                   + "\n|    Q - Run out of the dungeon       |"
-                  + "\n|-------------------------------------|";
+                  + "\n|=====================================|";
         
         this.promptMessage = "Which direction would you like to travel? ~~~>";
     }

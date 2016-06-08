@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Bill
  */
-public class TreasureChestOpen {
+public class TreasureChestView {
 
 }
 
