@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.vew;
 
+import byui.cit260.darkdungeon.control.BattleControl;
 import byui.cit260.darkdungeon.control.MapControl;
 import java.util.Scanner;
 
@@ -19,15 +20,14 @@ public class OpenDoorView {
                 
    }
 
-    public boolean MoveView() {
+    public boolean moveView() {
        
             // prompt for and get players name
             System.out.println("Please enter the first number between 1 and 15");
             int value1 = this.getMenuOption();
-            System.out.println("Please enter the second numberbetween 1 and 15");
-            int value2 = this.getMenuOption();
+            
             //display next view
-            boolean done = this.doAction(value1, value2);
+            boolean done = this.doAction(value1);
             return done;
         
        
@@ -64,16 +64,16 @@ public class OpenDoorView {
     }
     
 
-    private boolean doAction(int value1, int value2) {
-        int random = MapControl.random(1, 10);
-        if ((value1+value2+random)%2==0) {
+    private boolean doAction(int value1) {
+        int random = BattleControl.random(1, 10);
+        if ((value1+random)%2==0) {
             this.choice1();
             return true;
         }
         else {
             if (random%2==0){
                 this.choice3();
-                return false;
+                return true;
             }
             else {this.choice2();
             return false;

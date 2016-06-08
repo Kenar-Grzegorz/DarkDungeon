@@ -5,6 +5,9 @@
  */
 package byui.cit260.darkdungeon.model;
 
+import byui.cit260.darkdungeon.control.GameControl;
+import byui.cit260.darkdungeon.vew.TreasureChestView;
+import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -167,15 +170,17 @@ public class Monster implements Serializable {
             System.out.println("You have hit the "+monsterName+" for "+item.getItemDamage()+" of Damage!!");
             if (health == 0) {
                 System.out.println("\t" + character.getCharacterName() + " transforms the skull of " + getMonsterName()
-                        + " into dust to never be seen again");
+                + " into dust to never be seen again");
+                
             }
         }
         else {
             System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
         }
+        
     
+    }
     
-    } 
     
     
 }

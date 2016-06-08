@@ -5,6 +5,8 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.vew.TreasureChestView;
+import darkdungeongame.DarkDungeonGame;
 import java.util.Random;
 
 
@@ -58,5 +60,6 @@ public class BattleControl {
         if (value>= 3) {return Boolean.TRUE;}
         else {return Boolean.TRUE;}
     }
+    
     
 }

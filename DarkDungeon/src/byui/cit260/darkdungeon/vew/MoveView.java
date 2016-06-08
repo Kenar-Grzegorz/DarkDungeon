@@ -70,6 +70,7 @@ public class MoveView {
         
         switch (choice) {
             case "N": //North
+                
                 this.North();
                 break;
             case "S": //South
@@ -91,23 +92,34 @@ public class MoveView {
     private void North() {
         
         System.out.println("***You have chosen North***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
-        
+        open();
     }
     private void South() {
         
         System.out.println("***You have chosen South***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+        open();
     }
      private void East() {
         
         System.out.println("***You have chosen East***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+        open();
     }
       private void West() {
         
         System.out.println("***You have chosen West***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+        open();
     }
+      
+      private void open() {
+        OpenDoorView openDoor = new OpenDoorView();
+            boolean open = openDoor.moveView();
+            if (open==true) {
+                System.out.println("\tDoor Opened!");
+                GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+            }
+            else {
+                System.out.println("\t");
+            }
+      }
    
 }
