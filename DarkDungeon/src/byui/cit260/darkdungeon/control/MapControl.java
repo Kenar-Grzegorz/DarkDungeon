@@ -36,7 +36,7 @@ public class MapControl {
         
             if (location<1)
                     {return Boolean.FALSE;}
-             int validLocation = (int) random();
+             int validLocation = (int) Math.random();
              if (validLocation>= 1) {return Boolean.TRUE;}
                 else {return Boolean.FALSE;}
             
