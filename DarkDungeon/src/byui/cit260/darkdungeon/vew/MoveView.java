@@ -5,27 +5,30 @@
  */
 package byui.cit260.darkdungeon.vew;
 
+import byui.cit260.darkdungeon.control.GameControl;
+import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
 /**
  *
  * @author Florian
  */
-public class Moveview {
+public class MoveView {
     private final String promptMessage;
     private final String menu;
-    public Moveview() {
+    public MoveView() {
         this.menu = "\n"
-                  + "\n---------------------------------------"
-                  + "\n| Movement                         |"
-                  + "\n---------------------------------------"
-                  + "\nN - North"
-                  + "\nS - South"
-                  + "\nE - East"
-                  + "\nW - West"
-                  + "\n---------------------------------------";
+                  + "\n|--------------------------------------"
+                  + "\n|               Movement              |"
+                  + "\n|--------------------------------------"
+                  + "\n|    N - North                        |"
+                  + "\n|    S - South                        |"
+                  + "\n|    E - East                         |"
+                  + "\n|    W - West                         |"
+                  + "\n|    Q - Run out of the dungeon       |"
+                  + "\n|-------------------------------------|";
         
-        this.promptMessage = "Enter Direction you want to go";
+        this.promptMessage = "Which direction would you like to travel? ~~~>";
     }
     
   public void displayMenu() {
@@ -47,8 +50,8 @@ public class Moveview {
      boolean valid = false; // initialize to not valid
      
      while (!valid){ // loop while an invalid value is enter
-         System.out.println("\n" + this.menu);
-         System.out.println("\n" + this.promptMessage);
+         System.out.println("" + this.menu);
+         System.out.print("" + this.promptMessage);
          
          value = Keyboard.nextLine(); // get next line typed on keyboard
          value = value. trim(); // trim off leading and trailing blanks
@@ -68,7 +71,7 @@ public class Moveview {
         switch (choice) {
             case "N": //North
                 this.North();
-         break;
+                break;
             case "S": //South
                 this.South();
                 break;
@@ -88,18 +91,23 @@ public class Moveview {
     private void North() {
         
         System.out.println("***You have chosen North***");
+        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+        
     }
- private void South() {
+    private void South() {
         
         System.out.println("***You have chosen South***");
+        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
     }
      private void East() {
         
         System.out.println("***You have chosen East***");
+        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
     }
       private void West() {
         
         System.out.println("***You have chosen West***");
+        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
     }
    
 }
