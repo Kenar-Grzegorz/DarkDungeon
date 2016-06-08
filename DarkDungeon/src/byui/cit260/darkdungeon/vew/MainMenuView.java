@@ -5,9 +5,6 @@
  */
 package byui.cit260.darkdungeon.vew;
 
-import byui.cit260.darkdungeon.control.*;
-import byui.cit260.darkdungeon.model.CharacterSelection;
-import darkdungeongame.*;
 import java.util.Scanner;
 
 /**
