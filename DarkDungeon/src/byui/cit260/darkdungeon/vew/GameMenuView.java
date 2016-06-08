@@ -118,8 +118,8 @@ public class GameMenuView implements Serializable {
                     specialView.displayMainMenuView(character, monster);
                     break;
                 case "I":
-                    ItemMenuView itemView = new ItemNenuView();
-                    itemview.displayMenuItem(character, monster);
+                    ItemMenuView itemView = new ItemMenuView();
+                    itemView.displayMenuView(character, monster);
                     break;
                 case "A":
                     monster.defend(character);
