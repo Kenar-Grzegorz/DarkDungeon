@@ -32,7 +32,7 @@ public class ItemMenuView {
         
    }
 
-    public void displayMainMenuView(CharacterSelection character, Monster monster) {
+    public void displayMenuView(CharacterSelection character, Monster monster) {
    
          boolean done = false; // set to not done
         do {
