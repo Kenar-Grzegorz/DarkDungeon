@@ -5,40 +5,41 @@
  */
 package byui.cit260.darkdungeon.vew;
 
+import byui.cit260.darkdungeon.model.*;
 import java.util.Scanner;
 
 /**
  *
  * @author Greg
  */
-public class MainMenuView {
+public class SpecialMenuView {
     private String menu;
+    public Item omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
+    public Item armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
 
-    public MainMenuView() {
+    public SpecialMenuView() {
         this.menu = "\n"
                 + "\n===================================="
-                + "\n|           Main Menu              |"
+                + "\n|       Specials/Abilities         |"
                 + "\n===================================="
                 + "\n| Options:                         |"
-                + "\n|   N. Start a New Game            |"
-                + "\n|   L. Load a saved Game           |"
-                + "\n|   H. Game Help                   |"
-                + "\n|   S. Save Game                   |"
-                + "\n|   Q. Quit                        |"
+                + "\n|        O. OmniSlash              |"
+                + "\n|        A. Armaggeddon            |"
+                + "\n|        X. Exit                   |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ";
                 
    }
 
-    public void displayMainMenuView() {
+    public void displayMainMenuView(CharacterSelection character, Monster monster) {
         boolean done = false; // set to not done
         do {
             // prompt for and get players name
             String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) //user will quit
+            if (menuOption.toUpperCase().equals("X")) //user will quit
                 return; // exit game
             //display next view
-            done = this.doAction(menuOption);
+            done = this.doAction(menuOption, character, monster);
         } while (!done);
         
        
@@ -64,50 +65,30 @@ public class MainMenuView {
     }
     
 
-    private boolean doAction(String choice) {
+    private boolean doAction(String choice, CharacterSelection character, Monster monster) {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
-            case "N": //New Game
-                this.startNewGame();
-                break;
-            case "L": //Start a saved game
-                this.startExistingGame();
-                break;
-            case "H": //Display the Help Menu
-                this.displayHelpMenu();
-                break;
-            case "S": //save current Game
-                this.saveGame();
-                break;
+            case "O": //OmniSlash
+                this.useOmniSlash(character, monster);
+                return true;
+            case "A": //Armageddon
+                this.useArmageddon(character, monster);
+                return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
     }
-
-    private void startNewGame() {
-        //Create a new Game
-        CharacterSelectView charSelect = new CharacterSelectView();
-        charSelect.characterMenuView();
-        
-       
-        
-        
+    
+     private void useOmniSlash(CharacterSelection character, Monster monster) {
+         monster.abilityDefend(character, omniSlash);
+         
     }
-
-    private void startExistingGame() {
-        System.out.println("Existing Game");
+     private void useArmageddon(CharacterSelection character, Monster monster) {
+         monster.abilityDefend(character, armageddon);
     }
-
-    private void displayHelpMenu() {
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenuView();
-    }
-
-    private void saveGame() {
-        System.out.println("Save Game");
-    }
+    
     
 }

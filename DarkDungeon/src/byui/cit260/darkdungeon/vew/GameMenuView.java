@@ -6,10 +6,7 @@
 package byui.cit260.darkdungeon.vew;
 
 
-import byui.cit260.darkdungeon.model.CharacterSelection;
-import byui.cit260.darkdungeon.model.Item;
-import byui.cit260.darkdungeon.model.Monster;
-import byui.cit260.darkdungeon.model.Player;
+import byui.cit260.darkdungeon.model.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Scanner;
@@ -21,16 +18,11 @@ import java.util.Scanner;
 public class GameMenuView implements Serializable {
     
     //class instance variables
-    public Item fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);
-    public Item potion = new Item("Potion", "A devine glow covers your body", 0,25,3);
-    public Item omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
-    public Item armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
+    
     
     
     private Boolean isAlive;
     private String gameMenu;
-    private String gameMenu2;
-    private String gameMenu3;
     
     public GameMenuView() {
         this.gameMenu = "\n"
@@ -44,27 +36,7 @@ public class GameMenuView implements Serializable {
                 + "\n|        Q. Run Away               |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ";
-        this.gameMenu2 = "\n"
-                + "\n===================================="
-                + "\n|       Specials/Abilities         |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        O. OmniSlash              |"
-                + "\n|        A. Armaggeddon            |"
-                + "\n|        I. Item Sack              |"
-                + "\n|        X. Exit                   |"
-                + "\n===================================="
-                + "\nMake your Selection ~~~> ";
-        this.gameMenu3 = "\n"
-                + "\n===================================="
-                + "\n|             Battle               |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        P. Potion                 |"
-                + "\n|        f. Fire Scroll            |"
-                + "\n|        X. Exit                   |"
-                + "\n===================================="
-                + "\nMake your Selection ~~~> ";
+        
     }
 
    
@@ -142,28 +114,12 @@ public class GameMenuView implements Serializable {
             String action = this.getMenuOption();
             switch (action) {
                 case "S":
-                    System.out.print(this.gameMenu2);
-                    String action3 = this.getMenuOption();
-                    if (action3.equals("O")) {
-                        monster.abilityDefend(character, omniSlash);
-                    }
-                    else if (action3.equals("A")) {
-                        monster.abilityDefend(character, armageddon);
-                    }
+                    SpecialMenuView specialView = new SpecialMenuView();
+                    specialView.displayMainMenuView(character, monster);
                     break;
                 case "I":
-                    System.out.print(this.gameMenu3);
-                    String action2 = this.getMenuOption();
-                    if (action2.equals("P")) {
-                        
-                        if (potion.getItemAmount()>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");}
-                        int potionAmount = character.heal(potion.getItemAmount(),potion.getItemHeal());
-                        potion.setItemAmount(potionAmount);
-                        System.out.println("*  You have " + potion.getItemAmount() + " potions left.  *\n");
-                    }
-                    else if (action2.equals("F")) {
-                        monster.abilityDefend(character, fireScroll);
-                    }
+                    ItemMenuView itemView = new ItemMenuView();
+                    itemView.displayMenuView(character, monster);
                     break;
                 case "A":
                     monster.defend(character);
