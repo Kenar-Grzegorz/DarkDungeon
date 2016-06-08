@@ -11,6 +11,10 @@ import static java.lang.Math.random;
  * added by Florian K
  */
 public class MapControl {
+
+    public static int random(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public int Move(int character,int location,int monster,int health){
             if (character<1)
                     {return -1;}
@@ -32,7 +36,7 @@ public class MapControl {
         
             if (location<1)
                     {return Boolean.FALSE;}
-             int validLocation = (int) random();
+             int validLocation = (int) Math.random();
              if (validLocation>= 1) {return Boolean.TRUE;}
                 else {return Boolean.FALSE;}
             
