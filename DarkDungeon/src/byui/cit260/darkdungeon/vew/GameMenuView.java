@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Bill
+ * @author Greg
  */
 public class GameMenuView implements Serializable {
     
@@ -125,8 +125,14 @@ public class GameMenuView implements Serializable {
                     monster.defend(character);
                     break;
                 case "Q":
-                    System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
-                    return;
+                    EscapeView escape = new EscapeView();
+                    boolean escapeBoolean = escape.displayMainMenuView(character);
+                    if (escapeBoolean==true) {
+                        System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
+                        return;}
+                    else {
+                        break;
+                    }
                     //break OUTER;
                 default:
                     System.out.println("\tInvalid command!");
@@ -135,6 +141,7 @@ public class GameMenuView implements Serializable {
             if (monster.isAlive()) {
                 character.defend(monster);
             }
+            
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
     }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author test
+ * @author Bill
  */
 public class ItemMenuView {
  private String menu;
