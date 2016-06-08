@@ -21,11 +21,11 @@ public class ItemMenuView {
     public ItemMenuView() {
                 this.menu = "\n"
                 + "\n===================================="
-                + "\n|             Battle               |"
+                + "\n|             ITEM                 |"
                 + "\n===================================="
                 + "\n| Options:                         |"
                 + "\n|        P. Potion                 |"
-                + "\n|        f. Fire Scroll            |"
+                + "\n|        F. Fire Scroll            |"
                 + "\n|        X. Exit                   |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ";
