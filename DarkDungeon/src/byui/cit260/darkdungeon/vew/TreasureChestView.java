@@ -10,14 +10,19 @@ import java.util.Scanner;
 
 /**
  *
- * @author Bill
+ * @author William Murray
+ * Class: CIT 260 
+ * Lesson 7 - Individual Assignment 
  */
 public class TreasureChestView {
     private String question;
     private int random1;
     private int random2;
     private int answer;
-
+/* 
+ * This Function occurs when a monster is defeated, Players will be asked to
+ * Solve a problem to open the Monsters Treasure Chest.
+ */
     public TreasureChestView() {
         this.question = "\nThe monster has dropped a locked chest"
                         + "\nPlease answer the equation to gain access";
