@@ -22,6 +22,7 @@ public class GameControl {
         public static MoveView move = new MoveView();
         
         private static CharacterSelection warrior = null;
+    
     public static Player createPlayer(String name) {
         if (name == null) {
             return null;

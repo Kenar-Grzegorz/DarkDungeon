@@ -6,7 +6,9 @@
 package byui.cit260.darkdungeon.vew;
 
 
+import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.model.*;
+import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Scanner;
@@ -142,7 +144,15 @@ public class GameMenuView implements Serializable {
                 character.defend(monster);
             }
             
+            
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
+            
         }
+        open();
     }
+    private void open() {
+       TreasureChestView chestView = new TreasureChestView();
+       boolean open = chestView.ChestOpenView();
+            
+      }
 }

@@ -19,15 +19,15 @@ public class MoveView {
     private final String menu;
     public MoveView() {
         this.menu = "\n"
-                  + "\n|--------------------------------------"
+                  + "\n|=====================================|"
                   + "\n|               Movement              |"
-                  + "\n|--------------------------------------"
+                  + "\n|=====================================|"
                   + "\n|    N - North                        |"
                   + "\n|    S - South                        |"
                   + "\n|    E - East                         |"
                   + "\n|    W - West                         |"
                   + "\n|    Q - Run out of the dungeon       |"
-                  + "\n|-------------------------------------|";
+                  + "\n|=====================================|";
         
         this.promptMessage = "Which direction would you like to travel? ~~~>";
     }
@@ -71,6 +71,7 @@ public class MoveView {
         
         switch (choice) {
             case "N": //North
+                
                 this.North();
                 break;
             case "S": //South
@@ -93,21 +94,35 @@ public class MoveView {
         
         System.out.println("***You have chosen North***");      
         
+        System.out.println("***You have chosen North***");
+        open();
     }
     private void South() {
         
         System.out.println("***You have chosen South***");
-         
+
     }
      private void East() {
         
         System.out.println("***You have chosen East***");
-         
+
     }
       private void West() {
         
         System.out.println("***You have chosen West***");
-         
+
     }
+      
+      private void open() {
+        OpenDoorView openDoor = new OpenDoorView();
+            boolean open = openDoor.moveView();
+            if (open==true) {
+                System.out.println("\tDoor Opened!");
+               
+            }
+            else {
+                System.out.println("\t");
+            }
+      }
    
 }
