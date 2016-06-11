@@ -5,7 +5,8 @@
  */
 package byui.cit260.darkdungeon.vew;
 
-import byui.cit260.darkdungeon.control.GameControl;
+
+
 import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
@@ -90,24 +91,23 @@ public class MoveView {
 
     private void North() {
         
-        System.out.println("***You have chosen North***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+        System.out.println("***You have chosen North***");      
         
     }
     private void South() {
         
         System.out.println("***You have chosen South***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+         
     }
      private void East() {
         
         System.out.println("***You have chosen East***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+         
     }
       private void West() {
         
         System.out.println("***You have chosen West***");
-        GameControl.createNewBattle(DarkDungeonGame.getPlayer(), GameControl.getWarrior());
+         
     }
    
 }
