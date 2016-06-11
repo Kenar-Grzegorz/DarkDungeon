@@ -45,14 +45,13 @@ public class OpenDoorView {
             input = input.trim(); //trim off leading and trailing blanks
             if (input.length() <1) { //Check if value is blank
                 System.out.println("\nValue cannot be blank");
-                continue;
             }
             else {
                 try {
                     value = Integer.parseInt(input);
                     if (value <1||value>15){ //value is blank
                         System.out.println("\nValue has to be between 0 and 10");
-                        continue;}
+}
                     else {break;}
                 }
                 catch (NumberFormatException ne) {
