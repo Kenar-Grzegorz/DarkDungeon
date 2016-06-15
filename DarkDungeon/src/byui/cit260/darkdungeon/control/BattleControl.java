@@ -5,6 +5,9 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.model.CharacterSelection;
+import byui.cit260.darkdungeon.model.Item;
+import byui.cit260.darkdungeon.model.Monster;
 import byui.cit260.darkdungeon.vew.TreasureChestView;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Random;
@@ -16,6 +19,8 @@ import java.util.Random;
  */
 // Added by the team
 public class BattleControl {
+    
+    
     public static int attack(int min, int max, int defense, int health) {
         if (min > max) {return -1;}
         if (health<0||health>200) {return -1;}
@@ -61,6 +66,7 @@ public class BattleControl {
         if (value>= 3) {return Boolean.TRUE;}
         else {return Boolean.TRUE;}
     }
+    
     
     
 }

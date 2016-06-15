@@ -17,12 +17,8 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class GameMenuView implements Serializable {
-    
+public class GameMenuView  {
     //class instance variables
-    
-    
-    
     private Boolean isAlive;
     private String gameMenu;
     
@@ -40,11 +36,6 @@ public class GameMenuView implements Serializable {
                 + "\nMake your Selection ~~~> ";
         
     }
-
-   
-    
-    
-    
     private String getMenuOption() {
         Scanner keyboard = new Scanner(System.in); // create infile
         String value = ""; //value to be returned
@@ -64,7 +55,55 @@ public class GameMenuView implements Serializable {
         value = value.toUpperCase();
         return value; // return the value
     }
-
+    
+    public void battleStart(Player playerName, CharacterSelection character, Monster monster) {
+        
+        Monster.newMonsterInstance();
+        System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
+        System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
+                + monster.getStatus() + ")");
+        OUTER:
+        while (character.isAlive() && monster.isAlive()) {
+            System.out.print(this.gameMenu);
+            String action = this.getMenuOption();
+            switch (action) {
+                case "S":
+                    SpecialMenuView specialView = new SpecialMenuView();
+                    specialView.display();
+                    break;
+                case "I":
+                    ItemMenuView itemView = new ItemMenuView();
+                    itemView.display();
+                    break;
+                case "A":
+                    monster.defend(character);
+                    break;
+                case "Q":
+                    EscapeView escape = new EscapeView();
+                    boolean escapeBoolean = escape.displayMainMenuView(character);
+                    if (escapeBoolean==true) {
+                        System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
+                        return;}
+                    else {
+                        break;
+                    }
+                    //break OUTER;
+                default:
+                    System.out.println("\tInvalid command!");
+                    break;
+            }
+            if (monster.isAlive()) {
+                character.defend(monster);
+            }
+            System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
+        }
+        open();
+    }
+    private void open() {
+       TreasureChestView chestView = new TreasureChestView();
+       boolean open = chestView.ChestOpenView();
+    }
+    
     public Boolean getIsAlive() {
         return isAlive;
     }
@@ -103,56 +142,5 @@ public class GameMenuView implements Serializable {
         return "Battle{" + "isAlive=" + isAlive + '}';
     }
     
-    public void battleStart(Player playerName, CharacterSelection character, Monster monster) {
-        
-        Monster.newMonsterInstance();
-        System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
-        System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
-                + monster.getStatus() + ")");
-        
-        OUTER:
-        while (character.isAlive() && monster.isAlive()) {
-            System.out.print(this.gameMenu);
-            String action = this.getMenuOption();
-            switch (action) {
-                case "S":
-                    SpecialMenuView specialView = new SpecialMenuView();
-                    specialView.displayMainMenuView(character, monster);
-                    break;
-                case "I":
-                    ItemMenuView itemView = new ItemMenuView();
-                    itemView.displayMenuView(character, monster);
-                    break;
-                case "A":
-                    monster.defend(character);
-                    break;
-                case "Q":
-                    EscapeView escape = new EscapeView();
-                    boolean escapeBoolean = escape.displayMainMenuView(character);
-                    if (escapeBoolean==true) {
-                        System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
-                        return;}
-                    else {
-                        break;
-                    }
-                    //break OUTER;
-                default:
-                    System.out.println("\tInvalid command!");
-                    break;
-            }
-            if (monster.isAlive()) {
-                character.defend(monster);
-            }
-            
-            
-            System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
-            
-        }
-        open();
-    }
-    private void open() {
-       TreasureChestView chestView = new TreasureChestView();
-       boolean open = chestView.ChestOpenView();
-            
-      }
+    
 }

@@ -7,6 +7,7 @@ package byui.cit260.darkdungeon.vew;
 
 
 
+import byui.cit260.darkdungeon.control.GameControl;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
@@ -31,39 +32,7 @@ public class MoveView extends View{
                   + "\nWhich direction would you like to travel? ~~~>");
     }
     
-  /*public void displayMenu() {
-      boolean done = false; // set flag to not done
-        do{
-            //prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q") )// user wants to quit)
-                        return; // exist the game
-            
-            // do the requested action and display the next view
-            done = this. doAction(menuOption);
-        } while (!done);   
-        }
-
-      private String getMenuOption() {
-         Scanner Keyboard = new Scanner (System.in); // get infile for keyboard
-     String value = ""; // value to be returned
-     boolean valid = false; // initialize to not valid
-     
-     while (!valid){ // loop while an invalid value is enter
-         System.out.println("" + this.menu);
-         System.out.print("" + this.promptMessage);
-         
-         value = Keyboard.nextLine(); // get next line typed on keyboard
-         value = value. trim(); // trim off leading and trailing blanks
-         
-         if (value.length()< 1) { // value is blank
-             System.out.println("\nInvalid value: value can not be blank");
-             continue;    
-         }
-         break; // end the loop
-    }
-    return value;
-      }  */
+  
     @Override
    public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
@@ -111,15 +80,7 @@ public class MoveView extends View{
     }
       
       private void open() {
-        OpenDoorView openDoor = new OpenDoorView();
-            boolean open = openDoor.moveView();
-            if (open==true) {
-                System.out.println("\tDoor Opened!");
-               
-            }
-            else {
-                System.out.println("\t");
-            }
+        GameControl.createNewBattle();
       }
    
 }

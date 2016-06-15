@@ -14,12 +14,11 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class CharacterSelectView {
+public class CharacterSelectView extends View {
     CharacterSelection warrior = GameControl.createWarrior();
     
-    private String menu;
     public CharacterSelectView() {
-        this.menu = "\n"
+        super("\n"
                 + "\n===================================="
                 + "\n|   Please Choose your Character   |"
                 + "\n===================================="
@@ -28,46 +27,14 @@ public class CharacterSelectView {
                 + "\n|        2. Paladin                |"
                 + "\n|        Q. Quit                   |"
                 + "\n===================================="
-                + "\nMake your Selection ~~~> ";
+                + "\nMake your Selection ~~~> ");
                 
    }
 
-    public void characterMenuView() {
-        boolean done = false; // set to not done
-        do {
-            // prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) //user will quit
-                return; // exit game
-            //display next view
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-       
-    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // create infile
-        String value = ""; //value to be returned
-        boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            System.out.print(this.menu);
-            value = keyboard.nextLine(); //get next line typed
-            value = value.trim(); //trim off leading and trailing blanks
-            if (value.length() <1) { //value is blank
-                System.out.println("\nValue cannot be blank");
-                continue;
-            }
-            break; //end of loop
-            
-        }
-        return value; // return the value
-    }
+   
     
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
@@ -75,19 +42,18 @@ public class CharacterSelectView {
                 warrior = GameControl.createWarrior();
                 this.doNext();
                 GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
+                return true;
                 
-                
-                break;
             case "2": //Paladin
                 warrior = GameControl.createPaladin();
                 this.doNext();
                 GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
-                break;
+                return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
-                break;
+                return false;
         }
-        return false;
+        
     }
 
     private void doNext() {

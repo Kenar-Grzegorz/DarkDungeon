@@ -172,20 +172,23 @@ public class CharacterSelection implements Serializable {
         }
         return true;
     }
-    public int heal(int amount, int heal) {
-        int numHealthPotions = amount;
-        int healthPotionHealAmount = heal;
-        if (numHealthPotions > 0) {
-            health = health + healthPotionHealAmount;
-            --numHealthPotions;
-            System.out.println(characterName+" drinks a healing potion.");
+    
+    public void heal(Item potion) {
+            int amount = potion.getItemAmount();
+        if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
+            health = health + potion.getItemHeal();
+            System.out.println("before"+potion.getItemAmount());
+            amount--;
+            potion.setItemAmount(amount);
+            System.out.println("after"+potion.getItemAmount());
+            System.out.println(this.characterName+" drinks a healing potion.");
             System.out.println(getStatus());
-            return numHealthPotions;
+            //return amount;
         } else {
             System.out.println("*  You've exhausted your potion supply!  *\n");
-            return amount;
+            //return amount;
         }  
-        
+        System.out.println("*  You have " + amount + " potions left.  *\n");
     }
     /*public void heal(int amount) {
         int numHealthPotions = 3;

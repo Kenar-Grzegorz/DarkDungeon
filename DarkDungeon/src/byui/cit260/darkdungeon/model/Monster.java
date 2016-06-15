@@ -163,6 +163,7 @@ public class Monster implements Serializable {
         }
     }
     public void abilityDefend(CharacterSelection character, Item item) {
+        System.out.println(item.getItemAmount());
         if (character.getManaAmount()>item.getItemAmount()){
             System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             character.setManaAmount(character.getManaAmount()-item.getItemAmount());

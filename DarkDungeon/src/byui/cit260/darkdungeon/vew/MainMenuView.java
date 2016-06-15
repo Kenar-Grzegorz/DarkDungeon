@@ -55,7 +55,7 @@ public class MainMenuView extends View {
     private void startNewGame() {
         //Create a new Game
         CharacterSelectView charSelect = new CharacterSelectView();
-        charSelect.characterMenuView();
+        charSelect.display();
         
        
         
