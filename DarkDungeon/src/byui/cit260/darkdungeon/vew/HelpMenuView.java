@@ -11,14 +11,14 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class HelpMenuView {
-    private String helpMenu;
+public class HelpMenuView extends View{
+   // private String helpMenu;
     private String goal;
     private String movement;
     private String backstory;
 
     public HelpMenuView() {
-        this.helpMenu = "\n"
+        super("\n"
                 + "\n===================================="
                 + "\n|           Help Menu              |"
                 + "\n===================================="
@@ -28,7 +28,7 @@ public class HelpMenuView {
                 + "\n|   B. Back Story                  |"
                 + "\n|   Q. Quit                        |"
                 + "\n===================================="
-                + "\nMake your Selection ~~~> ";
+                + "\nMake your Selection ~~~> ");
         this.goal = "\n"
                    +"\n\t================================================================================================="
                    +"\n\t=  There have been reports that some evil force may have occupied the ruins of Caer Darkin,     ="
@@ -92,7 +92,7 @@ public class HelpMenuView {
                    +"\n\t==========================================================================================================";
    }
 
-    public void displayHelpMenuView() {
+    /*public void displayHelpMenuView() {
         boolean done = false; // set to not done
         do {
             // prompt for and get players name
@@ -123,10 +123,10 @@ public class HelpMenuView {
             
         }
         return value; // return the value
-    }
+    }*/
     
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {

@@ -14,11 +14,11 @@ import java.util.Scanner;
  *
  * @author Florian
  */
-public class MoveView {
-    private final String promptMessage;
-    private final String menu;
+public class MoveView extends View{
+    //private final String promptMessage;
+    //private final String menu;
     public MoveView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n|=====================================|"
                   + "\n|               Movement              |"
                   + "\n|=====================================|"
@@ -27,12 +27,11 @@ public class MoveView {
                   + "\n|    E - East                         |"
                   + "\n|    W - West                         |"
                   + "\n|    Q - Run out of the dungeon       |"
-                  + "\n|=====================================|";
-        
-        this.promptMessage = "Which direction would you like to travel? ~~~>";
+                  + "\n|=====================================|"
+                  + "\nWhich direction would you like to travel? ~~~>");
     }
     
-  public void displayMenu() {
+  /*public void displayMenu() {
       boolean done = false; // set flag to not done
         do{
             //prompt for and get players name
@@ -64,9 +63,9 @@ public class MoveView {
          break; // end the loop
     }
     return value;
-      }  
-
-   private boolean doAction(String choice) {
+      }  */
+    @Override
+   public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
@@ -90,9 +89,7 @@ public class MoveView {
         return false;
     }
 
-    private void North() {
-        
-        System.out.println("***You have chosen North***");      
+    private void North() {     
         
         System.out.println("***You have chosen North***");
         open();
@@ -100,17 +97,17 @@ public class MoveView {
     private void South() {
         
         System.out.println("***You have chosen South***");
-
+        open();
     }
      private void East() {
         
         System.out.println("***You have chosen East***");
-
+        open();
     }
       private void West() {
         
         System.out.println("***You have chosen West***");
-
+        open();
     }
       
       private void open() {

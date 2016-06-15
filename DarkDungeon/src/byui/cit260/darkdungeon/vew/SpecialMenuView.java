@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class SpecialMenuView {
+public class SpecialMenuView  {
     private String menu;
     public Item omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
     public Item armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
@@ -64,7 +64,6 @@ public class SpecialMenuView {
         return value; // return the value
     }
     
-
     private boolean doAction(String choice, CharacterSelection character, Monster monster) {
         choice = choice.toUpperCase(); //convert to uppercase
         

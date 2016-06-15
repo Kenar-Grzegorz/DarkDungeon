@@ -35,7 +35,7 @@ public class GameControl {
     }
 
     public static void createNewGame(Player player,CharacterSelection warrior) {
-        move.displayMenu();
+        move.display();
         
         
         //return map;
