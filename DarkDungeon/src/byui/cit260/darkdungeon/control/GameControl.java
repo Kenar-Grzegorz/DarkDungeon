@@ -15,7 +15,7 @@ import darkdungeongame.DarkDungeonGame;
  * @author gregg
  */
 public class GameControl {
-        public static GameMenuView game = new GameMenuView();
+        public static GameMenu game = new GameMenu();
         public static Monster monster = new Monster();
         public static MoveView move = new MoveView();
         public static Player player = new Player();

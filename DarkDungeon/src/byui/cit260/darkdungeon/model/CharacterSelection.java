@@ -3,6 +3,7 @@
  */
 package byui.cit260.darkdungeon.model;
 
+import byui.cit260.darkdungeon.control.BattleControl;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -204,7 +205,7 @@ public class CharacterSelection implements Serializable {
         }  
     }*/
     public int attack() {
-        return Game.rand(minAttackDamage, maxAttackDamage);
+        return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
     
     public boolean isAlive() {

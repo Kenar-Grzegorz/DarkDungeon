@@ -17,12 +17,12 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class GameMenuView  {
+public class GameMenu  {
     //class instance variables
     private Boolean isAlive;
     private String gameMenu;
     
-    public GameMenuView() {
+    public GameMenu() {
         this.gameMenu = "\n"
                 + "\n===================================="
                 + "\n|             Battle               |"
@@ -130,7 +130,7 @@ public class GameMenuView  {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final GameMenuView other = (GameMenuView) obj;
+        final GameMenu other = (GameMenu) obj;
         if (!Objects.equals(this.isAlive, other.isAlive)) {
             return false;
         }

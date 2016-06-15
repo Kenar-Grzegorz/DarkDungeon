@@ -34,7 +34,7 @@ public abstract class View implements ViewInterface {
             done = this.doAction(menuOption);
         } while (!done);
     }
-    
+    @Override
     public String getInput() {
         Scanner keyboard = new Scanner(System.in); // create infile
         String value = ""; //value to be returned

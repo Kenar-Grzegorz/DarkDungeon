@@ -12,7 +12,7 @@ import byui.cit260.darkdungeon.vew.*;
  * CIT 260  First Assignment
  */
 public class DarkDungeonGame {
-    private static Game currentGame = null;
+    private static GameControl currentGame = null;
     private static Player player = null;
     
     private static void displayBaner() {
@@ -59,11 +59,11 @@ public class DarkDungeonGame {
         DarkDungeonGame.player = player;
     }
     
-    public static Game getCurrentGame() {
+    public static GameControl getCurrentGame() {
         return currentGame;
     }
 
-    public static void setCurrentGame(Game currentGame) {
+    public static void setCurrentGame(GameControl currentGame) {
         DarkDungeonGame.currentGame = currentGame;
     }
     
