@@ -11,11 +11,10 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class MainMenuView {
-    private String menu;
+public class MainMenuView extends View {
 
     public MainMenuView() {
-        this.menu = "\n"
+        super("\n"
                 + "\n===================================="
                 + "\n|           Main Menu              |"
                 + "\n===================================="
@@ -26,45 +25,11 @@ public class MainMenuView {
                 + "\n|   S. Save Game                   |"
                 + "\n|   Q. Quit                        |"
                 + "\n===================================="
-                + "\nMake your Selection ~~~> ";
+                + "\nMake your Selection ~~~> ");
                 
    }
-
-    public void displayMainMenuView() {
-        boolean done = false; // set to not done
-        do {
-            // prompt for and get players name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) //user will quit
-                return; // exit game
-            //display next view
-            done = this.doAction(menuOption);
-        } while (!done);
-        
-       
-    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // create infile
-        String value = ""; //value to be returned
-        boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            System.out.print(this.menu);
-            value = keyboard.nextLine(); //get next line typed
-            value = value.trim(); //trim off leading and trailing blanks
-            if (value.length() <1) { //value is blank
-                System.out.println("\nValue cannot be blank");
-                continue;
-            }
-            break; //end of loop
-            
-        }
-        return value; // return the value
-    }
-    
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {

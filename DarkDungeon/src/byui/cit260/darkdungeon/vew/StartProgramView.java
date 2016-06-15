@@ -111,7 +111,7 @@ public class StartProgramView {
         
         MainMenuView mainMenuView = new MainMenuView();
         //Display the main menu view
-        mainMenuView.displayMainMenuView();
+        mainMenuView.display();
         System.out.println("\n**************************************"  
                                                 +"********************");
         System.out.println("\t # THANKS FOR PLAYING!! Goodbye #");
