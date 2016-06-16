@@ -44,7 +44,8 @@ public class GameControl {
         //return map;
     }
     public static void createNewBattle() {
-        monster = Monster.newMonsterInstance();
+        //monster = Monster.newMonsterInstance();
+        monster = Monster.newRandomInstance();
         game.battleStart(player, getWarrior(), monster);
     }
     public void useFireScroll() { 

@@ -58,7 +58,7 @@ public class GameMenu  {
     
     public void battleStart(Player playerName, CharacterSelection character, Monster monster) {
         
-        Monster.newMonsterInstance();
+        //Monster.newMonsterInstance();
         System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
         System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
                 + monster.getStatus() + ")");

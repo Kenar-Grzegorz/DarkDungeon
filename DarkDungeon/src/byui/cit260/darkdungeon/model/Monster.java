@@ -5,12 +5,11 @@
  */
 package byui.cit260.darkdungeon.model;
 
-import byui.cit260.darkdungeon.control.BattleControl;
-import byui.cit260.darkdungeon.control.GameControl;
-import byui.cit260.darkdungeon.vew.TreasureChestView;
+import byui.cit260.darkdungeon.control.*;
+import byui.cit260.darkdungeon.vew.*;
 import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 /**
  *
@@ -25,7 +24,10 @@ public class Monster implements Serializable {
     private int minAttackDamage;
     private int maxAttackDamage;
     private int abilityDamage;
-
+    private final static Random random = new Random();
+    private final static Set<Integer> monstersSeen = new HashSet<Integer>();
+    private final static int NUM_MONSTERS = 4;
+    
     public Monster() {
     }
 
@@ -38,7 +40,29 @@ public class Monster implements Serializable {
         this.abilityDamage = abilityDamage;
     }
     
-    public static Monster newMonsterInstance() {
+    public static Monster newRandomInstance() {
+    if (monstersSeen.size() == NUM_MONSTERS) {
+            monstersSeen.clear();
+        }
+        int i;
+        do {
+            i = random.nextInt(NUM_MONSTERS);
+        } while (monstersSeen.contains(i));
+        monstersSeen.add(i);
+        if (i == 0) {
+            return new Monster("Harpy" ,70,1,2,2,2);
+        } else if (i == 1) {
+            return new Monster("Gargoyle",70,2,2,2,2);
+        } else if (i == 2) {
+            return new Monster("Hobgoblin",70,2,2,2,2);
+        } else if (i == 2) {
+            return new Monster("Skeleton",70,2,2,2,2);
+        } else {
+            return new Monster("Dragon",70,2,2,2,2);
+        }
+    
+    }
+    public static Monster newBossInstance() {
         return new Monster("Dragon",70,2,2,2,2);
     }
     public String getMonsterName() {
