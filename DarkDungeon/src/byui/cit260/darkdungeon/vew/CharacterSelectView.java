@@ -41,19 +41,17 @@ public class CharacterSelectView extends View {
             case "1": //Warrior
                 warrior = GameControl.createWarrior();
                 this.doNext();
-                GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
                 return true;
                 
             case "2": //Paladin
                 warrior = GameControl.createPaladin();
                 this.doNext();
-                GameControl.createNewGame(DarkDungeonGame.getPlayer(),warrior);
                 return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
-                return false;
+                
         }
-        
+        return false;
     }
 
     private void doNext() {

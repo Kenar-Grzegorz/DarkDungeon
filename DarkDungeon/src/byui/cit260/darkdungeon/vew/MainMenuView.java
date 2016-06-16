@@ -5,6 +5,9 @@
  */
 package byui.cit260.darkdungeon.vew;
 
+import byui.cit260.darkdungeon.control.GameControl;
+import byui.cit260.darkdungeon.model.Game;
+import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
 /**
@@ -54,16 +57,24 @@ public class MainMenuView extends View {
 
     private void startNewGame() {
         //Create a new Game
-        CharacterSelectView charSelect = new CharacterSelectView();
-        charSelect.display();
-        
-       
+        GameControl.createNewGame(DarkDungeonGame.getPlayer());
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
         
         
     }
 
     private void startExistingGame() {
-        System.out.println("Existing Game");
+        System.out.println("\n\nEnter the file path for file where the game " + "was saved last.");
+        String filePath = this.getInput();
+        
+        try {
+            Game.getLoadSavedGame(filePath);
+        } catch (Exception ex){
+            
+        }
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void displayHelpMenu() {
@@ -72,7 +83,15 @@ public class MainMenuView extends View {
     }
 
     private void saveGame() {
-        System.out.println("Save Game");
+        System.out.println("\n\nEnter the file path for file where the game " + "is to be saved.");
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.saveGame(DarkDungeonGame.getCurrentGame(), filePath);
+        } catch (Exception ex){
+            
+        }
+    
     }
     
 }

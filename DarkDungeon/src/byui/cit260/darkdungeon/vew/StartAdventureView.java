@@ -9,9 +9,9 @@ package byui.cit260.darkdungeon.vew;
  *
  * @author Bill
  */
-public class AssignmentOneView extends View {
+public class StartAdventureView extends View {
         
-    public AssignmentOneView() {
+    public StartAdventureView() {
                 super("\n"
                 + "\n===================================="
                 + "\n|         ASSIGNMENT ONE           |"

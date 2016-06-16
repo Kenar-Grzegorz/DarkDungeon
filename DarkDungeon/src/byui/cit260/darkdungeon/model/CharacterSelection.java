@@ -22,11 +22,12 @@ public class CharacterSelection implements Serializable {
     private int manaAmount;
     private int abilityDamage;
     private int elementalDamage;
+    private boolean exist = false;
 
     public CharacterSelection() {
     }
 
-    public CharacterSelection(String characterName, String characterClass, int health, int minAttackDamage, int maxAttackDamage, int defenseAmount, int manaAmount, int abilityDamage, int elementalDamage) {
+    public CharacterSelection(String characterName, String characterClass, int health, int minAttackDamage, int maxAttackDamage, int defenseAmount, int manaAmount, int abilityDamage, int elementalDamage, boolean exist) {
         this.characterName = characterName;
         this.characterClass = characterClass;
         this.health = health;
@@ -36,8 +37,13 @@ public class CharacterSelection implements Serializable {
         this.manaAmount = manaAmount;
         this.abilityDamage = abilityDamage;
         this.elementalDamage = elementalDamage;
+        this.exist = exist;
     }
 
+    public boolean isExist() {
+        return exist;
+    }
+    
     public String getCharacterName() {
         return characterName;
     }
@@ -227,12 +233,12 @@ public class CharacterSelection implements Serializable {
             System.out.println("\t" + getCharacterName() + " has been defeated, try again next time");
         }
     }
-    public static CharacterSelection warriorCreate() {
+    /*public static CharacterSelection warriorCreate() {
         return new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50);
      }
 
      public static CharacterSelection paladinCreate() {
         return new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60);
-     }
+     }*/
 }
 

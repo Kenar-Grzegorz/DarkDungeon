@@ -44,15 +44,15 @@ public class StartProgramView extends View {
                           +"\n\t=  I hope your not afraid of the dark!"
                           +"\n\t===============================================");
         //Create main menu object
-        
         MainMenuView mainMenuView = new MainMenuView();
-        //Display the main menu view
         mainMenuView.display();
+        
+        //End Message
         System.out.println("\n**************************************"  
                                                 +"********************");
         System.out.println("\t # THANKS FOR PLAYING!! Goodbye #");
         System.out.println("**************************************"
-                                                +"********************/n");
+                                                +"********************\n");
     }
     
     
