@@ -23,8 +23,8 @@ public class GameMenuView extends View {
                 + "\n| Options:                         |"
                 + "\n|        C. Choose a Character     |"
                 + "\n|        D. Dungeon                |"
-                + "\n|        Q. Quit                   |"
                 + "\n|        M. Map                    |"
+                + "\n|        Q. Quit                   |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
                 
