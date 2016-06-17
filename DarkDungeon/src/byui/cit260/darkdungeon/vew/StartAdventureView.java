@@ -7,7 +7,7 @@ package byui.cit260.darkdungeon.vew;
 
 /**
  *
- * @author Bill
+ * @author Greg
  */
 public class StartAdventureView extends View {
     public static boolean gate = false;    
