@@ -14,7 +14,7 @@ import static byui.cit260.darkdungeon.model.Game.*;
  */
 public class GameMenuView extends View {
     GameControl game = new GameControl();
-    boolean gate = false;
+    
     public GameMenuView() {
         super("\n"
                 + "\n===================================="
@@ -24,6 +24,7 @@ public class GameMenuView extends View {
                 + "\n|        C. Choose a Character     |"
                 + "\n|        D. Dungeon                |"
                 + "\n|        Q. Quit                   |"
+                + "\n|        M. Map                    |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
                 
@@ -39,6 +40,8 @@ public class GameMenuView extends View {
             case "D": 
                 this.useStartJourney();
                 break;
+            case "M":
+                this.map();
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
                 break;
@@ -52,33 +55,26 @@ public class GameMenuView extends View {
          
     }
      private void useStartJourney() {
-         
-         if (warrior.isExist()== true)
-            
+         StartAdventureView check = new StartAdventureView();
+         if (warrior.isExist()== true){
+            if (check.isGate() == true) {
              GameControl.createJourney();
-            
+            }
+            else {check.display();}
+        }    
          else {
              System.out.println("\n**************************************"  
                                                 +"********************");
         System.out.println("\t # Please Select a Character First #");
         System.out.println("**************************************"
                                                 +"********************\n");
-         }
+        }
     }
-     
-     private void gate() {
-         System.out.println("\n"
-            +"\n------------------------------"
-            +"\n|You stand before have heard the stories of dragons"
-            + "\n for years, now maybe it's time to"
-            + "\n make your own. Will this be the"
-            + "\n year you go on a quest and slay"
-            + "\n a dragon?"
-            +"\n------------------------------"
-            +"\nY - Yes, I will begin the quest!"
-            +"\nN - No, perhaps next summer..."
-            +"\n------------------------------");
+     private void map() {
+        MapView mapView = new MapView();
+        mapView.display();
      }
+    
     
     
 }

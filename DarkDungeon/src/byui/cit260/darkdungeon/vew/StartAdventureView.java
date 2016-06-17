@@ -10,16 +10,25 @@ package byui.cit260.darkdungeon.vew;
  * @author Bill
  */
 public class StartAdventureView extends View {
-        
+    public static boolean gate = false;    
     public StartAdventureView() {
-                super("\n"
+                super("\n***************************************"
+                    + "\n* You are standing before a Dungeon   *"
+                    + "\n* with a iron gate. You hear the      *"
+                    + "\n* sounds of pain and anguish inside.  *"
+                    + "\n* You remember the happy place in the *"
+                    + "\n* fields of your home that you spent  *"
+                    + "\n* with your children. Do you enter    *"
+                    + "\n* dungeon?                            *"
+                    + "\n***************************************"
+                + "\n\n"
                 + "\n===================================="
-                + "\n|         ASSIGNMENT ONE           |"
+                + "\n|     Would you like to Enter      |"
                 + "\n===================================="
                 + "\n| OPTIONS:                         |"
-                + "\n|        A. OPTION 1               |"
-                + "\n|        B. OPTION 2               |"
-                + "\n|        C. EXIT                   |"
+                + "\n|        Y. Yes                    |"
+                + "\n|        N. No                     |"
+                + "\n|        Q. EXIT                   |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
         
@@ -30,15 +39,27 @@ public class StartAdventureView extends View {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
-            case "A":
-               System.out.println("\n*** YOU CHOSE OPTION 1 ***");  
-            case "B":
-                 System.out.println("\n*** YOU CHOSE OPTION 2 ***");
+            case "Y":
+               System.out.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***"
+                       + "\n***          PRESS D TO ENTER         ***");
+               this.gate= true;
+               return true;
+            case "N":
+                 System.out.println("*********************************************"
+                                + "\n* The yard looks beautiful and it would     *"
+                                + "\n* be a shame to let it go. better leave the *"
+                                + "\n* adventures for someone else.              *"
+                                + "\n*********************************************");
+                 return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
+    }
+
+    public static boolean isGate() {
+        return gate;
     }
     
    

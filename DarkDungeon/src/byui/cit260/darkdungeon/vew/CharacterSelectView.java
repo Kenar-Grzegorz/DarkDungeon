@@ -56,7 +56,9 @@ public class CharacterSelectView extends View {
 
     private void doNext() {
         
-        System.out.println("You have chosen a " + warrior.getCharacterName() +" "+ warrior.getCharacterClass());
+        System.out.println("\n**************************************************************************************************"
+                         + "\nYou have chosen " + warrior.getCharacterName() +" "+ warrior.getCharacterClass()+""
+                         + "\n**************************************************************************************************");
         
         
     }
