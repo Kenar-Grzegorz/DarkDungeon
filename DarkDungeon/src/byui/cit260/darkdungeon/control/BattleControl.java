@@ -5,9 +5,9 @@
  */
 package byui.cit260.darkdungeon.control;
 
-import byui.cit260.darkdungeon.model.CharacterSelection;
+import static byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.model.Item;
-import byui.cit260.darkdungeon.model.Monster;
+import byui.cit260.darkdungeon.model.*;
 import byui.cit260.darkdungeon.vew.TreasureChestView;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Random;
@@ -20,26 +20,17 @@ import java.util.Random;
 // Added by the team
 public class BattleControl {
     
+    public static int attackStrength;
+    public static boolean shield=false;
     
-    public static int attack(int min, int max, int defense, int health) {
-        if (min > max) {return -1;}
-        if (health<0||health>200) {return -1;}
-        int power = random(min, max);
-        
-        if (power < 0 || power > 50) {return -1;}
-        if (power > (health+defense)) {
-            return 0;
-        }
-        else if (power<defense) {
-            return health;
-        }
-        else {
-        health = (defense + health) - power;   
-
-        return health;
-        }
+    public static int getAttackStrength() {
+        return attackStrength;
     }
 
+    public static boolean isShield() {
+        return shield;
+    }
+    
     //Added by Greg for individual project
     public static int random(int min, int max) {
         if (min > max) {return -1;}
@@ -66,7 +57,50 @@ public class BattleControl {
         if (value>= 3) {return Boolean.TRUE;}
         else {return Boolean.TRUE;}
     }
+        
+    public static int attack(int min, int max, int defense, int health) {
+        attackStrength = attackRand(min, max);
+        if (attackStrength< defense) {shield=true;return health;}
+        else {health=(attackStrength<(health+defense)) ? (health+defense) - attackStrength : 0;shield=false;
+        return health;}
+    }
     
+    public static void heal(Item potion, CharacterSelection warrior) {
+        int amount = potion.getItemAmount();
+        if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
+            int health = warrior.getHealth() + potion.getItemHeal();
+            System.out.println("before"+potion.getItemAmount());
+            amount--;
+            potion.setItemAmount(amount);
+            warrior.setHealth(health);
+            System.out.println("after"+potion.getItemAmount());
+            System.out.println(player.getName()+" drinks a healing potion.");
+            System.out.println(warrior.getStatus());
+        } else {
+            System.out.println("*  You've exhausted your potion supply!  *\n");
+        }
+        System.out.println("*  You have " + amount + " potions left.  *\n");
+    }
     
+    public static void abilityDefend(CharacterSelection character, Item item) {
+        System.out.println(item.getItemAmount());
+        if (character.getManaAmount()>item.getItemAmount()){
+            System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+            character.setManaAmount(character.getManaAmount()-item.getItemAmount());
+            int health = (character.getHealth()>item.getItemDamage()) ? character.getHealth()-item.getItemDamage() :0;
+            System.out.println("You have hit the "+monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
+            if (health == 0) {
+                System.out.println("\t" + player.getName() + " transforms the skull of " + monster.getMonsterName()
+                + " into dust to never be seen again");
+                
+            }
+        }
+        else {
+            System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
+        }
+    }
     
+    public static int attackRand(int minAttackDamage, int maxAttackDamage) {
+        return BattleControl.random(minAttackDamage, maxAttackDamage);
+    }
 }
