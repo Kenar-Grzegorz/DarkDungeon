@@ -6,8 +6,10 @@
 package byui.cit260.darkdungeon.vew;
 
 
-import byui.cit260.darkdungeon.control.GameControl;
+import byui.cit260.darkdungeon.control.BattleControl;
 import byui.cit260.darkdungeon.model.*;
+import static byui.cit260.darkdungeon.model.Game.monster;
+import static byui.cit260.darkdungeon.model.Game.player;
 import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.Objects;
@@ -57,7 +59,7 @@ public class GameMenu  {
     }
     
     public void battleStart(Player playerName, CharacterSelection character, Monster monster) {
-        
+        //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
         System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
         System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
@@ -76,7 +78,12 @@ public class GameMenu  {
                     itemView.display();
                     break;
                 case "A":
-                    monster.defend(character);
+                    int monHealth = BattleControl.attack(character.getMinAttackDamage(), character.getMaxAttackDamage(), monster.getDefense(), monster.getHealth());
+                    if (BattleControl.isShield()==true) {System.out.println("The monster has successfuly blocked your attack");}
+                    else {System.out.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
+                    if (monHealth == 0) {System.out.println("\t" + player.getName() + " transforms the skull of " + monster.getMonsterName()
+                + " into dust to never be seen again");}
+                    monster.setHealth(monHealth);
                     break;
                 case "Q":
                     EscapeView escape = new EscapeView();
@@ -93,8 +100,12 @@ public class GameMenu  {
                     break;
             }
             if (monster.isAlive()) {
-                character.defend(monster);
-            }
+                int charHealth = BattleControl.attack(monster.getMinAttackDamage(), monster.getMaxAttackDamage(), character.getDefenseAmount(), character.getHealth());
+                if (BattleControl.isShield()==true) {System.out.println("You have successfuly blocked the monsters attack");}    
+                else {System.out.println(monster.getMonsterName()+ " hits "+ character.getCharacterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");
+                if (charHealth == 0) {System.out.println("\t" + character.getCharacterName() + " has been defeated, try again next time");}
+                character.setHealth(charHealth);}
+           }
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
         open();

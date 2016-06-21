@@ -173,40 +173,5 @@ public class Monster implements Serializable {
     public String getStatus() {
         return "Monster HP: " + health;
     }
-    public void defend(CharacterSelection character) {
-        int attackStrength = character.attack();
-        if (attackStrength>defense) {
-            health = (health > attackStrength) ? health - attackStrength : 0;
-            System.out.println(character.getCharacterName()+ " hits "+getMonsterName()+" for "+attackStrength+" HP of damage \n");
-            if (health == 0) {
-                System.out.println("\t" + character.getCharacterName() + " transforms the skull of " + getMonsterName()
-                        + " into dust to never be seen again");
-            }
-        }
-        else {
-            System.out.println("You must be getting tired, your attack missed!! ");
-        }
-    }
-    public void abilityDefend(CharacterSelection character, Item item) {
-        System.out.println(item.getItemAmount());
-        if (character.getManaAmount()>item.getItemAmount()){
-            System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
-            character.setManaAmount(character.getManaAmount()-item.getItemAmount());
-            health = (health>item.getItemDamage()) ? health-item.getItemDamage() :0;
-            System.out.println("You have hit the "+monsterName+" for "+item.getItemDamage()+" of Damage!!");
-            if (health == 0) {
-                System.out.println("\t" + character.getCharacterName() + " transforms the skull of " + getMonsterName()
-                + " into dust to never be seen again");
-                
-            }
-        }
-        else {
-            System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
-        }
-        
-    
-    }
-    
-    
     
 }

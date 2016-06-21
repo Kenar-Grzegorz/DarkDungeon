@@ -7,6 +7,7 @@ package byui.cit260.darkdungeon.model;
 
 import byui.cit260.darkdungeon.vew.GameMenu;
 import byui.cit260.darkdungeon.vew.MoveView;
+import byui.cit260.darkdungeon.control.*;
 import java.io.Serializable;
 
 /**
@@ -23,7 +24,7 @@ public class Game implements Serializable{
         public static Item fireScroll = new Item();
         public static Item omniSlash = new Item();
         public static Item armageddon = new Item();
-        
+        public static BattleControl battle = new BattleControl();
     
     public Game() {
         

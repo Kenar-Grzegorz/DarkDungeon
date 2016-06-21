@@ -180,36 +180,6 @@ public class CharacterSelection implements Serializable {
         return true;
     }
     
-    public void heal(Item potion) {
-            int amount = potion.getItemAmount();
-        if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
-            health = health + potion.getItemHeal();
-            System.out.println("before"+potion.getItemAmount());
-            amount--;
-            potion.setItemAmount(amount);
-            System.out.println("after"+potion.getItemAmount());
-            System.out.println(this.characterName+" drinks a healing potion.");
-            System.out.println(getStatus());
-            //return amount;
-        } else {
-            System.out.println("*  You've exhausted your potion supply!  *\n");
-            //return amount;
-        }  
-        System.out.println("*  You have " + amount + " potions left.  *\n");
-    }
-    /*public void heal(int amount) {
-        int numHealthPotions = 3;
-        int healthPotionHealAmount = 25;
-        if (numHealthPotions > 0) {
-            health = health + healthPotionHealAmount;
-            --numHealthPotions;
-            System.out.println(characterName+" drinks a healing potion.");
-            System.out.println(getStatus());
-            
-        } else {
-            System.out.println("  You've exhausted your potion supply!");
-        }  
-    }*/
     public int attack() {
         return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
@@ -224,7 +194,7 @@ public class CharacterSelection implements Serializable {
     public String getManaStatus() {
         return "Player Mana: " + manaAmount;
     }
-    public void defend(Monster monster) {
+    /*public void defend(Monster monster) {
         int attackStrength = monster.attack();
         health = (health > attackStrength) ? health - attackStrength : 0;
         System.out.println(monster.getMonsterName()+ " hits "+getCharacterName()+" for "+attackStrength+" HP of damage \n");
@@ -232,7 +202,7 @@ public class CharacterSelection implements Serializable {
         if (health == 0) {
             System.out.println("\t" + getCharacterName() + " has been defeated, try again next time");
         }
-    }
+    }*/
     /*public static CharacterSelection warriorCreate() {
         return new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50);
      }
