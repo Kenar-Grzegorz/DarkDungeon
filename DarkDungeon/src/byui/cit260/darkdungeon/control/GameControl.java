@@ -53,16 +53,16 @@ public class GameControl {
         gameMenu.battleStart(player, getWarrior(), monster);
     }
     public void useFireScroll() { 
-        monster.abilityDefend(warrior, fireScroll);
+        BattleControl.abilityDefend(warrior, fireScroll);
     }
     public void usePotion() {
-        warrior.heal(potion);
+        BattleControl.heal(potion, warrior);
     }
     public void useOmniSlash() {
-         monster.abilityDefend(warrior, omniSlash);
+         BattleControl.abilityDefend(warrior, omniSlash);
     }
      public void useArmageddon() {
-         monster.abilityDefend(warrior, armageddon);
+         BattleControl.abilityDefend(warrior, armageddon);
     }
     public static CharacterSelection createWarrior() {
         fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);
