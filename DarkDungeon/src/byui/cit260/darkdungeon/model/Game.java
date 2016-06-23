@@ -25,6 +25,11 @@ public class Game implements Serializable{
         public static Item omniSlash = new Item();
         public static Item armageddon = new Item();
         public static BattleControl battle = new BattleControl();
+    private Item[] item;
+    private CharacterSelection character;
+    private Scene scene;
+    private Map map;
+
     
     public Game() {
         
