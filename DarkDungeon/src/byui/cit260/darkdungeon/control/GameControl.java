@@ -52,6 +52,10 @@ public class GameControl {
         monster = Monster.newRandomInstance();
         gameMenu.battleStart(player, getWarrior(), monster);
     }
+
+    static void initiateBattle(Monster monster) {
+        game.setMonster(monster);
+    }
     public void useFireScroll() { 
         BattleControl.abilityDefend(warrior, fireScroll);
     }
