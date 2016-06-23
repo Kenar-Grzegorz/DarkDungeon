@@ -19,7 +19,14 @@ public class Scene implements Serializable {
     private Boolean trapboolean;
     private Boolean chestboolean;
     private Boolean randomMonsterEncounter;
-
+    private double visited;
+    private double amountRemaining;
+    private String name;
+    private String type;
+    private boolean blocked;
+    private double travelTime;
+    private String mapSymbol;
+    
     public Scene() {
     }
 
@@ -55,6 +62,85 @@ public class Scene implements Serializable {
         this.randomMonsterEncounter = randomMonsterEncounter;
     }
 
+    public double getVisited() {
+        return visited;
+    }
+
+    public void setVisited(double visited) {
+        this.visited = visited;
+    }
+
+    public double getAmountRemaining() {
+        return amountRemaining;
+    }
+
+    public void setAmountRemaining(double amountRemaining) {
+        this.amountRemaining = amountRemaining;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public double getTravelTime() {
+        return travelTime;
+    }
+
+    public void setTravelTime(double travelTime) {
+        this.travelTime = travelTime;
+    }
+
+    public String getMapSymbol() {
+        return mapSymbol;
+    }
+
+    public void setMapSymbol(String mapSymbol) {
+        this.mapSymbol = mapSymbol;
+    }
+    
+    public enum SceneType{
+        start("Here is where the start of your great journy Begins."),
+        hobbiton("Meet with Bilbo and go over what you will need on your journey."),
+        crossroads("I can't seem to remember which direction I needed to go..."),
+        Beorn("A massive shapeshiffter who could be friend or foe."),
+        rivendell("Time to stock up and upgrade your weapons."),
+        goblins("There are many goblins in the mountains, tread carefully."),
+        mining("Short on supplies? see if you can dig up something."),
+        dragon("this is the battle you've been training for!"), 
+        finish("Return Home to tell everyone of your mighty deeds.");
+        
+        private final String description;
+        
+        SceneType(String description){
+            this.description = description;
+        }
+        
+        public String getDescription(){
+            return description;
+        }
+        
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

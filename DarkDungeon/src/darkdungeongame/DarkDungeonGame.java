@@ -3,9 +3,9 @@
  */
 package darkdungeongame;
 
+import byui.cit260.darkdungeon.view.StartProgramView;
 import byui.cit260.darkdungeon.model.*;
 import byui.cit260.darkdungeon.control.*;
-import byui.cit260.darkdungeon.vew.*;
 
 /**
  * @authors Greg Kenar, William Murray, Florian Kausche
@@ -77,4 +77,14 @@ public class DarkDungeonGame {
         return player;
     }
     
+    public static Monster createMonster(String monsterName) {
+        if (monsterName == null) return null;
+        
+        Monster monster = new Monster();
+        return monster;
+    }
+
+    public static void setMonster(Monster monster) {
+        DarkDungeonGame.monster = monster;
+    }
 }

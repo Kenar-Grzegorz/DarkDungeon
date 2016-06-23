@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+
+package byui.cit260.darkdungeon.enums;
 
 /**
- *
+ * 
  * @author Greg
  */
-public interface ViewInterface {
-    public void display();
-    public String getInput();
-    public boolean doAction(String choice);
-    
+public enum Item {
+        firescroll,
+        potion,
+        omniSlash,
+        armageddon;
 }

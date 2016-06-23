@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 
@@ -83,7 +83,7 @@ public class InventoryView extends View {
     
 
     private void choose() {
-        GameControl.createNewBattle();
+        System.out.println("here you go");
     }
 
     private void Arrow() {

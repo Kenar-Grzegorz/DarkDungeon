@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
+import static byui.cit260.darkdungeon.control.GameControl.warrior;
 import static byui.cit260.darkdungeon.model.Game.*;
+import byui.cit260.darkdungeon.model.Inventory;
 
 /**
  *
@@ -24,6 +26,7 @@ public class GameMenuView extends View {
                 + "\n|        C. Choose a Character     |"
                 + "\n|        D. Dungeon                |"
                 + "\n|        M. Map                    |"
+                + "\n|        I. View Inventory         |"
                 + "\n|        Q. Quit                   |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
@@ -42,6 +45,10 @@ public class GameMenuView extends View {
                 break;
             case "M":
                 this.map();
+                break;
+            case "I":
+                this.viewInventory();
+                break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
                 break;
@@ -70,10 +77,18 @@ public class GameMenuView extends View {
                                                 +"********************\n");
         }
     }
-     private void map() {
+    
+    private void viewInventory() {
+        Inventory[] inventory = GameControl.getSortedInventoryList();
+        
+        
+    }
+     
+     
+    private void map() {
         MapView mapView = new MapView();
         mapView.display();
-     }
+    }
     
     
     

@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+package byui.cit260.darkdungeon.view;
 
 
 import byui.cit260.darkdungeon.control.BattleControl;
 import byui.cit260.darkdungeon.model.*;
-import static byui.cit260.darkdungeon.model.Game.monster;
-import static byui.cit260.darkdungeon.model.Game.player;
+//import byui.cit260.darkdungeon.model.Game.player;
 import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.Objects;
@@ -81,7 +80,7 @@ public class GameMenu  {
                     int monHealth = BattleControl.attack(character.getMinAttackDamage(), character.getMaxAttackDamage(), monster.getDefense(), monster.getHealth());
                     if (BattleControl.isShield()==true) {System.out.println("The monster has successfuly blocked your attack");}
                     else {System.out.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
-                    if (monHealth == 0) {System.out.println("\t" + player.getName() + " transforms the skull of " + monster.getMonsterName()
+                    if (monHealth == 0) {System.out.println("\t" + playerName.getName() + " transforms the skull of " + monster.getMonsterName()
                 + " into dust to never be seen again");}
                     monster.setHealth(monHealth);
                     break;

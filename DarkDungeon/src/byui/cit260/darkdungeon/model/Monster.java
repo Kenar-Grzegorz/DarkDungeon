@@ -6,7 +6,6 @@
 package byui.cit260.darkdungeon.model;
 
 import byui.cit260.darkdungeon.control.*;
-import byui.cit260.darkdungeon.vew.*;
 import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.*;

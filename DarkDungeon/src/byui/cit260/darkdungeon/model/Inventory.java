@@ -10,7 +10,7 @@ import java.util.Objects;
  * @authors Greg Kenar, William Murray, Florian Kausche
  * CIT 260  First Assignment
  */
-public class Item implements Serializable {
+public class Inventory implements Serializable {
     private String itemName;
     private String itemDescription;
     private String itemType;
@@ -18,10 +18,10 @@ public class Item implements Serializable {
     private int itemHeal;
     private int itemAmount;
 
-    public Item() {
+    public Inventory() {
     }
     
-    public Item(String itemName, String itemDescription, int itemDamage, int itemHeal, int itemAmount) {
+    public Inventory(String itemName, String itemDescription, int itemDamage, int itemHeal, int itemAmount) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemDamage = itemDamage;
@@ -105,7 +105,7 @@ public class Item implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Item other = (Item) obj;
+        final Inventory other = (Inventory) obj;
         if (this.itemDamage != other.itemDamage) {
             return false;
         }

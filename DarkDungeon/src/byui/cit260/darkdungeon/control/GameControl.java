@@ -6,10 +6,9 @@
 package byui.cit260.darkdungeon.control;
 
 import byui.cit260.darkdungeon.Exceptions.*;
-import byui.cit260.darkdungeon.vew.*;
+import byui.cit260.darkdungeon.enums.Item;
 import byui.cit260.darkdungeon.model.*;
 import static byui.cit260.darkdungeon.model.Game.*;
-import byui.cit260.darkdungeon.vew.CharacterSelectView;
 import darkdungeongame.DarkDungeonGame;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,24 +22,23 @@ import java.io.ObjectOutputStream;
  * @author gregg
  */
 public class GameControl {
-    public static Game game;
+    public static CharacterSelection warrior = new CharacterSelection();
     
-    public static Player createPlayer(String name) {
-        if (name == null) {
-            return null;
-        }
-        
-        player.setName(name);
-        
-        DarkDungeonGame.setPlayer(player); //save the player
-        return player;
-    }
+    public static Game game;
 
     public static void createNewGame(Player player) {
         game = new Game();
         DarkDungeonGame.setCurrentGame(game);
         
         game.setPlayer(player);
+        
+        Inventory[] inventoryList = GameControl.createInventoryList();
+        game.setItem(inventoryList);
+        
+        Map map = MapControl.createMap(); //create a new map
+        game.setMap(map);
+        
+        MapControl.moveActorsToStartingLocation(map);
     }
     
     public static void createJourney() {
@@ -49,48 +47,34 @@ public class GameControl {
     
     public static void createNewBattle() {
         //monster = Monster.newMonsterInstance();
-        monster = Monster.newRandomInstance();
-        gameMenu.battleStart(player, getWarrior(), monster);
+        game.setMonster(Monster.newRandomInstance());
+        gameMenu.battleStart(game.getPlayer(), getWarrior(), game.getMonster());
     }
 
     static void initiateBattle(Monster monster) {
         game.setMonster(monster);
     }
-    public void useFireScroll() { 
-        BattleControl.abilityDefend(warrior, fireScroll);
-    }
-    public void usePotion() {
-        BattleControl.heal(potion, warrior);
-    }
-    public void useOmniSlash() {
-         BattleControl.abilityDefend(warrior, omniSlash);
-    }
-     public void useArmageddon() {
-         BattleControl.abilityDefend(warrior, armageddon);
-    }
+   
     public static CharacterSelection createWarrior() {
-        fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);
-        potion = new Item("Potion", "A devine glow covers your body", 0,25,3);
+        //createAbilities();
         warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50,true);
-        omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
-        armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
-        setWarrior(warrior);
+        game.setWarrior(warrior);
         return warrior;
     }
     public static CharacterSelection createPaladin() {
-        fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);
-        potion = new Item("Potion", "A devine glow covers your body", 0,25,3);
+        //createAbilities();
         warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60,true);
-        omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);
-        armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);
-        setWarrior(warrior);
+        game.setWarrior(warrior);
         return warrior;
     }
-    
-    public static void setWarrior(CharacterSelection warrior) {
-        game.warrior = warrior;
-    }
 
+//    public static void createAbilities() {
+//        Item fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);game.setFirescroll(fireScroll);
+//        Item potion = new Item("Potion", "A devine glow covers your body", 0,25,3);game.setPotion(potion);
+//        Item omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);game.setOmniSlash(omniSlash);
+//        Item armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);game.setArmageddon(armageddon);
+//    }
+    
     public static CharacterSelection getWarrior() {
         return warrior;
     }
@@ -120,4 +104,45 @@ public class GameControl {
         }
     
     }
+    
+    private static class Constants {
+        public final static int NUMBER_OF_INVENTORY_ITEMS=4;
+    }
+    
+    public static Inventory[] createInventoryList() {
+        Inventory[] inventory = new Inventory[Constants.NUMBER_OF_INVENTORY_ITEMS];
+        
+        Inventory fireScroll = new Inventory("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);game.setFirescroll(fireScroll);
+        inventory[Item.firescroll.ordinal()] = fireScroll;
+        Inventory potion = new Inventory("Potion", "A devine glow covers your body", 0,25,3);game.setPotion(potion);
+        inventory[Item.potion.ordinal()] = potion;
+        Inventory omniSlash = new Inventory("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);game.setOmniSlash(omniSlash);
+        inventory [Item.omniSlash.ordinal()] = omniSlash;
+        Inventory armageddon = new Inventory("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);game.setArmageddon(armageddon);
+        inventory [Item.armageddon.ordinal()] = armageddon;
+        return inventory;
+    }
+    
+    public static Inventory[] getSortedInventoryList() {
+        
+        Inventory[] item = DarkDungeonGame.getCurrentGame().getInventory();
+        
+        Inventory[] inventoryList = item.clone();
+        int invLength = inventoryList.length;
+        
+        Inventory tempInventoryItem;
+        for (int i = 0; i < ( invLength - 1); i++){
+            for (int i2 = 0; i2 < (invLength - i - 1); i2++){
+                if (inventoryList[i2].getItemDescription().compareToIgnoreCase(inventoryList[i2+1].getItemDescription())>0){
+                    tempInventoryItem = inventoryList[i2];
+                    inventoryList[i2] = inventoryList[i2+1];
+                    inventoryList[i2+1] = tempInventoryItem;
+                }
+            }
+        }
+        
+        return inventoryList;
+    }
+    
+    
 }

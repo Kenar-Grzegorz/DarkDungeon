@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+package byui.cit260.darkdungeon.view;
 
 /**
  *
  * @author Greg
  */
 public class StartAdventureView extends View {
-    public static boolean gate = false;    
+    public boolean gate = false;    
     public StartAdventureView() {
                 super("\n***************************************"
                     + "\n* You are standing before a Dungeon   *"
@@ -58,7 +58,7 @@ public class StartAdventureView extends View {
         return false;
     }
 
-    public static boolean isGate() {
+    public boolean isGate() {
         return gate;
     }
     

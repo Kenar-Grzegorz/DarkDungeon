@@ -5,10 +5,12 @@
  */
 package byui.cit260.darkdungeon.control;
 
-import static byui.cit260.darkdungeon.model.Game.*;
-import byui.cit260.darkdungeon.model.Item;
+import byui.cit260.darkdungeon.model.Game.*;
+import byui.cit260.darkdungeon.control.GameControl.*;
+import static byui.cit260.darkdungeon.control.GameControl.game;
+import byui.cit260.darkdungeon.model.Inventory;
 import byui.cit260.darkdungeon.model.*;
-import byui.cit260.darkdungeon.vew.TreasureChestView;
+import byui.cit260.darkdungeon.view.TreasureChestView;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Random;
 
@@ -65,7 +67,7 @@ public class BattleControl {
         return health;}
     }
     
-    public static void heal(Item potion, CharacterSelection warrior) {
+    public static void heal(Inventory potion, CharacterSelection warrior) {
         int amount = potion.getItemAmount();
         if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
             int health = warrior.getHealth() + potion.getItemHeal();
@@ -74,7 +76,7 @@ public class BattleControl {
             potion.setItemAmount(amount);
             warrior.setHealth(health);
             System.out.println("after"+potion.getItemAmount());
-            System.out.println(player.getName()+" drinks a healing potion.");
+            System.out.println(game.getPlayer()+" drinks a healing potion.");
             System.out.println(warrior.getStatus());
         } else {
             System.out.println("*  You've exhausted your potion supply!  *\n");
@@ -82,15 +84,15 @@ public class BattleControl {
         System.out.println("*  You have " + amount + " potions left.  *\n");
     }
     
-    public static void abilityDefend(CharacterSelection character, Item item) {
+    public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) {
         System.out.println(item.getItemAmount());
         if (character.getManaAmount()>item.getItemAmount()){
             System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             character.setManaAmount(character.getManaAmount()-item.getItemAmount());
             int health = (character.getHealth()>item.getItemDamage()) ? character.getHealth()-item.getItemDamage() :0;
-            System.out.println("You have hit the "+monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
+            System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
             if (health == 0) {
-                System.out.println("\t" + player.getName() + " transforms the skull of " + monster.getMonsterName()
+                System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
                 + " into dust to never be seen again");
                 
             }

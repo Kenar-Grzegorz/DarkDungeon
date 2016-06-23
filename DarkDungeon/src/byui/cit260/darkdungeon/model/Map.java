@@ -13,59 +13,63 @@ import java.util.Objects;
  * @author Florian
  */
 public class Map implements Serializable{
-    private Boolean locationX;
-    private Boolean locationY;
 
-    public Boolean getLocationX() {
-        return locationX;
+    private int noOfRows;
+    private int noOfColumns;
+    private Location[][] locations;
+
+    public Location[][] getLocations() {
+        return locations;
     }
 
-    public void setLocationX(Boolean locationX) {
-        this.locationX = locationX;
-    }
-
-    public Boolean getLocationY() {
-        return locationY;
-    }
-
-    public void setLocationY(Boolean locationY) {
-        this.locationY = locationY;
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
     }
 
     public Map() {
+        
+    }
+    
+    public Map(int noOfRows, int noOfColumns){
+        
+        if (noOfRows < 1 || noOfColumns < 1){
+            System.out.println("The number of rows and Columns must be > zero");
+            return;
+        }
+
+        this.noOfRows = noOfRows;
+        this.noOfColumns = noOfColumns;
+//        create 2-D array for Location objects
+        this.locations = new Location[noOfRows][noOfColumns];
+
+        for (int row = 0; row < noOfRows; row++){
+            for( int column = 0; column < noOfColumns; column++){
+//                create and initialize new Location object instance
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                location.setVisited(false);
+
+//                assign the Location objects to the current position in array
+                locations[row][column] = location;
+            }
+        }
+
+    }
+    
+    public void setNoOfRows(int noOfRows) {
+        this.noOfRows = noOfRows;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.locationX);
-        hash = 79 * hash + Objects.hashCode(this.locationY);
-        return hash;
+    public void setNoOfColumns(int noOfColumns) {
+        this.noOfColumns = noOfColumns;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Map other = (Map) obj;
-        if (!Objects.equals(this.locationX, other.locationX)) {
-            return false;
-        }
-        if (!Objects.equals(this.locationY, other.locationY)) {
-            return false;
-        }
-        return true;
+    public int getNoOfRows() {
+        return noOfRows;
     }
 
-    @Override
-    public String toString() {
-        return "Map{" + "locationX=" + locationX + ", locationY=" + locationY + '}';
+    public int getNoOfColumns() {
+        return noOfColumns;
     }
 }

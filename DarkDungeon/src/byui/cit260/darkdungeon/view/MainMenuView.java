@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.darkdungeon.vew;
+package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
-import java.util.Scanner;
 
 /**
  *
@@ -24,8 +23,8 @@ public class MainMenuView extends View {
                 + "\n| Options:                         |"
                 + "\n|   N. Start a New Game            |"
                 + "\n|   L. Load a saved Game           |"
-                + "\n|   H. Game Help                   |"
                 + "\n|   S. Save Game                   |"
+                + "\n|   H. Help                   |"
                 + "\n|   Q. Quit                        |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
@@ -60,8 +59,6 @@ public class MainMenuView extends View {
         GameControl.createNewGame(DarkDungeonGame.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
-        
-        
     }
 
     private void startExistingGame() {
