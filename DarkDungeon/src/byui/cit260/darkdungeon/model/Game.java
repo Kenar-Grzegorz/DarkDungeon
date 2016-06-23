@@ -27,7 +27,7 @@ public class Game implements Serializable{
         public static BattleControl battle = new BattleControl();
     private Item[] item;
     private CharacterSelection character;
-    private Scene scene;
+    private Scene[] scene;
     private Map map;
 
     
@@ -41,6 +41,78 @@ public class Game implements Serializable{
 
     public void setPlayer(Player player) {
         
+    }
+
+    public static GameMenu getGameMenu() {
+        return gameMenu;
+    }
+
+    public static void setGameMenu(GameMenu gameMenu) {
+        Game.gameMenu = gameMenu;
+    }
+
+    public static Monster getMonster() {
+        return monster;
+    }
+
+    public static void setMonster(Monster monster) {
+        Game.monster = monster;
+    }
+
+    public static MoveView getMove() {
+        return move;
+    }
+
+    public static void setMove(MoveView move) {
+        Game.move = move;
+    }
+
+    public static CharacterSelection getWarrior() {
+        return warrior;
+    }
+
+    public static void setWarrior(CharacterSelection warrior) {
+        Game.warrior = warrior;
+    }
+
+    public static BattleControl getBattle() {
+        return battle;
+    }
+
+    public static void setBattle(BattleControl battle) {
+        Game.battle = battle;
+    }
+
+    public Item[] getItem() {
+        return item;
+    }
+
+    public void setItem(Item[] item) {
+        this.item = item;
+    }
+
+    public CharacterSelection getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(CharacterSelection character) {
+        this.character = character;
+    }
+
+    public Scene[] getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene[] scene) {
+        this.scene = scene;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     
