@@ -113,11 +113,7 @@ public class GameMenuView extends View {
             
                    
         }
-        
-        
-        
-        
-    
+       
     }  
     private void map() {
         MapView mapView = new MapView();
