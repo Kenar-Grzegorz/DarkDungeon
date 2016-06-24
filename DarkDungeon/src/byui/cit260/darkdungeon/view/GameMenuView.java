@@ -19,6 +19,7 @@ import darkdungeongame.DarkDungeonGame;
  */
 public class GameMenuView extends View {
     GameControl game = new GameControl();
+    public boolean gate;
     
     public GameMenuView() {
         super("\n"
@@ -70,13 +71,13 @@ public class GameMenuView extends View {
     }
      private void useStartJourney() {
          StartAdventureView check = new StartAdventureView();
-         if (warrior.isExist()== true){
+         if (warrior.isExist()== true) {
             if (check.isGate() == true) {
              GameControl.createJourney();
             }
             else {check.display();}
         }    
-         else {
+        else {
              System.out.println("\n**************************************"  
                                                 +"********************");
         System.out.println("\t # Please Select a Character First #");
@@ -86,26 +87,27 @@ public class GameMenuView extends View {
     }
     
     private void viewInventory() {
+        
         StringBuilder line;
-        
         Game game = DarkDungeonGame.getCurrentGame();
-        Inventory[] inventory = GameControl.getSortedInventoryList();
-        
+        Inventory[] inventory = game.getInventory();
         System.out.println("\n      LIST OF INVENTORY ITEMS");
-        line = new StringBuilder("                         ");
-        line.insert(0, "DESCRIPTION");
-        line.insert(20, "STRENGTH");
-        line.insert(30, "IN STOCK");
-        line.insert(40, " HEALING");
+        line = new StringBuilder("                                                                         ");
+        line.insert(0, "NAME");
+        //line.insert(10, "DESCRIPTION");
+        line.insert(15, "STRENGTH");
+        line.insert(25, "IN STOCK");
+        
         System.out.println(line.toString());
         
         // for each inventory item
         for (Inventory item : inventory) {
-            line = new StringBuilder("                                     ");
-            line.insert(0, item.getItemDescription());
-            line.insert(23, item.getItemDamage());
-            line.insert(33, item.getItemAmount());
-            line.insert(43, item.getItemHeal());
+            
+            line = new StringBuilder("                                                                     ");
+            line.insert(0, item.getItemName());
+            //line.insert(13, item.getItemDescription());
+            line.insert(18, item.getItemDamage());
+            line.insert(28, item.getItemAmount());
             
             
             // DISPLAY THE LINE
@@ -156,6 +158,15 @@ public class GameMenuView extends View {
         }
     
     }
+
+    public boolean isGate() {
+        return gate;
+    }
+
+    public void setGate(boolean gate) {
+        this.gate = gate;
+    }
+    
     
     
 }

@@ -79,7 +79,7 @@ public class Game implements Serializable{
         return inventory;
     }
 
-    public void setItem(Inventory[] item) {
+    public void setInventory(Inventory[] inventory) {
         this.inventory = inventory;
     }
 

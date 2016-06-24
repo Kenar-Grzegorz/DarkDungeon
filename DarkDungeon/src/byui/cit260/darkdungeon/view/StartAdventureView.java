@@ -10,7 +10,7 @@ package byui.cit260.darkdungeon.view;
  * @author Greg
  */
 public class StartAdventureView extends View {
-    public boolean gate = false;    
+    private static boolean gate = false;    
     public StartAdventureView() {
                 super("\n***************************************"
                     + "\n* You are standing before a Dungeon   *"
@@ -42,7 +42,8 @@ public class StartAdventureView extends View {
             case "Y":
                System.out.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***"
                        + "\n***          PRESS D TO ENTER         ***");
-               this.gate= true;
+               StartAdventureView.gate= true;
+               
                return true;
             case "N":
                  System.out.println("*********************************************"

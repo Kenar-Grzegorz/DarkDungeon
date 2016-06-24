@@ -33,7 +33,7 @@ public class GameControl {
         game.setPlayer(player);
         
         Inventory[] inventoryList = GameControl.createInventoryList();
-        game.setItem(inventoryList);
+        game.setInventory(inventoryList);
         
         Map map = MapControl.createMap(); //create a new map
         game.setMap(map);
@@ -48,7 +48,7 @@ public class GameControl {
     public static void createNewBattle() {
         //monster = Monster.newMonsterInstance();
         game.setMonster(Monster.newRandomInstance());
-        gameMenu.battleStart(game.getPlayer(), getWarrior(), game.getMonster());
+        gameMenu.battleStart(DarkDungeonGame.getPlayer(), game.getWarrior(), game.getMonster());
     }
 
     static void initiateBattle(Monster monster) {
