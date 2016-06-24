@@ -7,8 +7,10 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
+import byui.cit260.darkdungeon.model.Game;
 import static byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.model.Inventory;
+import darkdungeongame.DarkDungeonGame;
 
 /**
  *
@@ -79,7 +81,23 @@ public class GameMenuView extends View {
     }
     
     private void viewInventory() {
+        StringBuilder line;
+        
+        Game game = DarkDungeonGame.getCurrentGame();
         Inventory[] inventory = GameControl.getSortedInventoryList();
+        
+        System.out.println("\n      LIST OF INVENTORY ITEMS");
+        line = new StringBuilder("                         ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "STRENGTH");
+        line.insert(30, "IN STOCK");
+        line.insert(40, " HEALING");
+        System.out.println(line.toString());
+        
+        // for each inventory item
+        for (InventoryItem item : inventory) {
+        
+        
         
         
     }
