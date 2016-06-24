@@ -13,12 +13,12 @@ package byui.cit260.darkdungeon.enums;
  */
 public enum SceneType {
         start,
-        hobbiton,
-        crossroads,
-        Beorn,
-        rivendell,
-        goblins,
-        mining,
+        entrance,
+        crossToBare,
+        BeesGetTheseBees,
+        BodyInTheRiver,
+        TheyDidntHaveToEatHim,
+        Food,
         dragon,
         finish;
 }

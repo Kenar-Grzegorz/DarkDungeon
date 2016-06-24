@@ -130,7 +130,7 @@ public class GameMenuView extends View {
         //Display title
         System.out.println(
                  "\n--------------------"
-                +"\n MAP OF MIDDLE EARTH"
+                +"\n MAP OF THE DUNGEON  "
                 +"\n--------------------");
         //Display row of column numbers
         System.out.println(" -0  1  2-");

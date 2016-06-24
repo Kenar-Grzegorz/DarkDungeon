@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Florian
+ * @author Greg
  */
 public class Map implements Serializable{
 

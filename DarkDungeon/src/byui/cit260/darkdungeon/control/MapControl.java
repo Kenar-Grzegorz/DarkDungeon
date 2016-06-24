@@ -104,12 +104,12 @@ public class MapControl {
          Location[][] locations = map.getLocations();
         
         locations[0][0].setScene(scenes[SceneType.start.ordinal()]);
-        locations[0][1].setScene(scenes[SceneType.hobbiton.ordinal()]);
-        locations[0][2].setScene(scenes[SceneType.crossroads.ordinal()]);
-        locations[1][0].setScene(scenes[SceneType.Beorn.ordinal()]);
-        locations[1][1].setScene(scenes[SceneType.rivendell.ordinal()]);
-        locations[1][2].setScene(scenes[SceneType.goblins.ordinal()]);
-        locations[2][0].setScene(scenes[SceneType.mining.ordinal()]);
+        locations[0][1].setScene(scenes[SceneType.entrance.ordinal()]);
+        locations[0][2].setScene(scenes[SceneType.crossToBare.ordinal()]);
+        locations[1][0].setScene(scenes[SceneType.BeesGetTheseBees.ordinal()]);
+        locations[1][1].setScene(scenes[SceneType.BodyInTheRiver.ordinal()]);
+        locations[1][2].setScene(scenes[SceneType.TheyDidntHaveToEatHim.ordinal()]);
+        locations[2][0].setScene(scenes[SceneType.Food.ordinal()]);
         locations[2][1].setScene(scenes[SceneType.dragon.ordinal()]);
         locations[2][2].setScene(scenes[SceneType.finish.ordinal()]);
     }
