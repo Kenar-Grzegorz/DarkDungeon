@@ -17,7 +17,7 @@ public class Map implements Serializable{
     private int noOfRows;
     private int noOfColumns;
     private Location[][] locations;
-
+    private Location currentLocation;
     public Location[][] getLocations() {
         return locations;
     }
@@ -71,5 +71,10 @@ public class Map implements Serializable{
 
     public int getNoOfColumns() {
         return noOfColumns;
+    }
+    
+    
+    public Location getCurrentLocation() {
+        return currentLocation;
     }
 }

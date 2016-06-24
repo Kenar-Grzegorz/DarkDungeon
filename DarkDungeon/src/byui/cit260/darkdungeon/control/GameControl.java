@@ -26,7 +26,7 @@ public class GameControl {
     
     public static Game game;
 
-    public static void createNewGame(Player player) {
+    public static void createNewGame(Player player) throws MapControlexception {
         game = new Game();
         DarkDungeonGame.setCurrentGame(game);
         

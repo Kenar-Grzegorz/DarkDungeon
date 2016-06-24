@@ -11,6 +11,7 @@ import byui.cit260.darkdungeon.model.Game;
 import static byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.model.Inventory;
 import byui.cit260.darkdungeon.model.Location;
+import byui.cit260.darkdungeon.model.Map;
 import darkdungeongame.DarkDungeonGame;
 
 /**
@@ -124,37 +125,73 @@ public class GameMenuView extends View {
     
     private void map2() {
         
-        //get locations from the current game
-        Location[][] locations = DarkDungeonGame.getCurrentGame().getMap().getLocations();
-        
-        //Display title
-        System.out.println(
-                 "\n--------------------"
-                +"\n MAP OF THE DUNGEON  "
-                +"\n--------------------");
-        //Display row of column numbers
-        System.out.println(" -0  1  2-");
-        //Display row divider
-        System.out.println(" -------");
-        
-        //Display row numbers
-        for (int i = 0; i < locations.length; i++) {
-            //Display column divider
-            System.out.print(i + 1 + "|");
-            
-            for (Location location : locations[i]) {
-                
-                //If location has been visited, display map symbol
-                if (location.getVisited()) {
-                    System.out.print(location.getScene().getMapSymbol());
-                } else {
-                    System.out.print("??");
-                }
-                //Display ending column divider 
-                System.out.print("|");
+//        //get locations from the current game
+//        Location[][] locations = DarkDungeonGame.getCurrentGame().getMap().getLocations();
+//        
+//        //Display title
+//        System.out.println(
+//                 "\n--------------------"
+//                +"\n MAP OF THE DUNGEON  "
+//                +"\n--------------------");
+//        //Display row of column numbers
+//        System.out.println(" -0  1  2-");
+//        //Display row divider
+//        System.out.println(" -------");
+//        
+//        //Display row numbers
+//        for (int i = 0; i < locations.length; i++) {
+//            //Display column divider
+//            System.out.print(i + 1 + "|");
+//            
+//            for (Location location : locations[i]) {
+//                
+//                //If location has been visited, display map symbol
+//                if (location.getVisited()) {
+//                    System.out.print(location.getScene().getMapSymbol());
+//                } else {
+//                    System.out.print("??");
+//                }
+//                //Display ending column divider 
+//                System.out.print("|");
+//            }
+//            //Display ending row divider
+//            System.out.println("\n -------");
+//        }
+      String leftIndicator;
+      String rightIndicator;
+
+        Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
+        Map map = game.getMap(); // retreive the map from game
+        Location[][] locations = map.getLocations(); // retreive the locations from map
+        try { 
+            System.out.print(" |");
+            for( int column = 0; column < locations[0].length; column++){
+            System.out.print(" " + column + " |"); // print col numbers to side of map
+        }
+        System.out.println();
+        for( int row = 0; row < locations.length; row++){
+            System.out.print(row + " "); // print row numbers to side of map
+            for( int column = 0; column < locations[row].length; column++){
+            leftIndicator = " ";
+            rightIndicator = " ";
+            if(locations[row][column] == map.getCurrentLocation()){
+                leftIndicator = "*"; // can be stars or whatever these are indicators showing visited
+                rightIndicator = "*"; // same as above
+            } 
+            else if(locations[row][column].isVisited()){
+                leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
+                rightIndicator = "<"; // same as above
             }
-            //Display ending row divider
-            System.out.println("\n -------");
+            System.out.print("|"); // start map with a |
+            if(locations[row][column].getScene() == null)
+                System.out.print(leftIndicator + "??" + rightIndicator);
+            else
+                System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
+            }
+            System.out.println("|");
+        }
+        }catch (Exception e) {
+            System.out.println("Error");
         }
     
     }

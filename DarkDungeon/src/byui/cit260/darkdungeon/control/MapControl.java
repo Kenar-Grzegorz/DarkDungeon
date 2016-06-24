@@ -4,6 +4,7 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.Exceptions.MapControlexception;
 import byui.cit260.darkdungeon.model.Location;
 import byui.cit260.darkdungeon.model.Map;
 import byui.cit260.darkdungeon.model.Scene;
@@ -12,7 +13,7 @@ import static java.lang.Math.random;
 
 /**
  *
- * added by Florian K
+ * added by Team
  */
 public class MapControl {
 
@@ -20,7 +21,7 @@ public class MapControl {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    static Map createMap() {
+    public static Map createMap() throws MapControlexception {
         // create the map
         Map map = new Map(20,20);
         // create scenes
