@@ -95,7 +95,19 @@ public class GameMenuView extends View {
         System.out.println(line.toString());
         
         // for each inventory item
-        for (InventoryItem item : inventory) {
+        for (Inventory item : inventory) {
+            line = new StringBuilder("                                     ");
+            line.insert(0, item.getItemDescription());
+            line.insert(23, item.getItemDamage());
+            line.insert(33, item.getItemAmount());
+            line.insert(43, item.getItemHeal());
+            
+            
+            // DISPLAY THE LINE
+            System.out.println(line.toString());
+            
+                   
+        }
         
         
         
