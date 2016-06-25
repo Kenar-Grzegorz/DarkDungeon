@@ -5,6 +5,9 @@
  */
 package byui.cit260.darkdungeon.model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,11 +16,12 @@ import java.util.Objects;
  * @author Greg
  */
 public class Map implements Serializable{
-
+    
     private int noOfRows;
     private int noOfColumns;
     private Location[][] locations;
     private Location currentLocation;
+    
     public Location[][] getLocations() {
         return locations;
     }
@@ -77,4 +81,8 @@ public class Map implements Serializable{
     public Location getCurrentLocation() {
         return currentLocation;
     }
+
+    
+    
+   
 }

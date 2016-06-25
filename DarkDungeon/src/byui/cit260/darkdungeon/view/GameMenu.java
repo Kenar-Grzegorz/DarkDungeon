@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 public class GameMenu  {
     //class instance variables
-    private Boolean isAlive;
+   // private Boolean isAlive;
     private String gameMenu;
     
     public GameMenu() {
@@ -114,43 +114,43 @@ public class GameMenu  {
        boolean open = chestView.ChestOpenView();
     }
     
-    public Boolean getIsAlive() {
-        return isAlive;
-    }
-
-    public void setIsAlive(Boolean isAlive) {
-        this.isAlive = isAlive;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.isAlive);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final GameMenu other = (GameMenu) obj;
-        if (!Objects.equals(this.isAlive, other.isAlive)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Battle{" + "isAlive=" + isAlive + '}';
-    }
+//    public Boolean getIsAlive() {
+//        return isAlive;
+//    }
+//
+//    public void setIsAlive(Boolean isAlive) {
+//        this.isAlive = isAlive;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int hash = 3;
+//        hash = 79 * hash + Objects.hashCode(this.isAlive);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final GameMenu other = (GameMenu) obj;
+//        if (!Objects.equals(this.isAlive, other.isAlive)) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Battle{" + "isAlive=" + isAlive + '}';
+//    }
     
     
 }

@@ -119,15 +119,43 @@ public class Scene implements Serializable {
     }
     
     public enum SceneType{
-        start("Here is where the start of your great journy Begins."),
-        hobbiton("Meet with Bilbo and go over what you will need on your journey."),
-        crossroads("I can't seem to remember which direction I needed to go..."),
-        Beorn("A massive shapeshiffter who could be friend or foe."),
-        rivendell("Time to stock up and upgrade your weapons."),
-        goblins("There are many goblins in the mountains, tread carefully."),
-        mining("Short on supplies? see if you can dig up something."),
-        dragon("this is the battle you've been training for!"), 
-        finish("Return Home to tell everyone of your mighty deeds.");
+        startingScene("This is test."),
+        atriumScene("This is test1."),
+        storageScene("This is test2."),
+        libraryScene("This is test3."),
+        officeScene("This is test4."),
+        chapelScene("This is test5."),
+        studyScene("This is test6."),
+        privateQuartersScene("This is test7."),
+        bedRoomScene("This is test8."),
+        sanctuaryScene("This is test"),
+        ceremonyRoomScene("This is test"),
+        cryptEntranceScene("This is test"),
+        areaOneScene("This is test"),
+        areaTwoScene("This is test"),
+        areaThreeScene("This is test"),
+        areaFourScene("This is test"),
+        guardRoomScene("This is test"),
+        mageLabScene("This is test"),
+        caveOneScene("This is test"),
+        crystalCaveScene("This is test"),
+        mushroomCaveScene("This is test"),
+        gaurdianScene("This is test"),
+        summoningRoomScene("This is test"),
+        morgueScene("This is test"),
+        livingQuartersScene("This is test"),
+        dragonCaveScene("This is test"),
+        finishScene("This is test");
+    
+//        start("Here is where the start of your great journy Begins."),
+//        hobbiton("Meet with Bilbo and go over what you will need on your journey."),
+//        crossroads("I can't seem to remember which direction I needed to go..."),
+//        Beorn("A massive shapeshiffter who could be friend or foe."),
+//        rivendell("Time to stock up and upgrade your weapons."),
+//        goblins("There are many goblins in the mountains, tread carefully."),
+//        mining("Short on supplies? see if you can dig up something."),
+//        dragon("this is the battle you've been training for!"), 
+//        finish("Return Home to tell everyone of your mighty deeds.");
         
         private final String description;
         

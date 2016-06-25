@@ -5,9 +5,12 @@
  */
 package byui.cit260.darkdungeon.view;
 
+import byui.cit260.darkdungeon.Exceptions.MapControlexception;
 import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +38,14 @@ public class MainMenuView extends View {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
-            case "N": //New Game
+            case "N": {
+            try {
+                //New Game
                 this.startNewGame();
+            } catch (MapControlexception ex) {
+                Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
                 break;
             case "L": //Start a saved game
                 this.startExistingGame();
@@ -54,7 +63,7 @@ public class MainMenuView extends View {
         return false;
     }
 
-    private void startNewGame() {
+    private void startNewGame() throws MapControlexception {
         //Create a new Game
         GameControl.createNewGame(DarkDungeonGame.getPlayer());
         GameMenuView gameMenu = new GameMenuView();

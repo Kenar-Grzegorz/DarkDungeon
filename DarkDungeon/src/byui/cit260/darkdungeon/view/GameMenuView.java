@@ -7,6 +7,7 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
+import byui.cit260.darkdungeon.model.CharacterSelection;
 import byui.cit260.darkdungeon.model.Game;
 import static byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.model.Inventory;
@@ -50,10 +51,10 @@ public class GameMenuView extends View {
                 this.useStartJourney();
                 break;
             case "M":
-                this.map();
+                this.map2();
                 break;
             case "N":
-                this.map2();
+                this.map();
                 break;
             case "I":
                 this.viewInventory();
@@ -72,6 +73,7 @@ public class GameMenuView extends View {
     }
      private void useStartJourney() {
          StartAdventureView check = new StartAdventureView();
+         Game gameClass = new Game();
          if (warrior.isExist()== true) {
             if (check.isGate() == true) {
              GameControl.createJourney();
@@ -164,13 +166,15 @@ public class GameMenuView extends View {
         Map map = game.getMap(); // retreive the map from game
         Location[][] locations = map.getLocations(); // retreive the locations from map
         try { 
-            System.out.print(" |");
+            System.out.print("   |");
             for( int column = 0; column < locations[0].length; column++){
-            System.out.print(" " + column + " |"); // print col numbers to side of map
+            if (column < 10 ) {System.out.print(" " + column + "  |");} // print col numbers to side of map;
+            else {System.out.print(" " + column + " |");} // print col numbers to side of map;
         }
         System.out.println();
         for( int row = 0; row < locations.length; row++){
-            System.out.print(row + " "); // print row numbers to side of map
+            if (row < 10 ) {System.out.print(row + "  ");}
+            else {System.out.print(row + " ");} // print row numbers to side of map
             for( int column = 0; column < locations[row].length; column++){
             leftIndicator = " ";
             rightIndicator = " ";
@@ -186,7 +190,9 @@ public class GameMenuView extends View {
             if(locations[row][column].getScene() == null)
                 System.out.print(leftIndicator + "??" + rightIndicator);
             else
-                System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
+                if (locations[row][column].getScene().getMapSymbol()==null) 
+                {System.out.print(leftIndicator + "XX" + rightIndicator);}
+                else {System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);}
             }
             System.out.println("|");
         }
