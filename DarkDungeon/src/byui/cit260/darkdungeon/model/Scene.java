@@ -147,16 +147,7 @@ public class Scene implements Serializable {
         dragonCaveScene("This is test"),
         finishScene("This is test");
     
-//        start("Here is where the start of your great journy Begins."),
-//        hobbiton("Meet with Bilbo and go over what you will need on your journey."),
-//        crossroads("I can't seem to remember which direction I needed to go..."),
-//        Beorn("A massive shapeshiffter who could be friend or foe."),
-//        rivendell("Time to stock up and upgrade your weapons."),
-//        goblins("There are many goblins in the mountains, tread carefully."),
-//        mining("Short on supplies? see if you can dig up something."),
-//        dragon("this is the battle you've been training for!"), 
-//        finish("Return Home to tell everyone of your mighty deeds.");
-        
+//        
         private final String description;
         
         SceneType(String description){

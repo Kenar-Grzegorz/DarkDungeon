@@ -126,39 +126,7 @@ public class GameMenuView extends View {
     }
     
     private void map2() {
-        
-//        //get locations from the current game
-//        Location[][] locations = DarkDungeonGame.getCurrentGame().getMap().getLocations();
-//        
-//        //Display title
-//        System.out.println(
-//                 "\n--------------------"
-//                +"\n MAP OF THE DUNGEON  "
-//                +"\n--------------------");
-//        //Display row of column numbers
-//        System.out.println(" -0  1  2-");
-//        //Display row divider
-//        System.out.println(" -------");
-//        
-//        //Display row numbers
-//        for (int i = 0; i < locations.length; i++) {
-//            //Display column divider
-//            System.out.print(i + 1 + "|");
-//            
-//            for (Location location : locations[i]) {
-//                
-//                //If location has been visited, display map symbol
-//                if (location.getVisited()) {
-//                    System.out.print(location.getScene().getMapSymbol());
-//                } else {
-//                    System.out.print("??");
-//                }
-//                //Display ending column divider 
-//                System.out.print("|");
-//            }
-//            //Display ending row divider
-//            System.out.println("\n -------");
-//        }
+       
       String leftIndicator;
       String rightIndicator;
 

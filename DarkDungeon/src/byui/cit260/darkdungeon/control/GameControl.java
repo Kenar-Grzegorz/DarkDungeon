@@ -38,7 +38,7 @@ public class GameControl {
         Map map = MapControl.createMap(); //create a new map
         game.setMap(map);
         
-        MapControl.moveActorsToStartingLocation(map);
+        //MapControl.moveActorsToStartingLocation(map);
     }
     
     public static void createJourney() {
