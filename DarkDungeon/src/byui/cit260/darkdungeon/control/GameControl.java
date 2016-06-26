@@ -7,15 +7,18 @@ package byui.cit260.darkdungeon.control;
 
 import byui.cit260.darkdungeon.Exceptions.*;
 import byui.cit260.darkdungeon.enums.Item;
+import byui.cit260.darkdungeon.enums.SceneType;
 import byui.cit260.darkdungeon.model.*;
 import static byui.cit260.darkdungeon.model.Game.*;
 import darkdungeongame.DarkDungeonGame;
+import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Field;
 
 /**
  *
@@ -103,6 +106,35 @@ public class GameControl {
             throw new GameControlException(e.getMessage());
         }
     
+    }
+    
+    
+    public int numberOfLocations(){
+        SceneType[] scenea = SceneType.values();
+        int total = 0;
+        for(SceneType scenes: scenea){
+            
+            total++;}
+        return total;
+    }
+    
+    
+    
+    public int numberPlacesVisited() {
+        return 5;
+    }
+
+    public int placesVisited(Map map) {
+        int total = 0;
+        for (int row = 0; row < map.getNoOfRows(); row++) {
+            for (int column = 0; column < map.getNoOfColumns(); column++) {
+                
+                if (map.locations[row][column].getVisited() == true) {
+                    total++;
+                }
+            }
+        }
+        return total;
     }
     
     private static class Constants {

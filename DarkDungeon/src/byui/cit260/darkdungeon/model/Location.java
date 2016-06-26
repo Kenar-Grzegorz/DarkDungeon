@@ -32,6 +32,7 @@ public class Location implements Serializable{
     private ArrayList<Actor> actors;
     
     public Scene getScene() {
+        
         return scene;
     }
 

@@ -21,7 +21,7 @@ public class Map implements Serializable{
     private int noOfColumns;
     private int currentRow;
     private int currentColumn;
-    private Location[][] locations;
+    public Location[][] locations;
     private Location currentLocation;
     
     public Location[][] getLocations() {
@@ -55,13 +55,14 @@ public class Map implements Serializable{
                 location.setColumn(column);
                 location.setRow(row);
                 location.setVisited(false);
-
+                location.getVisited();
 //                assign the Location objects to the current position in array
                 locations[row][column] = location;
             }
         }
 
     }
+    
     
     public void setNoOfRows(int noOfRows) {
         this.noOfRows = noOfRows;

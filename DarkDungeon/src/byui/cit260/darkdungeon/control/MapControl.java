@@ -43,7 +43,7 @@ public class MapControl {
 
         map.setCurrentRow(row);
         map.setCurrentColumn(column);
-
+        
     }
 
     private static Scene[] createScenes() {
