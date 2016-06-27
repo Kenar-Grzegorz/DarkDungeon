@@ -6,6 +6,8 @@
 package byui.cit260.darkdungeon.control;
 
 import byui.cit260.darkdungeon.Exceptions.*;
+import byui.cit260.darkdungeon.enums.Actor;
+import static byui.cit260.darkdungeon.enums.Actor.paladin;
 import byui.cit260.darkdungeon.enums.Item;
 import byui.cit260.darkdungeon.enums.SceneType;
 import byui.cit260.darkdungeon.model.*;
@@ -59,26 +61,19 @@ public class GameControl {
     }
    
     public static CharacterSelection createWarrior() {
-        //createAbilities();
+        CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
+        //CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50,true);
         game.setWarrior(warrior);
+        fighter[CharacterSelection.Actor.warrior.ordinal()] = warrior;
         return warrior;
     }
     public static CharacterSelection createPaladin() {
-        //createAbilities();
+        CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
+        CharacterSelection paladin = new CharacterSelection();
         warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60,true);
         game.setWarrior(warrior);
-        return warrior;
-    }
-
-//    public static void createAbilities() {
-//        Item fireScroll = new Item("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);game.setFirescroll(fireScroll);
-//        Item potion = new Item("Potion", "A devine glow covers your body", 0,25,3);game.setPotion(potion);
-//        Item omniSlash = new Item("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);game.setOmniSlash(omniSlash);
-//        Item armageddon = new Item("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);game.setArmageddon(armageddon);
-//    }
-    
-    public static CharacterSelection getWarrior() {
+        fighter[CharacterSelection.Actor.paladin.ordinal()] = paladin;
         return warrior;
     }
 

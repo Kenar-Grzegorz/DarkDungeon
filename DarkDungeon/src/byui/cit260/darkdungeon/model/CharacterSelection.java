@@ -96,6 +96,8 @@ public class CharacterSelection implements Serializable {
         return manaAmount;
     }
 
+    
+
     public void setManaAmount(int manaAmount) {
         this.manaAmount = manaAmount;
     }
@@ -193,6 +195,20 @@ public class CharacterSelection implements Serializable {
     }
     public String getManaStatus() {
         return "Player Mana: " + manaAmount;
+    }
+    public enum Actor{
+        warrior,
+        paladin
+        
+//        private final String description;
+//        
+//        Actor(String description){
+//            this.description = description;
+//        }
+//        
+//        public String getDescription(){
+//            return description;
+//        }
     }
     /*public void defend(Monster monster) {
         int attackStrength = monster.attack();

@@ -77,6 +77,7 @@ public class GameMenuView extends View {
 
     private void useStartJourney() {
         StartAdventureView check = new StartAdventureView();
+        //CharacterSelection charac = new CharacterSelection();
         Game gameClass = new Game();
         if (warrior.isExist() == true) {
             if (check.isGate() == true) {
