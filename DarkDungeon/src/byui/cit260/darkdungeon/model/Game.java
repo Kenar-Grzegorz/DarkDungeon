@@ -26,6 +26,7 @@ public class Game implements Serializable{
     private Inventory potion;
     private Inventory omniSlash;      
     private Inventory armageddon;
+    private Inventory testItem;
     
     public Game() {
         
@@ -83,6 +84,14 @@ public class Game implements Serializable{
         this.inventory = inventory;
     }
 
+    public Inventory getTestItem() {
+        return testItem;
+    }
+
+    public void setTestItem(Inventory testItem) {
+        this.testItem = testItem;
+    }
+    
     public Inventory getFirescroll() {
         return firescroll;
     }

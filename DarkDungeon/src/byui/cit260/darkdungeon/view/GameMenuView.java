@@ -95,7 +95,7 @@ public class GameMenuView extends View {
     }
 
     private void viewInventory() {
-
+        GameControl gamec = new GameControl();
         StringBuilder line;
         Game game = DarkDungeonGame.getCurrentGame();
         Inventory[] inventory = game.getInventory();
@@ -119,9 +119,12 @@ public class GameMenuView extends View {
 
             // DISPLAY THE LINE
             System.out.println(line.toString());
-
         }
-
+        //percent of items
+        int numItems = gamec.getNumberOfItems(); //gets from GameControl Folder
+        int emptyItem = gamec.getNumberOfEmptyItems();  //gets from GameControl Folder
+        int Average = 100-((emptyItem *100) / numItems); // gets average
+        System.out.println("\n You have "+emptyItem+" empty items of "+numItems+" or you have "+Average+"% of your items.");
     }
 
     private void map() {
@@ -149,44 +152,44 @@ public class GameMenuView extends View {
                 } // print col numbers to side of map;
             }
             System.out.println();
-            for (int row = 0; row < locations.length; row++) {
-                if (row < 10) {
-                    System.out.print(row + "  ");
-                } else {
-                    System.out.print(row + " ");
-                } // print row numbers to side of map
-                for (int column = 0; column < locations[row].length; column++) {
-                    leftIndicator = " ";
-                    rightIndicator = " ";
-                    if (locations[row][column] == map.getCurrentLocation()) {
-                        leftIndicator = "*"; // can be stars or whatever these are indicators showing visited
-                        rightIndicator = "*"; // same as above
-                    } else if (locations[row][column].isVisited()) {
-                        leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
-                        rightIndicator = "<"; // same as above
-                    }
-                    System.out.print("|"); // start map with a |
-                    if (locations[row][column].getScene() == null) {
-                        System.out.print(leftIndicator + "??" + rightIndicator);
+                for (int row = 0; row < locations.length; row++) {
+                    if (row < 10) {
+                        System.out.print(row + "  ");
                     } else {
-                        if (locations[row][column].getScene().getMapSymbol() == null) {
-                            System.out.print(leftIndicator + "XX" + rightIndicator);
+                        System.out.print(row + " ");
+                    } // print row numbers to side of map
+                    for (int column = 0; column < locations[row].length; column++) {
+                        leftIndicator = " ";
+                        rightIndicator = " ";
+                        if (locations[row][column] == map.getCurrentLocation()) {
+                            leftIndicator = "*"; // can be stars or whatever these are indicators showing visited
+                            rightIndicator = "*"; // same as above
+                        } else if (locations[row][column].isVisited()) {
+                            leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
+                            rightIndicator = "<"; // same as above
+                        }
+                        System.out.print("|"); // start map with a |
+                        if (locations[row][column].getScene() == null) {
+                            System.out.print(leftIndicator + "??" + rightIndicator);
                         } else {
-                            System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
+                            if (locations[row][column].getScene().getMapSymbol() == null) {
+                                System.out.print(leftIndicator + "XX" + rightIndicator);
+                            } else {
+                                System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
+                            }
                         }
                     }
+                    System.out.println("|");
                 }
-                System.out.println("|");
+            } catch (Exception e) {
+                System.out.println("Error");
             }
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
+        // calculate percentage of map
         GameControl gamec = new GameControl();
-        //Map map = new Map();
-        int amountMaps = gamec.numberOfLocations();
-        int visited = gamec.placesVisited(map);
-        int percent = (visited * 100) / amountMaps;
-        System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+percent+"% of the map <<");
+        int amountMaps = gamec.numberOfLocations(); //gets from GameControl Folder
+        int visited = gamec.placesVisited(map);  //gets from GameControl Folder
+        int average = (visited * 100) / amountMaps; // gets average
+        System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
     }
 
     public boolean isGate() {

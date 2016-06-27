@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.model;
 
+import byui.cit260.darkdungeon.control.GameControl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,7 +48,7 @@ public class Map implements Serializable{
         this.noOfColumns = noOfColumns;
 //        create 2-D array for Location objects
         this.locations = new Location[noOfRows][noOfColumns];
-
+        
         for (int row = 0; row < noOfRows; row++){
             for( int column = 0; column < noOfColumns; column++){
 //                create and initialize new Location object instance
@@ -105,7 +106,7 @@ public class Map implements Serializable{
         this.currentColumn = currentColumn;
     }
 
-    
+   
     
    
 }

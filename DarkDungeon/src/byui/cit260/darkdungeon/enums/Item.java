@@ -14,5 +14,23 @@ public enum Item {
         firescroll,
         potion,
         omniSlash,
-        armageddon;
+        armageddon,
+        testItem;
+        
+        private final int value;
+
+        private Item() {
+        this.value = ordinal();
+        }
+        
+        public static Item fromValue(int value) 
+             throws IllegalArgumentException {
+         try {
+              return Item.values()[value];
+         } catch(ArrayIndexOutOfBoundsException e) {
+              throw new IllegalArgumentException("Unknown enum value :"+ value);
+         }
+     }
+        
+        
 }

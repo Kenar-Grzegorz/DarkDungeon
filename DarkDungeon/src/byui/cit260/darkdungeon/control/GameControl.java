@@ -9,6 +9,7 @@ import byui.cit260.darkdungeon.Exceptions.*;
 import byui.cit260.darkdungeon.enums.Actor;
 import static byui.cit260.darkdungeon.enums.Actor.paladin;
 import byui.cit260.darkdungeon.enums.Item;
+import static byui.cit260.darkdungeon.enums.Item.potion;
 import byui.cit260.darkdungeon.enums.SceneType;
 import byui.cit260.darkdungeon.model.*;
 import static byui.cit260.darkdungeon.model.Game.*;
@@ -103,37 +104,74 @@ public class GameControl {
     
     }
     
-    
     public int numberOfLocations(){
-        SceneType[] scenea = SceneType.values();
+        //SceneType[] scenea = SceneType.values();
         int total = 0;
-        for(SceneType scenes: scenea){
+        for(SceneType scenes: SceneType.values()){ // runs through all the scenes and counts them to get room count.
             
-            total++;}
-        return total;
+            total++;} // adds one on each pass
+        return total;  // returns total
     }
     
+    public int getNumberOfItems() {int list = 0;
+        int number1=0;
+        
+        for(Inventory number : DarkDungeonGame.getCurrentGame().getInventory()){ //runs through and counts the amount of items in inventory
+            number1++; //adds one on each pass
+        }
+//        for (int i = 0; i < ( invLength - 1); i++){
+//            item[1].getItemName();
+//            for (int i2 = 0; i2 < (invLength - i - 1); i2++){
+//                if (inventoryList[i2].getItemDescription().compareToIgnoreCase(inventoryList[i2+1].getItemDescription())>0){
+//                    tempInventoryItem = inventoryList[i2];
+//                    inventoryList[i2] = inventoryList[i2+1];
+//                    inventoryList[i2+1] = tempInventoryItem;
+//                }
+//            }
+//        }
+        return number1; // returns the amount
+    }
     
-    
-    public int numberPlacesVisited() {
-        return 5;
+    public int getNumberOfEmptyItems() {
+        int number1=0;
+        //Inventory[] item = DarkDungeonGame.getCurrentGame().getInventory();
+       
+        for(Inventory number : DarkDungeonGame.getCurrentGame().getInventory()){ // runs through inventory and puts into number
+            if(number.getItemAmount()==0){ // checks number for any item with a 0 amount
+                number1++; // adds a 1 to any item with a zero
+            }
+        }
+        return number1; //returns number
     }
 
     public int placesVisited(Map map) {
+        int row=0; 
         int total = 0;
-        for (int row = 0; row < map.getNoOfRows(); row++) {
-            for (int column = 0; column < map.getNoOfColumns(); column++) {
-                
-                if (map.locations[row][column].getVisited() == true) {
-                    total++;
+        //Location[][] loc = map.getLocations();
+        for(Location[] d : map.getLocations()){ // runs through inventory row
+            int column=0; //resets row
+            for(Location mapb : d){ // runs through column
+                if (map.locations[row][column].getVisited() == true) { //if location row column was visited run next line
+                    total++; // add 1 to total if true
+                    
                 }
+                column++; //add 1 to column on each pass
             }
+            row++; //add 1 to row only after lumn was finished
         }
-        return total;
+        //for (int row = 0; row < map.getNoOfRows(); row++) {
+//            for (int column = 0; column < map.getNoOfColumns(); column++) {
+//                
+//                if (map.locations[row][column].getVisited() == true) {
+//                    total++;
+//                }
+//            }
+//        }
+        return total; // return amount
     }
     
     private static class Constants {
-        public final static int NUMBER_OF_INVENTORY_ITEMS=4;
+        public final static int NUMBER_OF_INVENTORY_ITEMS=5;
     }
     
     public static Inventory[] createInventoryList() {
@@ -147,6 +185,8 @@ public class GameControl {
         inventory [Item.omniSlash.ordinal()] = omniSlash;
         Inventory armageddon = new Inventory("Armageddon", "Your sword comes to life searching for revenge for all the evils done", 45, 0, 5);game.setArmageddon(armageddon);
         inventory [Item.armageddon.ordinal()] = armageddon;
+        Inventory testItem = new Inventory("TestItem", "Just your good old fashioned test item", 45, 0, 0);game.setTestItem(testItem);
+        inventory [Item.testItem.ordinal()] = testItem;
         return inventory;
     }
     
