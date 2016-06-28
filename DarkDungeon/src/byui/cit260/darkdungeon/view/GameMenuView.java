@@ -186,9 +186,11 @@ public class GameMenuView extends View {
             }
         // calculate percentage of map
         GameControl gamec = new GameControl();
-        int amountMaps = gamec.numberOfLocations(); //gets from GameControl Folder
-        int visited = gamec.placesVisited(map);  //gets from GameControl Folder
-        int average = (visited * 100) / amountMaps; // gets average
+        double amountMaps = gamec.numberOfLocations(); //gets from GameControl Folder
+        double visited = gamec.placesVisited(map);  //gets from GameControl Folder
+        double calc = (visited * 100) / amountMaps; // gets average
+        double average = Math.round(calc*100);
+        average = average/100;
         System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
     }
 
