@@ -189,9 +189,11 @@ public class GameMenuView extends View {
         double amountMaps = gamec.numberOfLocations(); //gets from GameControl Folder
         double visited = gamec.placesVisited(map);  //gets from GameControl Folder
         double calc = (visited * 100) / amountMaps; // gets average
-        double average = Math.round(calc*100);
-        average = average/100;
-        System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
+        if ( visited>amountMaps || amountMaps<1 || calc>100) System.out.println("error");
+        else {double average = Math.round(calc*100);
+            average = average/100;
+            System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
+        }
     }
 
     
