@@ -54,10 +54,10 @@ public class GameMenuView extends View {
                 this.useStartJourney();
                 break;
             case "M":
-                this.map2();
+                this.map();
                 break;
             case "N":
-                this.map();
+                this.map2();
                 break;
             case "I":
                 this.viewInventory();
@@ -127,12 +127,12 @@ public class GameMenuView extends View {
         System.out.println("\n You have "+emptyItem+" empty items of "+numItems+" or you have "+Average+"% of your items.");
     }
 
-    private void map() {
+    private void map2() {
         MapView mapView = new MapView();
         mapView.display();
     }
 
-    private void map2() {
+    private void map() {
 
         String leftIndicator;
         String rightIndicator;
@@ -194,6 +194,8 @@ public class GameMenuView extends View {
         System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
     }
 
+    
+    
     public boolean isGate() {
         return gate;
     }
