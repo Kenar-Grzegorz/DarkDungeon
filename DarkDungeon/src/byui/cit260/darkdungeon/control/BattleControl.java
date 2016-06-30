@@ -47,7 +47,7 @@ public class BattleControl {
      //added by Greg for individual project
     public static int superAttack(int health, int defense, int damageAmount) throws BattleControlException {
         if (health < 1) {throw new BattleControlException("The minimum value for health " + health + " can not be less then zero");} 
-        if (damageAmount < 5 || damageAmount > 100) {throw new BattleControlException("The minimum value for damage " + damage + " can not be less then 5 or greater than 100");}
+        if (damageAmount < 5 || damageAmount > 100) {throw new BattleControlException("The minimum value for damage " + damageAmount + " can not be less then 5 or greater than 100");}
         if (damageAmount >= (health+defense)) { return 0;}
         else if (damageAmount<defense) {return health;}
         else {health -= (damageAmount-defense);}
