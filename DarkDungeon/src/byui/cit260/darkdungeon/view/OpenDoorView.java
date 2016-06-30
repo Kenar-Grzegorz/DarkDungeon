@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.BattleControl;
+import byui.cit260.darkdungeon.control.BattleControlException;
 import byui.cit260.darkdungeon.control.MapControl;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class OpenDoorView {
                 
    }
 
-    public boolean moveView() {
+    public boolean moveView() throws BattleControlException {
        
             // prompt for and get players name
             System.out.println("Please enter the first number between 1 and 15");
@@ -63,7 +64,7 @@ public class OpenDoorView {
     }
     
 
-    private boolean doAction(int value1) {
+    private boolean doAction(int value1) throws BattleControlException {
         int random = BattleControl.random(1, 10);
         if ((value1+random)%2==0) {
             this.choice1();

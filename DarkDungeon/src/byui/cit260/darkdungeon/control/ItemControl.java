@@ -16,7 +16,7 @@ import jdk.internal.dynalink.DefaultBootstrapper;
 // Added by Bill M
 public class ItemControl {
     public static int useHeal (int health, int itemAmount, int healAmount) throws ItemControlException {
-        if (health < 1 || health > 200) {throw new ItemControlException("\n Error - INVALID MAP INPUT");}
+        if (health < 1 || health > 200) {throw new ItemControlException("\n Error - Health "+ health + " must be between 1 and 200");}
         if (itemAmount<=0) {return health;}
         else if (health > (200-healAmount) || health > 200) {return health = 200;}
         else { health += healAmount; 
