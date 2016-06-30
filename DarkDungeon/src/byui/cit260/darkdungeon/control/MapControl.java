@@ -5,7 +5,7 @@
 package byui.cit260.darkdungeon.control;
 
 import byui.cit260.darkdungeon.enums.Actor;
-import byui.cit260.darkdungeon.enums.MapControlException;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import byui.cit260.darkdungeon.model.Location;
 import byui.cit260.darkdungeon.model.Map;
 import byui.cit260.darkdungeon.model.Scene;
