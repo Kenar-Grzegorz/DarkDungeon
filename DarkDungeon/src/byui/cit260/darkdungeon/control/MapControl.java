@@ -4,11 +4,15 @@
  */
 package byui.cit260.darkdungeon.control;
 
-import byui.cit260.darkdungeon.Exceptions.MapControlexception;
+import byui.cit260.darkdungeon.enums.Actor;
+import byui.cit260.darkdungeon.exceptions.MapControlException;
 import byui.cit260.darkdungeon.model.Location;
 import byui.cit260.darkdungeon.model.Map;
 import byui.cit260.darkdungeon.model.Scene;
 import byui.cit260.darkdungeon.enums.SceneType;
+import byui.cit260.darkdungeon.model.CharacterSelection;
+import darkdungeongame.DarkDungeonGame;
+import java.awt.Point;
 import static java.lang.Math.random;
 
 /**
@@ -21,7 +25,7 @@ public class MapControl {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static Map createMap() throws MapControlexception {
+    public static Map createMap() throws MapControlException {
         // create the map
         Map map = new Map(6, 5);
         // create scenes
@@ -45,7 +49,18 @@ public class MapControl {
         map.setCurrentColumn(column);
         
     }
-
+    
+    public static int moveActorToLocation(CharacterSelection actor, Point coordinates) throws MapControlException {
+        Map map = DarkDungeonGame.getCurrentGame().getMap();
+        int newRow = coordinates.x-1;
+        int newColumn = coordinates.y-1;
+        
+        if (newRow < 0 || newRow >= map.getNoOfRows() || newColumn < 0 || newColumn >= map.getNoOfColumns()) {
+        throw new MapControlException("Can not move actor to location " + coordinates.x + ", " + coordinates.y + " because that location is outside the bounds of the map");
+        }
+        return 0;
+    }
+    
     private static Scene[] createScenes() {
         Scene[] scenes = new Scene[SceneType.values().length];
 
@@ -306,7 +321,7 @@ public class MapControl {
         int Move = character + location + monster + health;
         return Move;
     }
-
+    
     public boolean validLocation(int character, int location) {
 
         if (character < 1) {

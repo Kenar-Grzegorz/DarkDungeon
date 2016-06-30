@@ -5,7 +5,7 @@
  */
 package byui.cit260.darkdungeon.view;
 
-import byui.cit260.darkdungeon.Exceptions.MapControlexception;
+import byui.cit260.darkdungeon.exceptions.MapControlException;
 import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
@@ -42,7 +42,7 @@ public class MainMenuView extends View {
             try {
                 //New Game
                 this.startNewGame();
-            } catch (MapControlexception ex) {
+            } catch (MapControlException ex) {
                 Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
             }
             }
@@ -63,7 +63,7 @@ public class MainMenuView extends View {
         return false;
     }
 
-    private void startNewGame() throws MapControlexception {
+    private void startNewGame() throws MapControlException {
         //Create a new Game
         GameControl.createNewGame(DarkDungeonGame.getPlayer());
         GameMenuView gameMenu = new GameMenuView();

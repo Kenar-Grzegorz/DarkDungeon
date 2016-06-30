@@ -5,7 +5,8 @@
  */
 package byui.cit260.darkdungeon.control;
 
-import byui.cit260.darkdungeon.Exceptions.*;
+import byui.cit260.darkdungeon.exceptions.GameControlException;
+import byui.cit260.darkdungeon.exceptions.MapControlException;
 import byui.cit260.darkdungeon.enums.Actor;
 import static byui.cit260.darkdungeon.enums.Actor.paladin;
 import byui.cit260.darkdungeon.enums.Item;
@@ -32,7 +33,7 @@ public class GameControl {
     
     public static Game game;
 
-    public static void createNewGame(Player player) throws MapControlexception {
+    public static void createNewGame(Player player) throws MapControlException {
         game = new Game();
         DarkDungeonGame.setCurrentGame(game);
         

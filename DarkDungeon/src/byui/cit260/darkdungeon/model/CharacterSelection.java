@@ -23,6 +23,8 @@ public class CharacterSelection implements Serializable {
     private int abilityDamage;
     private int elementalDamage;
     private boolean exist = false;
+    private Actor actor;
+    
 
     public CharacterSelection() {
     }
@@ -110,6 +112,14 @@ public class CharacterSelection implements Serializable {
         this.abilityDamage = abilityDamage;
     }
 
+    public Actor getActor() {
+        return actor;
+    }
+
+    public void setActor(Actor actor) {
+        this.actor = actor;
+    }
+    
     public int getElementalDamage() {
         return elementalDamage;
     }
