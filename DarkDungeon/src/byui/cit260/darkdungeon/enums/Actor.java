@@ -14,8 +14,21 @@ import java.io.Serializable;
  */
 public enum Actor implements Serializable {
     
-    warrior,
-    paladin;
+    warrior("Test1"),
+    paladin("Test2");
     
+    private final Point coordinates;
+    private final String description;
     
+    Actor(String description){
+        this.description = description;
+        coordinates = new Point (1,1);
+    }
+     public String getDescription(){
+        return description;
+    }
+
+    public Point getCoordinates(){
+        return coordinates;
+    }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.darkdungeon.control;
+import byui.cit260.darkdungeon.exceptions.ItemControlException;
 import byui.cit260.darkdungeon.model.*;
 
 import jdk.internal.dynalink.DefaultBootstrapper;
@@ -14,8 +15,8 @@ import jdk.internal.dynalink.DefaultBootstrapper;
  */
 // Added by Bill M
 public class ItemControl {
-    public static int useHeal (int health, int itemAmount, int healAmount) {
-        if (health < 1 || health > 200) {return -1;}
+    public static int useHeal (int health, int itemAmount, int healAmount) throws ItemControlException {
+        if (health < 1 || health > 200) {throw new ItemControlException("\n Error - INVALID MAP INPUT");}
         if (itemAmount<=0) {return health;}
         else if (health > (200-healAmount) || health > 200) {return health = 200;}
         else { health += healAmount; 
