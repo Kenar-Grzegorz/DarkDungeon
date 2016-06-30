@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.control.GameControl.*;
 import static byui.cit260.darkdungeon.control.GameControl.game;
@@ -37,23 +38,23 @@ public class BattleControl {
     public static int random(int min, int max) throws BattleControlException {
         if (min > max) {
             throw new BattleControlException("The minimum value " + min + " can not be greater than the maximum value "+ max);}
-        if ((min < 0 || min > 200) || (max < 0 || max > 200)) {return -1;}
+        if ((min < 0 || min > 200) || (max < 0 || max > 200)) {throw new BattleControlException("The minimum value " + min + "  and the maximum value" + max + " can not be less than zero or greater than 200");}
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
         
         return randomNum;
     }
      //added by Greg for individual project
-    public static int superAttack(int health, int defense, int damageAmount) {
-        if (health < 1) {return -1;} 
-        if (damageAmount < 5 || damageAmount > 100) {return -1;}
+    public static int superAttack(int health, int defense, int damageAmount) throws BattleControlException {
+        if (health < 1) {throw new BattleControlException("The minimum value for health " + health + " can not be less then zero");} 
+        if (damageAmount < 5 || damageAmount > 100) {throw new BattleControlException("The minimum value for damage " + damage + " can not be less then 5 or greater than 100");}
         if (damageAmount >= (health+defense)) { return 0;}
         else if (damageAmount<defense) {return health;}
         else {health -= (damageAmount-defense);}
         return health;
     }
     //added by Greg
-    public static boolean flee(int min, int max) {
+    public static boolean flee(int min, int max) throws BattleControlException {
         if (min > max) {return Boolean.FALSE;}
         if ((min < 0 || min > 10) || (max < 0 || max > 10)) {return Boolean.FALSE;}
         int value = random(min, max);
@@ -61,7 +62,7 @@ public class BattleControl {
         else {return Boolean.TRUE;}
     }
         
-    public static int attack(int min, int max, int defense, int health) {
+    public static int attack(int min, int max, int defense, int health) throws BattleControlException {
         attackStrength = attackRand(min, max);
         if (attackStrength< defense) {shield=true;return health;}
         else {health=(attackStrength<(health+defense)) ? (health+defense) - attackStrength : 0;shield=false;
@@ -103,7 +104,7 @@ public class BattleControl {
         }
     }
     
-    public static int attackRand(int minAttackDamage, int maxAttackDamage) {
+    public static int attackRand(int minAttackDamage, int maxAttackDamage) throws BattleControlException {
         return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
 }
