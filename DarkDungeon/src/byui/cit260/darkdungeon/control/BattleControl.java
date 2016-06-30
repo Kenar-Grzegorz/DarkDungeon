@@ -34,8 +34,9 @@ public class BattleControl {
     }
     
     //Added by Greg for individual project
-    public static int random(int min, int max) {
-        if (min > max) {return -1;}
+    public static int random(int min, int max) throws BattleControlException {
+        if (min > max) {
+            throw new BattleControlException("The minimum value " + min + " can not be greater than the maximum value "+ max);}
         if ((min < 0 || min > 200) || (max < 0 || max > 200)) {return -1;}
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
