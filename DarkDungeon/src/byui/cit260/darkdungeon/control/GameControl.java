@@ -5,8 +5,8 @@
  */
 package byui.cit260.darkdungeon.control;
 
-import byui.cit260.darkdungeon.exceptions.GameControlException;
-import byui.cit260.darkdungeon.exceptions.MapControlException;
+import byui.cit260.darkdungeon.exception.GameControlException;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import byui.cit260.darkdungeon.enums.Actor;
 import static byui.cit260.darkdungeon.enums.Actor.paladin;
 import byui.cit260.darkdungeon.enums.Item;

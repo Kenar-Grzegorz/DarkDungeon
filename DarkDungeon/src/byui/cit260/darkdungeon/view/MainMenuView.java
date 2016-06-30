@@ -5,7 +5,7 @@
  */
 package byui.cit260.darkdungeon.view;
 
-import byui.cit260.darkdungeon.exceptions.MapControlException;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
