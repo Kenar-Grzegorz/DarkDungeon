@@ -10,6 +10,7 @@ import byui.cit260.darkdungeon.control.*;
 import static byui.cit260.darkdungeon.control.GameControl.*;
 import byui.cit260.darkdungeon.enums.Item;
 import byui.cit260.darkdungeon.exception.MapControlException;
+import byui.cit260.darkdungeon.model.Monster;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

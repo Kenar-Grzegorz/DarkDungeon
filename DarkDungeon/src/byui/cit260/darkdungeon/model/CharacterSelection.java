@@ -201,6 +201,11 @@ public class CharacterSelection implements Serializable {
         return health > 0;
     }
     
+    public boolean isDead() {
+        System.out.println(health);
+        return health < 1;
+    }
+    
     public String getStatus() {
         return "Player HP: " + health;
     }

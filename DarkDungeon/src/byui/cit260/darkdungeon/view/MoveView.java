@@ -9,6 +9,8 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 import byui.cit260.darkdungeon.exception.BattleControlException;
+import byui.cit260.darkdungeon.model.CharacterSelection;
+import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
@@ -33,10 +35,11 @@ public class MoveView extends View{
                   + "\nWhich direction would you like to travel? ~~~>");
     }
     
-  
+    
     @Override
    public boolean doAction(String choice) {
         choice = choice.toUpperCase(); //convert to uppercase
+        
         
         switch (choice) {
             case "N": //North

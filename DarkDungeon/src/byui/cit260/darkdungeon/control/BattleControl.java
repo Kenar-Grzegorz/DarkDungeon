@@ -98,8 +98,8 @@ public class BattleControl {
             if (health == 0) {
                 System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
                 + " into dust to never be seen again");
-                
             }
+            monster.setHealth(health);
         }
         else {
             //System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");

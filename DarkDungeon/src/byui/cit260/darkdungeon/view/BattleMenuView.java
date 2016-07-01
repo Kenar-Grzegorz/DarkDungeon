@@ -124,12 +124,14 @@ public class BattleMenuView  {
            }
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
-        try {
-            open();
-        }
-        catch (Throwable ch) {
-            System.out.println(ch.getMessage());
-        }
+         if (character.isAlive()) {    
+            try {
+                open();
+            }
+            catch (Throwable ch) {
+                System.out.println(ch.getMessage());
+            }
+         }
     }
     private void open() throws BattleControlException {
        TreasureChestView chestView = new TreasureChestView();

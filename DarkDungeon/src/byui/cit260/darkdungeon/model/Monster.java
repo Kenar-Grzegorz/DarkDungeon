@@ -64,13 +64,13 @@ public class Monster implements Serializable {
                 } else if (i==6) {
            return new Monster("Crawling Claw",15,10,1,3,1);
                 } else if (i==7) {
-           return new Monster("Death Knight",150,20,15,25,50);
+           return new Monster("Death Knight",120,20,15,25,50);
                 } else if (i==8) {
-           return new Monster("Air Elemental",150,18,25,35,25);
+           return new Monster("Air Elemental",120,18,25,35,25);
                 } else if (i==9) {
-           return new Monster("Earth Elemental",180,18,25,35,25);
+           return new Monster("Earth Elemental",120,18,25,35,25);
                 } else if (i==10) {
-           return new Monster("Fire Elemental",150,18,30,45,25);
+           return new Monster("Fire Elemental",120,18,30,45,25);
                 } else if (i==11) {
            return new Monster("Water Elemental",120,18,20,30,25);
                 } else if (i==12) {
@@ -86,11 +86,11 @@ public class Monster implements Serializable {
                 } else if (i==17) {
            return new Monster("Goblin",15,4,1,5,2);
                 } else if (i==18) {
-           return new Monster("Stone Golem",200,10,15,25,20);
+           return new Monster("Stone Golem",120,10,15,25,20);
                 } else if (i==19) {
-           return new Monster("Heucuva",150,12,15,25,20);
+           return new Monster("Heucuva",120,12,15,25,20);
                 } else if (i==20) {
-           return new Monster("Lich",200,20,18,30,40);
+           return new Monster("Lich",1200,20,18,30,40);
                 } else if (i==21) {
            return new Monster("Lurker",50,8,5,12,10);
                 } else if (i==22) {
@@ -114,7 +114,7 @@ public class Monster implements Serializable {
                 } else if (i==31) {
            return new Monster("Spectre",75,16,15,20,10);
                 } else if (i==32) {
-           return new Monster("Vampire",180,20,20,40,25);
+           return new Monster("Vampire",120,20,20,40,25);
                 } else if (i==33) {
            return new Monster("Wight",40,12,5,15,10);
                 } else if (i==34) {
