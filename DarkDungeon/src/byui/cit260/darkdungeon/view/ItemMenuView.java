@@ -38,8 +38,14 @@ public class ItemMenuView extends View {
         choice = choice.toUpperCase(); //convert to uppercase
         
         switch (choice) {
-            case "P": //potion
+            case "P": {
+            try {
+                //potion
                 this.usePotion();
+            } catch (MapControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             case "F": {
             try {
@@ -56,7 +62,7 @@ public class ItemMenuView extends View {
         }
         return false;
     }
-    private void usePotion() {
+    private void usePotion() throws MapControlException {
         BattleControl.heal(game.getPotion(), game.getWarrior());
         
         

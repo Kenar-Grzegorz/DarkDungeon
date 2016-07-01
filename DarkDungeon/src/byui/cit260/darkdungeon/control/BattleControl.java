@@ -70,7 +70,7 @@ public class BattleControl {
         return health;}
     }
     
-    public static void heal(Inventory potion, CharacterSelection warrior) {
+    public static void heal(Inventory potion, CharacterSelection warrior) throws MapControlException {
         int amount = potion.getItemAmount();
         if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
             int health = warrior.getHealth() + potion.getItemHeal();
@@ -82,7 +82,8 @@ public class BattleControl {
             System.out.println(game.getPlayer()+" drinks a healing potion.");
             System.out.println(warrior.getStatus());
         } else {
-            System.out.println("*  You've exhausted your potion supply!  *\n");
+            throw new MapControlException("*  You've exhausted your potion supply!  *\n");
+            //System.out.println("*  You've exhausted your potion supply!  *\n");
         }
         System.out.println("*  You have " + amount + " potions left.  *\n");
     }
