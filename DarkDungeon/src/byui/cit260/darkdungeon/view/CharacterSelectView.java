@@ -51,11 +51,11 @@ public class CharacterSelectView {
         String input = ""; //value to be returned
         
         while (true) { // loop while an invalid value is entered
-            
+            System.out.print(this.menu);
             System.out.print("Number ~~~~~~~~~~~> ");
             input = keyboard.nextLine();
             input = input.trim(); //trim off leading and trailing blanks
-            if ("Q".equals(input)) {input = "0";}
+            if ("Q".equals(input)||"q".equals(input)) {input = "0";}
             if (input.length() <1) { //Check if value is blank
                 System.out.println("\nValue cannot be blank");
                 continue;
