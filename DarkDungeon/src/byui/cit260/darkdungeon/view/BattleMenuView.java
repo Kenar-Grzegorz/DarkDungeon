@@ -58,7 +58,7 @@ public class BattleMenuView  {
         return value; // return the value
     }
     
-    public void battleStart(Player playerName, CharacterSelection character, Monster monster)  {
+    public void battleStart(Player playerName, CharacterSelection character, Monster monster) throws BattleControlException  {
         //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
         System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
@@ -92,13 +92,19 @@ public class BattleMenuView  {
                     break;
                 case "Q":
                     EscapeView escape = new EscapeView();
-                    boolean escapeBoolean = escape.displayMainMenuView(character);
-                    if (escapeBoolean==true) {
-                        System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
-                        return;}
-                    else {
-                        break;
+                    try {    
+                        boolean escapeBoolean = escape.displayMainMenuView(character);
+                        if (escapeBoolean==true) {
+                            System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
+                            return;}
+                        else {
+                            break;
+                        }
                     }
+                    catch (Throwable ev) {
+                        System.out.println(ev.getMessage());
+                    }
+
                     //break OUTER;
                 default:
                     System.out.println("\tInvalid command!");
@@ -118,7 +124,12 @@ public class BattleMenuView  {
            }
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
-        open();
+        try {
+            open();
+        }
+        catch (Throwable ch) {
+            System.out.println(ch.getMessage());
+        }
     }
     private void open() throws BattleControlException {
        TreasureChestView chestView = new TreasureChestView();

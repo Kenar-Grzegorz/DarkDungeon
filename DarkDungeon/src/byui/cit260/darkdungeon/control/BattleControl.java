@@ -9,6 +9,7 @@ import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.Game.*;
 import byui.cit260.darkdungeon.control.GameControl.*;
 import static byui.cit260.darkdungeon.control.GameControl.game;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import byui.cit260.darkdungeon.model.Inventory;
 import byui.cit260.darkdungeon.model.*;
 import byui.cit260.darkdungeon.view.TreasureChestView;
@@ -86,7 +87,7 @@ public class BattleControl {
         System.out.println("*  You have " + amount + " potions left.  *\n");
     }
     
-    public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) {
+    public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
         System.out.println(item.getItemAmount());
         if (character.getManaAmount()>item.getItemAmount()){
             System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
@@ -100,7 +101,8 @@ public class BattleControl {
             }
         }
         else {
-            System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
+            //System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
+            throw new MapControlException("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
         }
     }
     

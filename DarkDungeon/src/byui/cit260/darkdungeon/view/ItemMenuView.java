@@ -9,6 +9,9 @@ import byui.cit260.darkdungeon.model.CharacterSelection;
 import byui.cit260.darkdungeon.control.*;
 import static byui.cit260.darkdungeon.control.GameControl.*;
 import byui.cit260.darkdungeon.enums.Item;
+import byui.cit260.darkdungeon.exception.MapControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,8 +41,14 @@ public class ItemMenuView extends View {
             case "P": //potion
                 this.usePotion();
                 return true;
-            case "F": //Fire Scroll
+            case "F": {
+            try {
+                //Fire Scroll
                 this.useFireScroll();
+            } catch (MapControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -52,7 +61,7 @@ public class ItemMenuView extends View {
         
         
     }
-    private void useFireScroll() { 
+    private void useFireScroll() throws MapControlException { 
         BattleControl.abilityDefend(game.getWarrior(), game.getMonster(), game.getFirescroll());
     }
 }

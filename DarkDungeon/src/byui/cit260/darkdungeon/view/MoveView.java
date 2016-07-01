@@ -8,6 +8,7 @@ package byui.cit260.darkdungeon.view;
 
 
 import byui.cit260.darkdungeon.control.GameControl;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import darkdungeongame.DarkDungeonGame;
 import java.util.Scanner;
 
@@ -39,17 +40,36 @@ public class MoveView extends View{
         
         switch (choice) {
             case "N": //North
-                
-                this.North();
+                try {
+                    this.North();
+                }
+                catch (Throwable mo) {
+                    System.out.println(mo);
+                }
                 break;
             case "S": //South
-                this.South();
+                try {
+                    this.South();
+                    }
+                catch (Throwable mo) {
+                    System.out.println(mo);
+                }
                 break;
             case "E": //East
-                this.East();
+                try {
+                    this.East();
+                    }
+                catch (Throwable mo) {
+                    System.out.println(mo);
+                }
                 break;
-              case "W": //West
-                this.West();
+            case "W": //West
+                try {
+                    this.West();
+                    }
+                catch (Throwable mo) {
+                    System.out.println(mo);
+                }
                 break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -58,28 +78,28 @@ public class MoveView extends View{
         return false;
     }
 
-    private void North() {     
+    private void North() throws BattleControlException {     
         
         System.out.println("***You have chosen North***");
         open();
     }
-    private void South() {
+    private void South() throws BattleControlException {
         
         System.out.println("***You have chosen South***");
         open();
     }
-     private void East() {
+     private void East() throws BattleControlException {
         
         System.out.println("***You have chosen East***");
         open();
     }
-      private void West() {
+      private void West() throws BattleControlException {
         
         System.out.println("***You have chosen West***");
         open();
     }
       
-      private void open() {
+      private void open() throws BattleControlException {
         GameControl.createNewBattle();
       }
    

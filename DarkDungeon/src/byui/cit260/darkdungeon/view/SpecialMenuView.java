@@ -8,6 +8,7 @@ package byui.cit260.darkdungeon.view;
 import byui.cit260.darkdungeon.control.*;
 import byui.cit260.darkdungeon.model.Inventory;
 import static byui.cit260.darkdungeon.control.GameControl.*;
+import byui.cit260.darkdungeon.exception.MapControlException;
 
 /**
  *
@@ -35,11 +36,20 @@ public class SpecialMenuView extends View {
         
         switch (choice) {
             case "O": //OmniSlash
-                this.useOmniSlash();
-                
+                try {
+                    this.useOmniSlash();
+                }
+                catch (Throwable sa) {
+                    System.out.println(sa.getMessage());
+                }
                 return true;
             case "A": //Armageddon
-                this.useArmageddon();
+                try {
+                    this.useArmageddon();
+                }
+                catch (Throwable sa) {
+                    System.out.println("sa.getMessage()");
+                }
                 return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -48,11 +58,11 @@ public class SpecialMenuView extends View {
         return false;
     }
     
-     private void useOmniSlash() {
+     private void useOmniSlash() throws MapControlException {
          BattleControl.abilityDefend(game.getWarrior(), game.getMonster(), game.getOmniSlash());
          
     }
-     private void useArmageddon() {
+     private void useArmageddon() throws MapControlException {
          BattleControl.abilityDefend(game.getWarrior(), game.getMonster(), game.getArmageddon());
     }
     
