@@ -19,12 +19,12 @@ import java.util.Scanner;
  *
  * @author Greg
  */
-public class GameMenu  {
+public class BattleMenuView  {
     //class instance variables
    // private Boolean isAlive;
     private String gameMenu;
     
-    public GameMenu() {
+    public BattleMenuView() {
         this.gameMenu = "\n"
                 + "\n===================================="
                 + "\n|             Battle               |"
@@ -58,7 +58,7 @@ public class GameMenu  {
         return value; // return the value
     }
     
-    public void battleStart(Player playerName, CharacterSelection character, Monster monster) throws BattleControlException {
+    public void battleStart(Player playerName, CharacterSelection character, Monster monster)  {
         //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
         System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
@@ -78,12 +78,17 @@ public class GameMenu  {
                     itemView.display();
                     break;
                 case "A":
-                    int monHealth = BattleControl.attack(character.getMinAttackDamage(), character.getMaxAttackDamage(), monster.getDefense(), monster.getHealth());
-                    if (BattleControl.isShield()==true) {System.out.println("The monster has successfuly blocked your attack");}
-                    else {System.out.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
-                    if (monHealth == 0) {System.out.println("\t" + playerName.getName() + " transforms the skull of " + monster.getMonsterName()
-                + " into dust to never be seen again");}
-                    monster.setHealth(monHealth);
+                    try {
+                        int monHealth = BattleControl.attack(character.getMinAttackDamage(), character.getMaxAttackDamage(), monster.getDefense(), monster.getHealth());
+                        if (BattleControl.isShield()==true) {System.out.println("The monster has successfuly blocked your attack");}
+                        else {System.out.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
+                        if (monHealth == 0) {System.out.println("\t" + playerName.getName() + " transforms the skull of " + monster.getMonsterName()
+                    + " into dust to never be seen again");}
+                        monster.setHealth(monHealth);
+                    }
+                    catch (Throwable at) {
+                        System.out.println(at.getMessage());
+                    }
                     break;
                 case "Q":
                     EscapeView escape = new EscapeView();
@@ -100,17 +105,22 @@ public class GameMenu  {
                     break;
             }
             if (monster.isAlive()) {
-                int charHealth = BattleControl.attack(monster.getMinAttackDamage(), monster.getMaxAttackDamage(), character.getDefenseAmount(), character.getHealth());
-                if (BattleControl.isShield()==true) {System.out.println("You have successfuly blocked the monsters attack");}    
-                else {System.out.println(monster.getMonsterName()+ " hits "+ character.getCharacterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");
-                if (charHealth == 0) {System.out.println("\t" + character.getCharacterName() + " has been defeated, try again next time");}
-                character.setHealth(charHealth);}
+                try {
+                    int charHealth = BattleControl.attack(monster.getMinAttackDamage(), monster.getMaxAttackDamage(), character.getDefenseAmount(), character.getHealth());
+                    if (BattleControl.isShield()==true) {System.out.println("You have successfuly blocked the monsters attack");}    
+                    else {System.out.println(monster.getMonsterName()+ " hits "+ character.getCharacterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");
+                    if (charHealth == 0) {System.out.println("\t" + character.getCharacterName() + " has been defeated, try again next time");}
+                    character.setHealth(charHealth);}
+                }
+                catch (Throwable ia) {
+                    System.out.println(ia.getMessage());
+                }
            }
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
         open();
     }
-    private void open() {
+    private void open() throws BattleControlException {
        TreasureChestView chestView = new TreasureChestView();
        boolean open = chestView.ChestOpenView();
     }

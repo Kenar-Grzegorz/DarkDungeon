@@ -77,9 +77,15 @@ public class TreasureChestView {
     }
 
     private void calculate() throws BattleControlException {
-        setRandom1(random1 = BattleControl.random(0, 10));
-        setRandom2(random2 = BattleControl.random(0, 10));
-        setAnswer(answer = random1 + random2);
+        try {
+            setRandom1(random1 = BattleControl.random(0, 10));
+            setRandom2(random2 = BattleControl.random(0, 10));
+            setAnswer(answer = random1 + random2);
+        }
+        catch (Throwable tc) {
+            System.out.println(tc.getMessage());
+        }
+        
     }
 
     private boolean doAction(int userAnswer) {

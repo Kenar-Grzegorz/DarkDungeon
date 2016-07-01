@@ -12,6 +12,7 @@ import static byui.cit260.darkdungeon.enums.Actor.paladin;
 import byui.cit260.darkdungeon.enums.Item;
 import static byui.cit260.darkdungeon.enums.Item.potion;
 import byui.cit260.darkdungeon.enums.SceneType;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.*;
 import static byui.cit260.darkdungeon.model.Game.*;
 import darkdungeongame.DarkDungeonGame;
@@ -52,7 +53,7 @@ public class GameControl {
         move.display();
     }
     
-    public static void createNewBattle() {
+    public static void createNewBattle() throws BattleControlException {
         //monster = Monster.newMonsterInstance();
         game.setMonster(Monster.newRandomInstance());
         gameMenu.battleStart(DarkDungeonGame.getPlayer(), game.getWarrior(), game.getMonster());

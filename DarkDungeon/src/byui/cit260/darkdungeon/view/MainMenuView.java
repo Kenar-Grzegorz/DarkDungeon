@@ -43,7 +43,7 @@ public class MainMenuView extends View {
                 //New Game
                 this.startNewGame();
             } catch (MapControlException ex) {
-                Logger.getLogger(MainMenuView.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
             }
                 break;

@@ -71,7 +71,7 @@ public class GameMenuView extends View {
 
     private void useCharCreate() {
         CharacterSelectView charSelect = new CharacterSelectView();
-        charSelect.display();
+        charSelect.displayCharacterSelectView();
 
     }
 

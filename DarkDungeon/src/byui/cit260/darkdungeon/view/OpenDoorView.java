@@ -65,20 +65,25 @@ public class OpenDoorView {
     
 
     private boolean doAction(int value1) throws BattleControlException {
-        int random = BattleControl.random(1, 10);
-        if ((value1+random)%2==0) {
-            this.choice1();
-            return true;
-        }
-        else {
-            if (random%2==0){
-                this.choice3();
+        try {
+            int random = BattleControl.random(1, 10);
+            if ((value1+random)%2==0) {
+                this.choice1();
                 return true;
             }
-            else {this.choice2();
-            return false;
+            else {
+                if (random%2==0){
+                    this.choice3();
+                    return true;
+                }
+                else {this.choice2();
+                return false;
+                }
             }
-           
+        }
+        catch (Throwable xe) {
+           System.out.println("You were wrong, rethink your life decisions");
+           return false;
         }
     }
 

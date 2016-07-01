@@ -5,7 +5,7 @@
  */
 package byui.cit260.darkdungeon.model;
 
-import byui.cit260.darkdungeon.view.GameMenu;
+import byui.cit260.darkdungeon.view.BattleMenuView;
 import byui.cit260.darkdungeon.view.MoveView;
 import byui.cit260.darkdungeon.control.*;
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @author gregg
  */
 public class Game implements Serializable{
-    public static GameMenu gameMenu = new GameMenu();
+    public static BattleMenuView gameMenu = new BattleMenuView();
     public static MoveView move = new MoveView();
     private Player player;
     private Monster monster;
@@ -44,11 +44,11 @@ public class Game implements Serializable{
         return player;
     }
     
-    public static GameMenu getGameMenu() {
+    public static BattleMenuView getGameMenu() {
         return gameMenu;
     }
 
-    public static void setGameMenu(GameMenu gameMenu) {
+    public static void setGameMenu(BattleMenuView gameMenu) {
         Game.gameMenu = gameMenu;
     }
 
