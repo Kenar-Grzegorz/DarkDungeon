@@ -93,7 +93,7 @@ public class BattleControl {
         if (character.getManaAmount()>item.getItemAmount()){
             System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             character.setManaAmount(character.getManaAmount()-item.getItemAmount());
-            int health = (character.getHealth()>item.getItemDamage()) ? character.getHealth()-item.getItemDamage() :0;
+            int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
             System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
             if (health == 0) {
                 System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
