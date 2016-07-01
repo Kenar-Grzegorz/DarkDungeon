@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.exception.ItemControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +22,7 @@ public class ItemControlTest {
      * Test of useHeal method, of class ItemControl. ~~~~ done by Bill
      */
     @Test
-    public void testUseHeal() {
+    public void testUseHeal() throws ItemControlException {
         System.out.println("useHeal");
         /*************************************************
          * TEST CASE # 01

@@ -6,7 +6,7 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.BattleControl;
-import byui.cit260.darkdungeon.control.BattleControlException;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.control.MapControl;
 import java.util.Scanner;
 

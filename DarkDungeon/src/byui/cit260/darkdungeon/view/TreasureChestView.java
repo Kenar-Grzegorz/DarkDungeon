@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.*;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import java.util.Scanner;
 
 /**
@@ -28,7 +29,7 @@ public class TreasureChestView {
                         + "\nPlease answer the equation to gain access";
      }
 
-    public boolean ChestOpenView() {
+    public boolean ChestOpenView() throws BattleControlException {
         boolean done = false; // set to not done
         do {
         calculate();
@@ -75,7 +76,7 @@ public class TreasureChestView {
         return value; // return the value
     }
 
-    private void calculate() {
+    private void calculate() throws BattleControlException {
         setRandom1(random1 = BattleControl.random(0, 10));
         setRandom2(random2 = BattleControl.random(0, 10));
         setAnswer(answer = random1 + random2);

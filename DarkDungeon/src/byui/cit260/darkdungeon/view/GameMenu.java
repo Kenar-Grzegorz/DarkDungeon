@@ -7,6 +7,7 @@ package byui.cit260.darkdungeon.view;
 
 
 import byui.cit260.darkdungeon.control.BattleControl;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.*;
 //import byui.cit260.darkdungeon.model.Game.player;
 import darkdungeongame.DarkDungeonGame;
@@ -57,7 +58,7 @@ public class GameMenu  {
         return value; // return the value
     }
     
-    public void battleStart(Player playerName, CharacterSelection character, Monster monster) {
+    public void battleStart(Player playerName, CharacterSelection character, Monster monster) throws BattleControlException {
         //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
         System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");

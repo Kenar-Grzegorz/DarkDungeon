@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.BattleControl;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.CharacterSelection;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class EscapeView {
                 
    }
 
-    public boolean displayMainMenuView(CharacterSelection character) {
+    public boolean displayMainMenuView(CharacterSelection character) throws BattleControlException {
        
             // prompt for and get players name
             System.out.println("Please enter the first number between 0 and 10");
@@ -65,7 +66,7 @@ public class EscapeView {
     }
     
 
-    private boolean doAction(int value1, int value2,CharacterSelection character) {
+    private boolean doAction(int value1, int value2,CharacterSelection character) throws BattleControlException {
         int random = BattleControl.random(0, 10);
         if ((value1+value2+random)%2==0) {
             this.choice1();

@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.control;
 
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +22,7 @@ public class BattleControlTest {
      * Test of attack method, of class BattleControl. ~~ Team Project
      */
     @Test
-    public void testAttack() {
+    public void testAttack() throws BattleControlException {
         System.out.println("attack");
         /*******************************
          * Test case #1
@@ -109,7 +110,7 @@ public class BattleControlTest {
      * Test of random method, of class BattleControl. ~~ Greg K
      */
     @Test
-    public void testRandom() {
+    public void testRandom() throws BattleControlException {
         /*******************************
          * Test case #1
          *******************************/
@@ -182,7 +183,7 @@ public class BattleControlTest {
      * Test of random method, of class BattleControl. ~~ Greg K
      */
     @Test
-    public void testSuperAttack() {
+    public void testSuperAttack() throws BattleControlException {
         /*******************************
          * Test case #1
          *******************************/

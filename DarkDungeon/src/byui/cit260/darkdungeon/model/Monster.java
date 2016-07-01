@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.model;
 
 import byui.cit260.darkdungeon.control.*;
+import byui.cit260.darkdungeon.exception.BattleControlException;
 import darkdungeongame.DarkDungeonGame;
 import java.io.Serializable;
 import java.util.*;
@@ -225,7 +226,7 @@ public class Monster implements Serializable {
         return "Monster{" + "monsterName=" + monsterName + ", health=" + health + ", defense=" + defense + ", minAttackDamage=" + minAttackDamage + ", maxAttackDamage=" + maxAttackDamage + ", abilityDamage=" + abilityDamage + '}';
     }
     
-    public int attack() {
+    public int attack() throws BattleControlException {
         return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
     public boolean isAlive() {
