@@ -7,6 +7,9 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.*;
 import byui.cit260.darkdungeon.exception.BattleControlException;
+import darkdungeongame.DarkDungeonGame;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -16,6 +19,8 @@ import java.util.Scanner;
  * Lesson 7 - Individual Assignment 
  */
 public class TreasureChestView {
+    protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
+    protected final PrintWriter console = DarkDungeonGame.getOutFile();
     private String question;
     private int random1;
     private int random2;
@@ -47,32 +52,34 @@ public class TreasureChestView {
     }
 
     private int getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // create infile
+        
         int value= 0;
         String input = ""; //value to be returned
+        try {
+            while (true) { // loop while an invalid value is entered
 
-        while (true) { // loop while an invalid value is entered
-
-            System.out.print("Number ~~~~~~~~~~~> ");
-            input = keyboard.nextLine();
-            input = input.trim(); //trim off leading and trailing blanks
-            if (input.length() <1) { //Check if value is blank
-                System.out.println("\nValue cannot be blank");
-                continue;
-            }
-            else {
-                try { // check for a integer value
-                    value = Integer.parseInt(input);
-                    if (value <1||value>20){ //Check if value is betwen 1 and 10
-                        System.out.println("\nValue has to be between 0 and 20");
-                        continue;}
-                    else {break;}
+                System.out.print("Number ~~~~~~~~~~~> ");
+                input = keyboard.readLine();
+                input = input.trim(); //trim off leading and trailing blanks
+                if (input.length() <1) { //Check if value is blank
+                    System.out.println("\nValue cannot be blank");
+                    continue;
                 }
-                catch (NumberFormatException ne) {
-                    System.out.println("\nValue must be a number!");
+                else {
+                    try { // check for a integer value
+                        value = Integer.parseInt(input);
+                        if (value <1||value>20){ //Check if value is betwen 1 and 10
+                            System.out.println("\nValue has to be between 0 and 20");
+                            continue;}
+                        else {break;}
+                    }
+                    catch (NumberFormatException ne) {
+                        System.out.println("\nValue must be a number!");
+                    }
                 }
             }
         }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
         return value; // return the value
     }
 

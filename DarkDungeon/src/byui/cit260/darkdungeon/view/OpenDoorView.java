@@ -8,6 +8,9 @@ package byui.cit260.darkdungeon.view;
 import byui.cit260.darkdungeon.control.BattleControl;
 import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.control.MapControl;
+import darkdungeongame.DarkDungeonGame;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -16,6 +19,8 @@ import java.util.Scanner;
  */
 public class OpenDoorView {
     private int value;
+    protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
+    protected final PrintWriter console = DarkDungeonGame.getOutFile();
 
     public OpenDoorView() {
                 
@@ -35,30 +40,33 @@ public class OpenDoorView {
     }
 
     private int getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // create infile
+        
         int value= 1;
         String input = ""; //value to be returned
         
         while (true) { // loop while an invalid value is entered
             
             System.out.print("Number ~~~~~~~~~~~> ");
-            input = keyboard.nextLine();
-            input = input.trim(); //trim off leading and trailing blanks
-            if (input.length() <1) { //Check if value is blank
-                System.out.println("\nValue cannot be blank");
-            }
-            else {
-                try {
-                    value = Integer.parseInt(input);
-                    if (value <1||value>15){ //value is blank
-                        System.out.println("\nValue has to be between 0 and 10");
-}
-                    else {break;}
+            try {
+                input = this.keyboard.readLine();
+                input = input.trim(); //trim off leading and trailing blanks
+                if (input.length() <1) { //Check if value is blank
+                    System.out.println("\nValue cannot be blank");
                 }
-                catch (NumberFormatException ne) {
-                    System.out.println("\nValue must be a number!");
+                else {
+                    try {
+                        value = Integer.parseInt(input);
+                        if (value <1||value>15){ //value is blank
+                            System.out.println("\nValue has to be between 0 and 10");
+                        }
+                        else {break;}
+                    }
+                    catch (NumberFormatException ne) {
+                        System.out.println("\nValue must be a number!");
+                    }
                 }
             }
+            catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
         }
         return value; // return the value
     }

@@ -11,6 +11,8 @@ import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.*;
 //import byui.cit260.darkdungeon.model.Game.player;
 import darkdungeongame.DarkDungeonGame;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Scanner;
@@ -23,6 +25,8 @@ public class BattleMenuView  {
     //class instance variables
    // private Boolean isAlive;
     private String gameMenu;
+    protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
+    protected final PrintWriter console = DarkDungeonGame.getOutFile();
     
     public BattleMenuView() {
         this.gameMenu = "\n"
@@ -39,21 +43,22 @@ public class BattleMenuView  {
         
     }
     private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); // create infile
+        
         String value = ""; //value to be returned
         boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            //System.out.print(this.gameMenu);
-            value = keyboard.nextLine(); //get next line typed
-            value = value.trim(); //trim off leading and trailing blanks
-            if (value.length() <1) { //value is blank
-                System.out.println("\nValue cannot be blank");
-                continue;
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                //System.out.print(this.gameMenu);
+                value = keyboard.readLine(); //get next line typed
+                value = value.trim(); //trim off leading and trailing blanks
+                if (value.length() <1) { //value is blank
+                    System.out.println("\nValue cannot be blank");
+                    continue;
+                }
+                break; //end of loop
             }
-            break; //end of loop
-            
         }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
         value = value.toUpperCase();
         return value; // return the value
     }

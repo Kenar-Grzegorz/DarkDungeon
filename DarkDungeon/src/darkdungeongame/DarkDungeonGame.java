@@ -6,6 +6,12 @@ package darkdungeongame;
 import byui.cit260.darkdungeon.view.StartProgramView;
 import byui.cit260.darkdungeon.model.*;
 import byui.cit260.darkdungeon.control.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @authors Greg Kenar, William Murray, Florian Kausche
@@ -15,6 +21,11 @@ public class DarkDungeonGame {
     private static Game currentGame = null;
     private static Player player = null;
     private static Monster monster = null;
+    
+    private static PrintWriter outFile = null;
+    private static BufferedReader inFile = null;
+    
+    private static PrintWriter logFile = null;
     
     
     private static void displayBaner() {
@@ -51,16 +62,63 @@ public class DarkDungeonGame {
     displayBaner();
     StartProgramView startProgramView = new StartProgramView();
         try {
+            DarkDungeonGame.inFile = new BufferedReader(new InputStreamReader(System.in));
+            DarkDungeonGame.outFile = new PrintWriter(System.out, true);
+            
+            //open log file
+            String filePath = "log.txt";
+            DarkDungeonGame.logFile = new PrintWriter(filePath);
+            
             startProgramView.display();
+            return;
         }
         catch (Throwable te) {
+            System.out.println("Exception: " + te.toString() + "\nCause: " + te.getCause() + "\nMessage: " + te.getMessage());
+            
             System.out.println(te.getMessage());
             te.printStackTrace();
             startProgramView.display();
-            
+        }
+        finally {
+            try {
+                if (DarkDungeonGame.inFile != null)
+                    DarkDungeonGame.inFile.close();
+                if (DarkDungeonGame.outFile != null)
+                    DarkDungeonGame.outFile.close();
+                if (DarkDungeonGame.logFile != null)
+                    DarkDungeonGame.logFile.close();
+            } catch (IOException ex) {
+                System.out.println("Error closing files");
+                return;
+            }
+       
         }
     }
 
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        DarkDungeonGame.logFile = logFile;
+    }
+    
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        DarkDungeonGame.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        DarkDungeonGame.inFile = inFile;
+    }
+    
     public static Player getPlayer() {
         return player;
     }

@@ -6,6 +6,9 @@
 package byui.cit260.darkdungeon.view;
 
 import static byui.cit260.darkdungeon.control.GameControl.game;
+import darkdungeongame.DarkDungeonGame;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -13,8 +16,10 @@ import java.util.Scanner;
  * @author test
  */
 public abstract class View implements ViewInterface {
-    protected String displayMessage;
-    
+    //protected String displayMessage;
+    private String displayMessage;
+    protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
+    protected final PrintWriter console = DarkDungeonGame.getOutFile();
     public View() {
         
     }
@@ -42,20 +47,22 @@ public abstract class View implements ViewInterface {
     }
     @Override
     public String getInput() {
-        Scanner keyboard = new Scanner(System.in); // create infile
+        
         String value = ""; //value to be returned
         boolean valid = false; // initialize to not valid
-        
-        while (!valid) { // loop while an invalid value is entered
-            System.out.print(this.displayMessage);
-            value = keyboard.nextLine(); //get next line typed
-            value = value.trim(); //trim off leading and trailing blanks
-            if (value.length() <1) { //value is blank
-                System.out.println("\nValue cannot be blank");
-                continue;
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                this.console.print(this.displayMessage);
+                value = this.keyboard.readLine(); //get next line typed
+                value = value.trim(); //trim off leading and trailing blanks
+                if (value.length() <1) { //value is blank
+                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
+                    continue;
+                }
+                break; //end of loop
             }
-            break; //end of loop
         }
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         return value; // return the value
     }
 }
