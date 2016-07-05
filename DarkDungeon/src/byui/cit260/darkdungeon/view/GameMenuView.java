@@ -66,7 +66,7 @@ public class GameMenuView extends View {
                 this.viewInventory();
                 break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
@@ -91,10 +91,10 @@ public class GameMenuView extends View {
                 check.display();
             }
         } else {
-            System.out.println("\n**************************************"
+            ErrorView.display(this.getClass().getName(),"\n**************************************"
                     + "********************");
-            System.out.println("\t # Please Select a Character First #");
-            System.out.println("**************************************"
+            ErrorView.display(this.getClass().getName(),"\t # Please Select a Character First #");
+            ErrorView.display(this.getClass().getName(),"**************************************"
                     + "********************\n");
         }
     }
@@ -104,14 +104,14 @@ public class GameMenuView extends View {
         StringBuilder line;
         Game game = DarkDungeonGame.getCurrentGame();
         Inventory[] inventory = game.getInventory();
-        System.out.println("\n      LIST OF INVENTORY ITEMS");
+        this.console.println("\n      LIST OF INVENTORY ITEMS");
         line = new StringBuilder("                                                                         ");
         line.insert(0, "NAME");
         //line.insert(10, "DESCRIPTION");
         line.insert(15, "STRENGTH");
         line.insert(25, "IN STOCK");
 
-        System.out.println(line.toString());
+        ErrorView.display(this.getClass().getName(),line.toString());
 
         // for each inventory item
         for (Inventory item : inventory) {
@@ -123,13 +123,13 @@ public class GameMenuView extends View {
             line.insert(28, item.getItemAmount());
 
             // DISPLAY THE LINE
-            System.out.println(line.toString());
+            this.console.println(line.toString());
         }
         //percent of items
         int numItems = gamec.getNumberOfItems(); //gets from GameControl Folder
         int emptyItem = gamec.getNumberOfEmptyItems();  //gets from GameControl Folder
         int Average = 100-((emptyItem *100) / numItems); // gets average
-        System.out.println("\n You have "+emptyItem+" empty items of "+numItems+" or you have "+Average+"% of your items.");
+        this.console.println("\n You have "+emptyItem+" empty items of "+numItems+" or you have "+Average+"% of your items.");
     }
 
     private void map2() {
@@ -147,21 +147,21 @@ public class GameMenuView extends View {
         Scene scene = new Scene();
         Location[][] locations = map.getLocations(); // retreive the locations from map
         try {
-            System.out.print("   |");
+            this.console.print("   |");
             for (int column = 0; column < locations[0].length; column++) {
                 if (column < 10) {
-                    System.out.print(" " + column + "  |");
+                    this.console.print(" " + column + "  |");
                 } // print col numbers to side of map;
                 else {
-                    System.out.print(" " + column + " |");
+                    this.console.print(" " + column + " |");
                 } // print col numbers to side of map;
             }
-            System.out.println();
+            this.console.println();
                 for (int row = 0; row < locations.length; row++) {
                     if (row < 10) {
-                        System.out.print(row + "  ");
+                        this.console.print(row + "  ");
                     } else {
-                        System.out.print(row + " ");
+                        this.console.print(row + " ");
                     } // print row numbers to side of map
                     for (int column = 0; column < locations[row].length; column++) {
                         leftIndicator = " ";
@@ -173,31 +173,31 @@ public class GameMenuView extends View {
                             leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
                             rightIndicator = "<"; // same as above
                         }
-                        System.out.print("|"); // start map with a |
+                        this.console.print("|"); // start map with a |
                         if (locations[row][column].getScene() == null) {
-                            System.out.print(leftIndicator + "??" + rightIndicator);
+                            this.console.print(leftIndicator + "??" + rightIndicator);
                         } else {
                             if (locations[row][column].getScene().getMapSymbol() == null) {
-                                System.out.print(leftIndicator + "XX" + rightIndicator);
+                                this.console.print(leftIndicator + "XX" + rightIndicator);
                             } else {
-                                System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
+                                this.console.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
                             }
                         }
                     }
-                    System.out.println("|");
+                    this.console.println("|");
                 }
             } catch (Exception e) {
-                System.out.println("Error");
+                ErrorView.display(this.getClass().getName(),"Error");
             }
         // calculate percentage of map
         GameControl gamec = new GameControl();
         double amountMaps = gamec.numberOfLocations(); //gets from GameControl Folder
         double visited = gamec.placesVisited(map);  //gets from GameControl Folder
         double calc = (visited * 100) / amountMaps; // gets average
-        if ( visited>amountMaps || amountMaps<1 || calc>100) System.out.println("error"); //checks for errors
+        if ( visited>amountMaps || amountMaps<1 || calc>100) ErrorView.display(this.getClass().getName(),"error"); //checks for errors
         else {double average = Math.round(calc*100); //rounds to 2 decimal
             average = average/100;
-            System.out.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
+            this.console.println("\n>> You have visited "+visited+" of "+ amountMaps +" locations or "+average+"% of the map <<");
         }
     }
 
