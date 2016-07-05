@@ -29,9 +29,9 @@ public class EscapeView {
     public boolean displayMainMenuView(CharacterSelection character) throws BattleControlException {
        
             // prompt for and get players name
-            System.out.println("Please enter the first number between 0 and 10");
+            this.console.println("Please enter the first number between 0 and 10");
             int value1 = this.getMenuOption();
-            System.out.println("Please enter the second numberbetween 0 and 10");
+            this.console.println("Please enter the second numberbetween 0 and 10");
             int value2 = this.getMenuOption();
             //display next view
             boolean done = this.doAction(value1, value2, character);
@@ -47,28 +47,28 @@ public class EscapeView {
         
         while (true) { // loop while an invalid value is entered
             
-            System.out.print("Number ~~~~~~~~~~~> ");
+            this.console.print("Number ~~~~~~~~~~~> ");
             try {    
                 input = keyboard.readLine();
                 input = input.trim(); //trim off leading and trailing blanks
                 if (input.length() <1) { //Check if value is blank
-                    System.out.println("\nValue cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
                     continue;
                 }
                 else {
                     try {
                         value = Integer.parseInt(input);
                         if (value <0||value>10){ //value is blank
-                            System.out.println("\nValue has to be between 0 and 10");
+                            ErrorView.display(this.getClass().getName(),"Value has to be between 0 and 10");
                             continue;}
                         else {break;}
                     }
                     catch (NumberFormatException ne) {
-                        System.out.println("\nValue must be a number!");
+                        ErrorView.display(this.getClass().getName(),"Value must be a number!");
                     }
                 }
             }
-            catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
+            catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         }
         return value; // return the value
     }
@@ -93,13 +93,13 @@ public class EscapeView {
     }
 
     private void choice1(){
-        System.out.println("You have chosen correctly");
+        this.console.println("You have chosen correctly");
     }
     private void choice2(){
-        System.out.println("You have chosen incorrectly");
+        this.console.println("You have chosen incorrectly");
     }
     private void choice3(CharacterSelection character){
-        System.out.println("You have chosen incorrectly, but someone gave you a fighting chance to heal you by 40HP");
+        this.console.println("You have chosen incorrectly, but someone gave you a fighting chance to heal you by 40HP");
         character.setHealth(character.getHealth()+40);
     }
 }

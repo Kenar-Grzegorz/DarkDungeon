@@ -55,30 +55,30 @@ public class CharacterSelectView {
         String input = ""; //value to be returned
         try {
             while (true) { // loop while an invalid value is entered
-                System.out.print(this.menu);
-                System.out.print("Number ~~~~~~~~~~~> ");
+                this.console.print(this.menu);
+                this.console.print("Number ~~~~~~~~~~~> ");
                 input = keyboard.readLine();
                 input = input.trim(); //trim off leading and trailing blanks
                 if ("Q".equals(input)||"q".equals(input)) {input = "0";}
                 if (input.length() <1) { //Check if value is blank
-                    System.out.println("\nValue cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
                     continue;
                 }
                 else {
                     try {
                         value = Integer.parseInt(input);
                         if (value <0||value>10){ //value is blank
-                            System.out.println("\nValue has to be between 0 and 10");
+                            ErrorView.display(this.getClass().getName(),"Value has to be between 0 and 10");
                             continue;}
                         else {break;}
                     }
                     catch (NumberFormatException ne) {
-                        System.out.println("\nValue must be a number!");
+                        ErrorView.display(this.getClass().getName(),"Value must be a number!");
                     }
                 }
             }
         }
-        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         return value; // return the value
     }
     
@@ -96,7 +96,7 @@ public class CharacterSelectView {
                 this.doNext();
                 return true;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"*** Invalid Selection *** Try again");
                 
         }
         return false;
@@ -104,7 +104,7 @@ public class CharacterSelectView {
 
     private void doNext() {
         
-        System.out.println("\n**************************************************************************************************"
+        this.console.println("\n**************************************************************************************************"
                          + "\nYou have chosen " + warrior.getCharacterName() +" "+ warrior.getCharacterClass()+""
                          + "\n**************************************************************************************************");
         
