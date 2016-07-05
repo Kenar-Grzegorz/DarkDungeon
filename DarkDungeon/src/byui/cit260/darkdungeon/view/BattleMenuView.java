@@ -52,13 +52,13 @@ public class BattleMenuView  {
                 value = keyboard.readLine(); //get next line typed
                 value = value.trim(); //trim off leading and trailing blanks
                 if (value.length() <1) { //value is blank
-                    System.out.println("\nValue cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
                     continue;
                 }
                 break; //end of loop
             }
         }
-        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         value = value.toUpperCase();
         return value; // return the value
     }
@@ -66,12 +66,12 @@ public class BattleMenuView  {
     public void battleStart(Player playerName, CharacterSelection character, Monster monster) throws BattleControlException  {
         //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
-        System.out.println(playerName.getName()+ " has encountered a " + monster.getMonsterName()+ "\n");
-        System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
+        this.console.println(playerName.getName()+ " has encountered a " + monster.getMonsterName()+ "\n");
+        this.console.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
                 + monster.getStatus() + ")");
         OUTER:
         while (character.isAlive() && monster.isAlive()) {
-            System.out.print(this.gameMenu);
+            this.console.print(this.gameMenu);
             String action = this.getMenuOption();
             switch (action) {
                 case "S":
@@ -85,14 +85,14 @@ public class BattleMenuView  {
                 case "A":
                     try {
                         int monHealth = BattleControl.attack(character.getMinAttackDamage(), character.getMaxAttackDamage(), monster.getDefense(), monster.getHealth());
-                        if (BattleControl.isShield()==true) {System.out.println("The monster has successfuly blocked your attack");}
-                        else {System.out.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
-                        if (monHealth == 0) {System.out.println("\t" + playerName.getName() + " transforms the skull of " + monster.getMonsterName()
+                        if (BattleControl.isShield()==true) {this.console.println("The monster has successfuly blocked your attack");}
+                        else {this.console.println(character.getCharacterName()+ " hits "+ monster.getMonsterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");}
+                        if (monHealth == 0) {this.console.println("\t" + playerName.getName() + " transforms the skull of " + monster.getMonsterName()
                     + " into dust to never be seen again");}
                         monster.setHealth(monHealth);
                     }
                     catch (Throwable at) {
-                        System.out.println(at.getMessage());
+                        ErrorView.display(this.getClass().getName(),at.getMessage());
                     }
                     break;
                 case "Q":
@@ -100,34 +100,34 @@ public class BattleMenuView  {
                     try {    
                         boolean escapeBoolean = escape.displayMainMenuView(character);
                         if (escapeBoolean==true) {
-                            System.out.println("\tYou run away from the " + monster.getMonsterName() + "!");
+                            this.console.println("\tYou run away from the " + monster.getMonsterName() + "!");
                             return;}
                         else {
                             break;
                         }
                     }
                     catch (Throwable ev) {
-                        System.out.println(ev.getMessage());
+                        ErrorView.display(this.getClass().getName(),ev.getMessage());
                     }
 
                     //break OUTER;
                 default:
-                    System.out.println("\tInvalid command!");
+                    ErrorView.display(this.getClass().getName(),"\tInvalid command!");
                     break;
             }
             if (monster.isAlive()) {
                 try {
                     int charHealth = BattleControl.attack(monster.getMinAttackDamage(), monster.getMaxAttackDamage(), character.getDefenseAmount(), character.getHealth());
-                    if (BattleControl.isShield()==true) {System.out.println("You have successfuly blocked the monsters attack");}    
-                    else {System.out.println(monster.getMonsterName()+ " hits "+ character.getCharacterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");
-                    if (charHealth == 0) {System.out.println("\t" + character.getCharacterName() + " has been defeated, try again next time");}
+                    if (BattleControl.isShield()==true) {this.console.println("You have successfuly blocked the monsters attack");}    
+                    else {this.console.println(monster.getMonsterName()+ " hits "+ character.getCharacterName()+" for "+ BattleControl.getAttackStrength()+" HP of damage \n");
+                    if (charHealth == 0) {this.console.println("\t" + character.getCharacterName() + " has been defeated, try again next time");}
                     character.setHealth(charHealth);}
                 }
                 catch (Throwable ia) {
-                    System.out.println(ia.getMessage());
+                    ErrorView.display(this.getClass().getName(),ia.getMessage());
                 }
            }
-            System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
+            this.console.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
         
         if (character.isAlive()) {    
@@ -135,7 +135,7 @@ public class BattleMenuView  {
                 open();
             }
             catch (Throwable ch) {
-                System.out.println(ch.getMessage());
+                ErrorView.display(this.getClass().getName(),ch.getMessage());
             }
         }
         
@@ -144,44 +144,7 @@ public class BattleMenuView  {
        TreasureChestView chestView = new TreasureChestView();
        boolean open = chestView.ChestOpenView();
     }
-    
-//    public Boolean getIsAlive() {
-//        return isAlive;
-//    }
-//
-//    public void setIsAlive(Boolean isAlive) {
-//        this.isAlive = isAlive;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 3;
-//        hash = 79 * hash + Objects.hashCode(this.isAlive);
-//        return hash;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final GameMenu other = (GameMenu) obj;
-//        if (!Objects.equals(this.isAlive, other.isAlive)) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Battle{" + "isAlive=" + isAlive + '}';
-//    }
+   
     
     
 }
