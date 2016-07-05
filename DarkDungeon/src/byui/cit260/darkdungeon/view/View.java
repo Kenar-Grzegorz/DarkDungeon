@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.view;
 
+import static byui.cit260.darkdungeon.control.GameControl.game;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,12 @@ public abstract class View implements ViewInterface {
     public void display() {
         boolean done = false; // set to not done
         do {
-            // prompt for and get players name
+        try {
+        if (game.getWarrior().isDead()) return;
+        }
+        catch (Exception e) {}
+        
+// prompt for and get players name
             String menuOption = this.getInput();
             if (menuOption.toUpperCase().equals("Q")) //user will quit
                 return; // exit game

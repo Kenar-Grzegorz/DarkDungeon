@@ -31,9 +31,10 @@ public class StartProgramView extends View {
         // call createPlayer() control function
         Player player = ProgramControl.createPlayer(playersName);
         if (player == null) { //if unsuccessfull
-            System.out.println("\nError Creating the plater.");
+            System.out.println("\nError Creating the player.");
             return false;
         }
+        player.setName(playersName);
         this.displayNextView(player);
         return true;
     }

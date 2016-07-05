@@ -61,7 +61,7 @@ public class BattleMenuView  {
     public void battleStart(Player playerName, CharacterSelection character, Monster monster) throws BattleControlException  {
         //BattleControl battle = new BattleControl();
         //Monster.newMonsterInstance();
-        System.out.println(playerName.getName() + " has encountered a " + monster.getMonsterName()+ "\n");
+        System.out.println(playerName.getName()+ " has encountered a " + monster.getMonsterName()+ "\n");
         System.out.println("You intiate the Battle with " +monster.getMonsterName() + "(" + character.getStatus() + " / "
                 + monster.getStatus() + ")");
         OUTER:
@@ -124,14 +124,16 @@ public class BattleMenuView  {
            }
             System.out.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");
         }
-         if (character.isAlive()) {    
+        
+        if (character.isAlive()) {    
             try {
                 open();
             }
             catch (Throwable ch) {
                 System.out.println(ch.getMessage());
             }
-         }
+        }
+        
     }
     private void open() throws BattleControlException {
        TreasureChestView chestView = new TreasureChestView();

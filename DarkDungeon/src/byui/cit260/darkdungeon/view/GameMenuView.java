@@ -6,6 +6,7 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
+import static byui.cit260.darkdungeon.control.GameControl.game;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
 import byui.cit260.darkdungeon.model.CharacterSelection;
 import byui.cit260.darkdungeon.model.Game;
@@ -44,6 +45,8 @@ public class GameMenuView extends View {
 
     @Override
     public boolean doAction(String choice) {
+       
+        
         choice = choice.toUpperCase(); //convert to uppercase
 
         switch (choice) {
@@ -67,6 +70,8 @@ public class GameMenuView extends View {
                 break;
         }
         return false;
+    
+    
     }
 
     private void useCharCreate() {

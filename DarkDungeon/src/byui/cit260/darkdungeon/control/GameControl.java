@@ -38,6 +38,7 @@ public class GameControl {
         game = new Game();
         DarkDungeonGame.setCurrentGame(game);
         
+        
         game.setPlayer(player);
         
         Inventory[] inventoryList = GameControl.createInventoryList();

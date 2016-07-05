@@ -202,7 +202,7 @@ public class CharacterSelection implements Serializable {
     }
     
     public boolean isDead() {
-        System.out.println(health);
+        //System.out.println(health);
         return health < 1;
     }
     
