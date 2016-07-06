@@ -5,33 +5,98 @@
  */
 package byui.cit260.darkdungeon.view;
 
+import static byui.cit260.darkdungeon.control.GameControl.game;
 import byui.cit260.darkdungeon.model.Player;
 import byui.cit260.darkdungeon.control.ProgramControl;
+import darkdungeongame.DarkDungeonGame;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
  *
  * @author Greg K, Bill M, Florian K
  */
-public class StartProgramView extends View {
-
+public class StartProgramView {
+    protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
+    protected final PrintWriter console = DarkDungeonGame.getOutFile();
+    private String nameBanner;
+    private String banner;
+    
     public StartProgramView() {
-        super("===================================="
-         + "\n| Please Choose your Name          |"
-         + "\n===================================="
-         + "\nPlease enter your name~~~> ");
+        this.nameBanner=("===================================="
+                     + "\n| Please Choose your Name          |"
+                     + "\n===================================="
+                     + "\nPlease enter your name~~~> ");
+        
+        this.banner = (
+            "\t*******************************************************************************************"
+            +"\n\t*          ____  ___    ____  __ __    ____  __  ___   __________________  _   __         *"
+            +"\n\t*         / __ \\/   |  / __ \\/ //_/   / __ \\/ / / / | / / ____/ ____/ __ \\/ | / /         *"
+            +"\n\t*        / / / / /| | / /_/ / ,<     / / / / / / /  |/ / / __/ __/ / / / /  |/ /          *"
+            +"\n\t*       / /_/ / ___ |/ _, _/ /| |   / /_/ / /_/ / /|  / /_/ / /___/ /_/ / /|  /           *"
+            +"\n\t*      /_____/_/  |_/_/ |_/_/ |_|  /_____/\\____/_/ |_/\\____/_____/\\____/_/ |_/            *"
+            +"\n\t*******************************************************************************************\n\n"
+            +"\t*******************************************************************************************"
+            +"\n\t*    In the waning days of the Demon Wars the Paladin Hends Solthresh made an unholy deal *"
+            +"\n\t* with Thantos the God of Death to save his party from destruction. Though Thantos is a   *"
+            +"\n\t* neutral God promising to serve any other God violated his oath of fealty to Praydon.    *"
+            +"\n\t* Hends was repudiated by Praydon and strip of his Paladinhood.                           *"
+            +"\n\t*                                                                                         *"
+            +"\n\t*    The God of Death immediately made Hends his servant and avatar. It is said that the  *"
+            +"\n\t* rejection by Praydon darkened Hends heart and that over the years as he served Thantos  *"
+            +"\n\t* he sought a way to wreck vengeance on the world. Stories say that one day he betrayed   *"
+            +"\n\t* Thantos and stole a powerful magic item from the God that allowed Hends to raise and    *"
+            +"\n\t* control the dead and thus was born the Necromancer. Little has been heard from Hends    *"
+            +"\n\t* since that time but dark rumors say he is in hiding building up his forces to strike.   *"
+            +"\n\t*******************************************************************************************\n");
     }
-    @Override
+    
+    public void startProgramView() {
+        boolean done = false;
+        String menuOption;
+        this.console.println(banner);
+        do {
+            // prompt for and get players name
+            menuOption = this.getInput();
+            if (menuOption.toUpperCase().equals("Q")) //user will quit
+                return; // exit game
+            //display next view
+            done = this.doAction(menuOption);
+        } while (!done);
+    }
+    
+    public String getInput() {
+        
+        String value = null; //value to be returned
+        boolean valid = false; // initialize to not valid
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                System.out.print(this.nameBanner);
+                value = this.keyboard.readLine(); //get next line typed
+                value = value.trim(); //trim off leading and trailing blanks
+                if (value.length() <1) { //value is blank
+                    ErrorView.display(this.getClass().getName(),"\nValue cannot be blank");
+                    continue;
+                }
+                break; //end of loop
+            }
+        }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        }
+        return value; // return the value
+    }
+    
     public boolean doAction(String playersName) {
         if (playersName.length() < 2) {
-            System.out.println("\nInvalid players name: "
+            ErrorView.display(this.getClass().getName(),"\nInvalid players name: "
             +"The name must be greater than one character in length");
             return false;
         }
         // call createPlayer() control function
         Player player = ProgramControl.createPlayer(playersName);
         if (player == null) { //if unsuccessfull
-            System.out.println("\nError Creating the player.");
+            ErrorView.display(this.getClass().getName(),"\nError Creating the player.");
             return false;
         }
         player.setName(playersName);
@@ -44,16 +109,21 @@ public class StartProgramView extends View {
                           +"\n\t=  Welcome to the game " + player.getName() 
                           +"\n\t=  I hope your not afraid of the dark!"
                           +"\n\t===============================================");
+    
         //Create main menu object
         MainMenuView mainMenuView = new MainMenuView();
         mainMenuView.display();
+        this.displayEndView();
+    }
         
+    private void displayEndView() {
         //End Message
-        System.out.println("\n**************************************"  
+        this.console.println("\n**************************************"  
                                                 +"********************");
-        System.out.println("\t # THANKS FOR PLAYING!! Goodbye #");
-        System.out.println("**************************************"
+        this.console.println("\t # THANKS FOR PLAYING!! Goodbye #");
+        this.console.println("**************************************"
                                                 +"********************\n");
+        
     }
     
     

@@ -51,7 +51,7 @@ public class InventoryView extends View {
                 this.Fist();
                 break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
@@ -59,35 +59,35 @@ public class InventoryView extends View {
 
     private void Axe() {
 
-        System.out.println("***You have chosen an Axe***");
+        this.console.println("***You have chosen an Axe***");
         choose();
     }
 
     private void magicalPotion() {
 
-        System.out.println("***You have chosen the magical potion***");
+        this.console.println("***You have chosen the magical potion***");
          choose();
     }
 
     private void Sword() {
 
-        System.out.println("***You have chosen a sword***");
+        this.console.println("***You have chosen a sword***");
          choose();
     }
 
     private void Fist() {
 
-        System.out.println("***You have chosen to use your fist***");
+        this.console.println("***You have chosen to use your fist***");
          choose();
     }
     
 
     private void choose() {
-        System.out.println("here you go");
+        this.console.println("here you go");
     }
 
     private void Arrow() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.console.println("***You have chosen a satchel of Arrows***");
     }
 
     

@@ -44,7 +44,7 @@ public class ItemMenuView extends View {
                 //potion
                 this.usePotion();
             } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
+                ErrorView.display(this.getClass().getName(),ex.getMessage());
             }
         }
                 return true;
@@ -53,12 +53,12 @@ public class ItemMenuView extends View {
                 //Fire Scroll
                 this.useFireScroll();
             } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
+                ErrorView.display(this.getClass().getName(),ex.getMessage());
             }
         }
                 return true;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;

@@ -40,20 +40,20 @@ public class StartAdventureView extends View {
         
         switch (choice) {
             case "Y":
-               System.out.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***"
+               this.console.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***"
                        + "\n***          PRESS D TO ENTER         ***");
                StartAdventureView.gate= true;
                
                return true;
             case "N":
-                 System.out.println("*********************************************"
+                 this.console.println("*********************************************"
                                 + "\n* The yard looks beautiful and it would     *"
                                 + "\n* be a shame to let it go. better leave the *"
                                 + "\n* adventures for someone else.              *"
                                 + "\n*********************************************");
                  return true;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;

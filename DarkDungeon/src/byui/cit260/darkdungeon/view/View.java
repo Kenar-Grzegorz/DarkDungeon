@@ -31,14 +31,15 @@ public abstract class View implements ViewInterface {
     @Override
     public void display() {
         boolean done = false; // set to not done
+        String menuOption;
+        String className = this.getClass().getSimpleName();
         do {
-        try {
-        if (game.getWarrior().isDead()) return;
-        }
-        catch (Exception e) {}
-        
-// prompt for and get players name
-            String menuOption = this.getInput();
+            try {
+                if (!"MainMenuView".equals(className)&&game.getWarrior().isDead()) return;
+            }
+            catch (Exception e) {}
+            // prompt for and get players name
+            menuOption = this.getInput();
             if (menuOption.toUpperCase().equals("Q")) //user will quit
                 return; // exit game
             //display next view
@@ -48,21 +49,23 @@ public abstract class View implements ViewInterface {
     @Override
     public String getInput() {
         
-        String value = ""; //value to be returned
+        String value = null; //value to be returned
         boolean valid = false; // initialize to not valid
         try {
             while (!valid) { // loop while an invalid value is entered
-                this.console.print(this.displayMessage);
+                System.out.print(this.displayMessage);
                 value = this.keyboard.readLine(); //get next line typed
+                this.console.println(value);
                 value = value.trim(); //trim off leading and trailing blanks
                 if (value.length() <1) { //value is blank
-                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"\n*** Value cannot be blank ***");
                     continue;
                 }
                 break; //end of loop
             }
         }
-        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        }
         return value; // return the value
     }
 }

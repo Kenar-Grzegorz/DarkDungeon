@@ -107,21 +107,21 @@ public class HelpMenuView extends View{
                 this.backStory();
                 break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
     }
 
     private void gameGoals() {
-        System.out.print(this.goal);
+        this.console.print(this.goal);
     }
 
     private void movementInstructions() {
-        System.out.println(this.movement);
+        this.console.println(this.movement);
     }
 
     private void backStory() {
-        System.out.println(this.backstory);
+        this.console.println(this.backstory);
     }
 }

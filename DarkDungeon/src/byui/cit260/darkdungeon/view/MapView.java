@@ -31,21 +31,21 @@ public class MapView extends View{
         
         switch (choice) {
             case "A":
-                 System.out.println("\n*** LEVEL ONE OF THE DUNGEON ***"); 
+                 this.console.println("\n*** LEVEL ONE OF THE DUNGEON ***"); 
                  this.levelOne();
                  break;
             case "B":
-                 System.out.println("\n*** LEVEL TWO OF THE DUNGEON ***");
+                 this.console.println("\n*** LEVEL TWO OF THE DUNGEON ***");
                  this.levelTwo();
                  break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
     }
      private void levelOne() {
-        System.out.println("\n"
+        this.console.println("\n"
                          + "\n\t===============                     *         ***"
                          + "\n\t=             =                     *           *" 
                          + "\n\t=             ==============        *           *" 
@@ -71,7 +71,7 @@ public class MapView extends View{
                          + "\n\t====================================");
      }
      private void levelTwo() {
-       System.out.println("\n"
+       this.console.println("\n"
                          + "\n\t=====================================       *         *****"
                          + "\n\t= -->         D                     =       *             *"
                          + "\n\t=             =                     =       *         *****"  

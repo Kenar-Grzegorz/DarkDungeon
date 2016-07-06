@@ -29,7 +29,7 @@ public class OpenDoorView {
     public boolean moveView() throws BattleControlException {
        
             // prompt for and get players name
-            System.out.println("Please enter the first number between 1 and 15");
+            this.console.println("Please enter the first number between 1 and 15");
             int value1 = this.getMenuOption();
             
             //display next view
@@ -46,27 +46,27 @@ public class OpenDoorView {
         
         while (true) { // loop while an invalid value is entered
             
-            System.out.print("Number ~~~~~~~~~~~> ");
+            this.console.print("Number ~~~~~~~~~~~> ");
             try {
                 input = this.keyboard.readLine();
                 input = input.trim(); //trim off leading and trailing blanks
                 if (input.length() <1) { //Check if value is blank
-                    System.out.println("\nValue cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"\nValue cannot be blank");
                 }
                 else {
                     try {
                         value = Integer.parseInt(input);
                         if (value <1||value>15){ //value is blank
-                            System.out.println("\nValue has to be between 0 and 10");
+                            ErrorView.display(this.getClass().getName(),"\nValue has to be between 0 and 10");
                         }
                         else {break;}
                     }
                     catch (NumberFormatException ne) {
-                        System.out.println("\nValue must be a number!");
+                        ErrorView.display(this.getClass().getName(),"\nValue must be a number!");
                     }
                 }
             }
-            catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
+            catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         }
         return value; // return the value
     }
@@ -90,19 +90,19 @@ public class OpenDoorView {
             }
         }
         catch (Throwable xe) {
-           System.out.println("You were wrong, rethink your life decisions");
+           this.console.println("You were wrong, rethink your life decisions");
            return false;
         }
     }
 
     private void choice1(){
-        System.out.println("Door is open enter");
+        this.console.println("Door is open enter");
     }
     private void choice2(){
-        System.out.println("incorrect try again");
+        this.console.println("incorrect try again");
     }
     private void choice3(){
-        System.out.println("You have chosen incorrectly, but you can enter because entry is close");
+        this.console.println("You have chosen incorrectly, but you can enter because entry is close");
         
     }
 }

@@ -48,7 +48,7 @@ public class MoveView extends View{
                     this.North();
                 }
                 catch (Throwable mo) {
-                    System.out.println(mo);
+                    ErrorView.display(this.getClass().getName(),mo + " - was a error");
                 }
                 break;
             case "S": //South
@@ -56,7 +56,7 @@ public class MoveView extends View{
                     this.South();
                     }
                 catch (Throwable mo) {
-                    System.out.println(mo);
+                    ErrorView.display(this.getClass().getName(),mo + " - was a error");
                 }
                 break;
             case "E": //East
@@ -64,7 +64,7 @@ public class MoveView extends View{
                     this.East();
                     }
                 catch (Throwable mo) {
-                    System.out.println(mo);
+                    ErrorView.display(this.getClass().getName(),mo + " - was a error");
                 }
                 break;
             case "W": //West
@@ -72,11 +72,11 @@ public class MoveView extends View{
                     this.West();
                     }
                 catch (Throwable mo) {
-                    System.out.println(mo);
+                    ErrorView.display(this.getClass().getName(),mo + " - was a error");
                 }
                 break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         if (game.getWarrior().isAlive()) {return false;}
@@ -85,22 +85,22 @@ public class MoveView extends View{
 
     private void North() throws BattleControlException {     
         
-        System.out.println("***You have chosen North***");
+        this.console.println("***You have chosen North***");
         open();
     }
     private void South() throws BattleControlException {
         
-        System.out.println("***You have chosen South***");
+        this.console.println("***You have chosen South***");
         open();
     }
      private void East() throws BattleControlException {
         
-        System.out.println("***You have chosen East***");
+        this.console.println("***You have chosen East***");
         open();
     }
       private void West() throws BattleControlException {
         
-        System.out.println("***You have chosen West***");
+        this.console.println("***You have chosen West***");
         open();
     }
       

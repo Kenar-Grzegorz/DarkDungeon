@@ -43,7 +43,7 @@ public class MainMenuView extends View {
                 //New Game
                 this.startNewGame();
             } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
+                ErrorView.display(this.getClass().getName(),ex.getMessage());
             }
             }
                 break;
@@ -57,7 +57,7 @@ public class MainMenuView extends View {
                 this.saveGame();
                 break;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;
@@ -71,7 +71,7 @@ public class MainMenuView extends View {
     }
 
     private void startExistingGame() {
-        System.out.println("\n\nEnter the file path for file where the game " + "was saved last.");
+        this.console.println("\n\nEnter the file path for file where the game was saved last.");
         String filePath = this.getInput();
         
         try {
@@ -89,7 +89,7 @@ public class MainMenuView extends View {
     }
 
     private void saveGame() {
-        System.out.println("\n\nEnter the file path for file where the game " + "is to be saved.");
+        this.console.println("\n\nEnter the file path for file where the game is to be saved.");
         String filePath = this.getInput();
         
         try {

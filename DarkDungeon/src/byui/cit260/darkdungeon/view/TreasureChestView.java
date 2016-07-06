@@ -38,10 +38,10 @@ public class TreasureChestView {
         boolean done = false; // set to not done
         do {
         calculate();
-        System.out.println("" + this.question);
-        System.out.println("What is " + getRandom1() + " + " + getRandom2());
+        this.console.println("" + this.question);
+        this.console.println("What is " + getRandom1() + " + " + getRandom2());
         // prompt for and get players name
-        System.out.println("Please enter the first number between 1 and 20");
+        this.console.println("Please enter the first number between 1 and 20");
         int value1 = this.getMenuOption();
         //display next view
         done = this.doAction(value1);
@@ -58,28 +58,28 @@ public class TreasureChestView {
         try {
             while (true) { // loop while an invalid value is entered
 
-                System.out.print("Number ~~~~~~~~~~~> ");
+                this.console.print("Number ~~~~~~~~~~~> ");
                 input = keyboard.readLine();
                 input = input.trim(); //trim off leading and trailing blanks
                 if (input.length() <1) { //Check if value is blank
-                    System.out.println("\nValue cannot be blank");
+                    ErrorView.display(this.getClass().getName(),"\nValue cannot be blank");
                     continue;
                 }
                 else {
                     try { // check for a integer value
                         value = Integer.parseInt(input);
                         if (value <1||value>20){ //Check if value is betwen 1 and 10
-                            System.out.println("\nValue has to be between 0 and 20");
+                            ErrorView.display(this.getClass().getName(),"\nValue has to be between 0 and 20");
                             continue;}
                         else {break;}
                     }
                     catch (NumberFormatException ne) {
-                        System.out.println("\nValue must be a number!");
+                        ErrorView.display(this.getClass().getName(),"\nValue must be a number!");
                     }
                 }
             }
         }
-        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());}
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
         return value; // return the value
     }
 
@@ -90,7 +90,7 @@ public class TreasureChestView {
             setAnswer(answer = random1 + random2);
         }
         catch (Throwable tc) {
-            System.out.println(tc.getMessage());
+            ErrorView.display(this.getClass().getName(),tc.getMessage());
         }
         
     }
@@ -109,11 +109,11 @@ public class TreasureChestView {
     }
 
     private void choice1(){
-        System.out.println("You have answered the question correctly! " + random1 + " + " + random2 + " = " + answer);
-        System.out.println("The Chest is now open");
+        this.console.println("You have answered the question correctly! " + random1 + " + " + random2 + " = " + answer);
+        this.console.println("The Chest is now open");
     }
     private void choice2(){
-        System.out.println("incorrect try again");
+        ErrorView.display(this.getClass().getName(),"incorrect try again");
 
     }
 

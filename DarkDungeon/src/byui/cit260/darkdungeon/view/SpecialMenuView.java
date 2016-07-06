@@ -40,7 +40,7 @@ public class SpecialMenuView extends View {
                     this.useOmniSlash();
                 }
                 catch (Throwable sa) {
-                    System.out.println(sa.getMessage());
+                    ErrorView.display(this.getClass().getName(),sa.getMessage());
                 }
                 return true;
             case "A": //Armageddon
@@ -48,11 +48,11 @@ public class SpecialMenuView extends View {
                     this.useArmageddon();
                 }
                 catch (Throwable sa) {
-                    System.out.println("sa.getMessage()");
+                    ErrorView.display(this.getClass().getName(),sa.getMessage());
                 }
                 return true;
             default:
-                System.out.println("\n*** Invalid Selection *** Try again");
+                ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
         }
         return false;

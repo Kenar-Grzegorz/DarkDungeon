@@ -32,16 +32,16 @@ public class CharacterSelectView {
                 + "\n|        2. Paladin                |"
                 + "\n|        Q. Quit                   |"
                 + "\n===================================="
-                + "\nMake your Selection ~~~> ";
+                + "\n Please Choose a Number ~~~~~~~~~~~> ";
                 
    }
-
-   
+    
     public void displayCharacterSelectView() {
+        int menuOption;
         boolean done = false; // set to not done
         do {
             // prompt for and get players name
-            int menuOption = this.getInput();
+            menuOption = this.getInput();
             if (menuOption==0) //user will quit
                 return; // exit game
             //display next view
@@ -50,13 +50,12 @@ public class CharacterSelectView {
     }
     
     private int getInput() {
-        
+        boolean valid = false; // initialize to not valid
         int value= 0;
-        String input = ""; //value to be returned
+        String input = null; //value to be returned
         try {
-            while (true) { // loop while an invalid value is entered
-                this.console.print(this.menu);
-                this.console.print("Number ~~~~~~~~~~~> ");
+            while (!valid) { // loop while an invalid value is entered
+                System.out.print(this.menu);
                 input = keyboard.readLine();
                 input = input.trim(); //trim off leading and trailing blanks
                 if ("Q".equals(input)||"q".equals(input)) {input = "0";}
