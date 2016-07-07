@@ -26,9 +26,8 @@ public class MainMenuView extends View {
                 + "\n| Options:                         |"
                 + "\n|   N. Start a New Game            |"
                 + "\n|   L. Load a saved Game           |"
-                + "\n|   S. Save Game                   |"
                 + "\n|   H. Help                        |"
-                + "\n|   Q. Quit                        |"
+                + "\n|   B. Back to Previous Menu       |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
                 
@@ -48,7 +47,7 @@ public class MainMenuView extends View {
             }
                 break;
             case "L": //Start a saved game
-                this.startExistingGame();
+                this.loadSavedGame();
                 break;
             case "H": //Display the Help Menu
                 this.displayHelpMenu();
@@ -63,6 +62,27 @@ public class MainMenuView extends View {
         return false;
     }
 
+   public String getInput2() {
+        
+        String value = null; //value to be returned
+        boolean valid = false; // initialize to not valid
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                value = this.keyboard.readLine(); //get next line typed
+                this.console.println(value);
+                value = value.trim(); //trim off leading and trailing blanks
+                if (value.length() <1) { //value is blank
+                    ErrorView.display(this.getClass().getName(),"\n*** Value cannot be blank ***");
+                    continue;
+                }
+                break; //end of loop
+            }
+        }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        }
+        return value; // return the value
+    }
+    
     private void startNewGame() throws MapControlException {
         //Create a new Game
         GameControl.createNewGame(DarkDungeonGame.getPlayer());
@@ -70,34 +90,35 @@ public class MainMenuView extends View {
         gameMenu.display();
     }
 
-    private void startExistingGame() {
-        this.console.println("\n\nEnter the file path for file where the game was saved last.");
-        String filePath = this.getInput();
+    private void loadSavedGame() {
+        System.out.println("\n\nEnter the file path for file where the game was saved last.");
+        String filePath = this.getInput2();
         
         try {
-            Game.getLoadSavedGame(filePath);
+            GameControl.getLoadSavedGame(filePath);
         } catch (Exception ex){
-            
+            ErrorView.display("MainMenuView", ex.getMessage());
         }
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
+        
+    }   
+    
+    
+    private void saveGame() {
+        System.out.println("\n\nEnter the file path for file where the game is to be saved.");
+        String filePath = this.getInput2();
+        
+        try {
+            GameControl.saveGame(DarkDungeonGame.getCurrentGame(), filePath);
+        } catch (Exception ex){
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 
     private void displayHelpMenu() {
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();
-    }
-
-    private void saveGame() {
-        this.console.println("\n\nEnter the file path for file where the game is to be saved.");
-        String filePath = this.getInput();
-        
-        try {
-            GameControl.saveGame(DarkDungeonGame.getCurrentGame(), filePath);
-        } catch (Exception ex){
-            
-        }
-    
     }
     
 }

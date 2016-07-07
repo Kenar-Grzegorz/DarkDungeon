@@ -25,8 +25,8 @@ public class HelpMenuView extends View{
                 + "\n| Options:                         |"
                 + "\n|   G. Goal of the Game            |"
                 + "\n|   M. Movement                    |"
-                + "\n|   B. Back Story                  |"
-                + "\n|   Q. Quit                        |"
+                + "\n|   S. Back Story                  |"
+                + "\n|   B. Back to Previous Menu       |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
         this.goal = "\n"
@@ -103,7 +103,7 @@ public class HelpMenuView extends View{
             case "M": //Movement
                 this.movementInstructions();
                 break;
-            case "B": //Back Story
+            case "S": //Back Story
                 this.backStory();
                 break;
             default:

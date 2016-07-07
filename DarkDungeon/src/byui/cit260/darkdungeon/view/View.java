@@ -16,10 +16,10 @@ import java.util.Scanner;
  * @author test
  */
 public abstract class View implements ViewInterface {
-    //protected String displayMessage;
-    private String displayMessage;
     protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
     protected final PrintWriter console = DarkDungeonGame.getOutFile();
+    //protected String displayMessage;
+    private String displayMessage;
     public View() {
         
     }
@@ -30,6 +30,7 @@ public abstract class View implements ViewInterface {
     
     @Override
     public void display() {
+        
         boolean done = false; // set to not done
         String menuOption;
         String className = this.getClass().getSimpleName();
@@ -40,7 +41,7 @@ public abstract class View implements ViewInterface {
             catch (Exception e) {}
             // prompt for and get players name
             menuOption = this.getInput();
-            if (menuOption.toUpperCase().equals("Q")) //user will quit
+            if (menuOption.toUpperCase().equals("B")) //user will quit
                 return; // exit game
             //display next view
             done = this.doAction(menuOption);

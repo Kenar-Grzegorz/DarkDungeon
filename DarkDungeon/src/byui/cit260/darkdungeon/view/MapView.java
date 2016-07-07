@@ -19,7 +19,7 @@ public class MapView extends View{
                 + "\n| OPTIONS:                         |"
                 + "\n|        A. Level One              |"
                 + "\n|        B. Level Two              |"
-                + "\n|        Q. Quit                   |"
+                + "\n|        B. Back to Previous Menu  |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
         

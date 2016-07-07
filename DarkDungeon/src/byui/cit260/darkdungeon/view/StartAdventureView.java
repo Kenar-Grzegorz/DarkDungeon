@@ -14,22 +14,23 @@ public class StartAdventureView extends View {
     public StartAdventureView() {
                 super("\n***************************************"
                     + "\n* You are standing before a Dungeon   *"
-                    + "\n* with a iron gate. You hear the      *"
+                    + "\n* with a iron gate. You see a faint   *"
+                    + "\n* glow of fire from  and you hear the *"
                     + "\n* sounds of pain and anguish inside.  *"
                     + "\n* You remember the happy place in the *"
                     + "\n* fields of your home that you spent  *"
                     + "\n* with your children. Do you enter    *"
-                    + "\n* dungeon?                            *"
+                    + "\n* dungeon or are you affraid?         *"
                     + "\n***************************************"
                 + "\n\n"
-                + "\n===================================="
-                + "\n|     Would you like to Enter      |"
-                + "\n===================================="
-                + "\n| OPTIONS:                         |"
-                + "\n|        Y. Yes                    |"
-                + "\n|        N. No                     |"
-                + "\n|        Q. EXIT                   |"
-                + "\n===================================="
+                + "\n====================================="
+                + "\n|     Would you like to Enter       |"
+                + "\n====================================="
+                + "\n| OPTIONS:                          |"
+                + "\n|        Y. Yes                     |"
+                + "\n|        N. No                      |"
+                + "\n|        B. Back to Previous Menu   |"
+                + "\n====================================="
                 + "\nMake your Selection ~~~> ");
         
    }
@@ -40,8 +41,7 @@ public class StartAdventureView extends View {
         
         switch (choice) {
             case "Y":
-               this.console.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***"
-                       + "\n***          PRESS D TO ENTER         ***");
+               this.console.println("\n*** YOU HAVE CHOSEN TO ENTER THE DUNGEON  ***");
                StartAdventureView.gate= true;
                
                return true;

@@ -28,17 +28,19 @@ public class GameMenuView extends View {
 
     public GameMenuView() {
         super("\n"
-                + "\n===================================="
-                + "\n|           Game Menu              |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        C. Choose a Character     |"
-                + "\n|        D. Dungeon                |"
-                + "\n|        M. Map                    |"
-                + "\n|        N. Map 2                  |"
-                + "\n|        I. View Inventory         |"
-                + "\n|        Q. Quit                   |"
-                + "\n===================================="
+                + "\n====================================="
+                + "\n|           Game Menu               |"
+                + "\n====================================="
+                + "\n| Options:                          |"
+                + "\n|        C. Choose a Character      |"
+                + "\n|        D. Dungeon                 |"
+                + "\n|        M. Map                     |"
+                + "\n|        N. Map 2                   |"
+                + "\n|        I. View Inventory          |"
+                + "\n|        P. Print                   |"
+                + "\n|        S. Save Game               |"
+                + "\n|        B. Back to Previous Menu   |"
+                + "\n====================================="
                 + "\nMake your Selection ~~~> ");
 
     }
@@ -65,6 +67,12 @@ public class GameMenuView extends View {
             case "I":
                 this.viewInventory();
                 break;
+            case "B": //print to file
+                this.printLocations();
+                break;
+            case "S": //save current Game
+                this.saveGame();
+                break;
             default:
                 ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
@@ -74,6 +82,27 @@ public class GameMenuView extends View {
     
     }
 
+    public String getInput2() {
+        
+        String value = null; //value to be returned
+        boolean valid = false; // initialize to not valid
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                value = this.keyboard.readLine(); //get next line typed
+                this.console.println(value);
+                value = value.trim(); //trim off leading and trailing blanks
+                if (value.length() <1) { //value is blank
+                    ErrorView.display(this.getClass().getName(),"\n*** Value cannot be blank ***");
+                    continue;
+                }
+                break; //end of loop
+            }
+        }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        }
+        return value; // return the value
+    }
+    
     private void useCharCreate() {
         CharacterSelectView charSelect = new CharacterSelectView();
         charSelect.displayCharacterSelectView();
@@ -84,17 +113,26 @@ public class GameMenuView extends View {
         StartAdventureView check = new StartAdventureView();
         //CharacterSelection charac = new CharacterSelection();
         Game gameClass = new Game();
-        if (warrior.isExist() == true) {
-            if (check.isGate() == true) {
-                GameControl.createJourney();
-            } else {
-                check.display();
-            }
-        } else {
-            ErrorView.display(this.getClass().getName(),"\n**************************************"
+        if (warrior.isExist() == false || game.getWarrior().getHealth()==0) {
+            this.console.println("\n**************************************"
                     + "********************");
-            ErrorView.display(this.getClass().getName(),"\t # Please Select a Character First #");
-            ErrorView.display(this.getClass().getName(),"**************************************"
+            this.console.println("\t # Please Select a Character First #");
+            this.console.println("**************************************"
+                    + "********************\n");
+            CharacterSelectView charSelect = new CharacterSelectView();
+            charSelect.displayCharacterSelectView();
+        }
+        if (check.isGate() == false) {
+                check.display();
+        }
+        if (warrior.isExist() == true && check.isGate() == true && game.getWarrior().getHealth()>0) { 
+            GameControl.createJourney();
+        }
+        else {
+            this.console.println("\n**************************************"
+                    + "********************");
+            this.console.println("\t # Please Come Back when you are ready #");
+            this.console.println("**************************************"
                     + "********************\n");
         }
     }
@@ -201,7 +239,52 @@ public class GameMenuView extends View {
         }
     }
 
+    private void printLocations(){
+        System.out.println("\n\nEnter the file path for file where the game is to be saved.");
+        String filePath = this.getInput2();
+        
+        try {
+            GameControl.printLocation(this.scenePrint(), filePath);
+        } catch (Exception ex){
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+    }
     
+    private void saveGame() {
+        if (warrior.isExist() == true) {
+            System.out.println("\n\nEnter the file path for file where the game is to be saved.");
+            String filePath = this.getInput2();
+
+            try {
+                GameControl.saveGame(DarkDungeonGame.getCurrentGame(), filePath);
+            } catch (Exception ex){
+                ErrorView.display("MainMenuView", ex.getMessage());
+            }
+        }
+        else {
+            ErrorView.display(this.getClass().getName(),"\n**************************************"
+                    + "********************");
+            ErrorView.display(this.getClass().getName(),"\t # Please Select a Character First #");
+            ErrorView.display(this.getClass().getName(),"**************************************"
+                    + "********************\n");
+        }
+    }
+    
+    public Scene scenePrint() {
+        Scene.SceneType[] scenes = Scene.SceneType.values();
+        String places = "test";
+        this.console.println(places);
+//                for (SceneType scene : scenes){
+//            System.out.println(
+//                    "\n -----------------------------"
+//                    + "\n Locations and Descriptions"
+//                    + "\n -----------------------------"
+//                    + scene 
+//                    + ":   \t" 
+//                    + scene.getDescription());
+//        }
+        return null;
+    }
     
     public boolean isGate() {
         return gate;

@@ -22,14 +22,14 @@ public class ItemMenuView extends View {
         
     public ItemMenuView() {
                 super("\n"
-                + "\n===================================="
-                + "\n|             ITEM                 |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        P. Potion                 |"
-                + "\n|        F. Fire Scroll            |"
-                + "\n|        X. Exit                   |"
-                + "\n===================================="
+                + "\n====================================="
+                + "\n|              ITEM                 |"
+                + "\n====================================="
+                + "\n| Options:                          |"
+                + "\n|        P. Potion                  |"
+                + "\n|        F. Fire Scroll             |"
+                + "\n|        B. Back to Previous Menu   |"
+                + "\n====================================="
                 + "\nMake your Selection ~~~> ");
         
    }

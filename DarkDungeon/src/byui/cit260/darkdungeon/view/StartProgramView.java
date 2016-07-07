@@ -24,9 +24,9 @@ public class StartProgramView {
     private String banner;
     
     public StartProgramView() {
-        this.nameBanner=("===================================="
-                     + "\n| Please Choose your Name          |"
-                     + "\n===================================="
+        this.nameBanner=("========================================"
+                     + "\n| Please Choose your Name or B to quit |"
+                     + "\n========================================"
                      + "\nPlease enter your name~~~> ");
         
         this.banner = (
@@ -59,7 +59,7 @@ public class StartProgramView {
         do {
             // prompt for and get players name
             menuOption = this.getInput();
-            if (menuOption.toUpperCase().equals("Q")) //user will quit
+            if (menuOption.toUpperCase().equals("B")) //user will quit
                 return; // exit game
             //display next view
             done = this.doAction(menuOption);

@@ -202,4 +202,6 @@ public class Scene implements Serializable {
         return "Scene{" + "description=" + description + ", trapboolean=" + trapboolean + ", chestboolean=" + chestboolean + ", randomMonsterEncounter=" + randomMonsterEncounter + '}';
     }
     
+    
+    
 }

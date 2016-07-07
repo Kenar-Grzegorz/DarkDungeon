@@ -30,15 +30,15 @@ public class BattleMenuView  {
     
     public BattleMenuView() {
         this.gameMenu = "\n"
-                + "\n===================================="
-                + "\n|             Battle               |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        A. Attack                 |"
-                + "\n|        S. Specials / Abilities   |"
-                + "\n|        I. Item Sack              |"
-                + "\n|        Q. Run Away               |"
-                + "\n===================================="
+                + "\n====================================="
+                + "\n|             Battle                |"
+                + "\n====================================="
+                + "\n| Options:                          |"
+                + "\n|        A. Attack                  |"
+                + "\n|        S. Specials / Abilities    |"
+                + "\n|        I. Item Sack               |"
+                + "\n|        B. Back to Previous Menu   |"
+                + "\n====================================="
                 + "\nMake your Selection ~~~> ";
         
     }

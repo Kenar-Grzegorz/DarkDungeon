@@ -24,14 +24,14 @@ public class CharacterSelectView {
     
     public CharacterSelectView() {
         this.menu = "\n"
-                + "\n===================================="
-                + "\n|   Please Choose your Character   |"
-                + "\n===================================="
-                + "\n| Options:                         |"
-                + "\n|        1. Warrior                |"
-                + "\n|        2. Paladin                |"
-                + "\n|        Q. Quit                   |"
-                + "\n===================================="
+                + "\n====================================="
+                + "\n|   Please Choose your Character    |"
+                + "\n====================================="
+                + "\n| Options:                          |"
+                + "\n|        1. Warrior                 |"
+                + "\n|        2. Paladin                 |"
+                + "\n|        B. Back to Previous Menu   |"
+                + "\n====================================="
                 + "\n Please Choose a Number ~~~~~~~~~~~> ";
                 
    }

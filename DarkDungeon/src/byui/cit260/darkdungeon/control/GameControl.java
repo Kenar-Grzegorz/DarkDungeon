@@ -104,7 +104,17 @@ public class GameControl {
         } catch (IOException e){
             throw new GameControlException(e.getMessage());
         }
+    }
     
+    public static void printLocation(Scene SceneType, String filepath) throws GameControlException{
+        
+        try (FileOutputStream fops = new FileOutputStream(filepath)){
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(SceneType);
+        } catch (IOException e){
+            throw new GameControlException(e.getMessage());
+        }
     }
     
     public int numberOfLocations(){
@@ -213,6 +223,5 @@ public class GameControl {
         
         return inventoryList;
     }
-    
     
 }

@@ -25,7 +25,7 @@ public class SpecialMenuView extends View {
                 + "\n| Options:                         |"
                 + "\n|        O. OmniSlash              |"
                 + "\n|        A. Armaggeddon            |"
-                + "\n|        X. Exit                   |"
+                + "\n|        B. Back to Previous Menu  |"
                 + "\n===================================="
                 + "\nMake your Selection ~~~> ");
                 

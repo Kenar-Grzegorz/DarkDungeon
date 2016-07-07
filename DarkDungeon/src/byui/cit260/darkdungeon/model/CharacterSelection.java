@@ -46,6 +46,10 @@ public class CharacterSelection implements Serializable {
     public boolean isExist() {
         return exist;
     }
+
+    public void setExist(boolean exist) {
+        this.exist = exist;
+    }
     
     public String getCharacterName() {
         return characterName;
