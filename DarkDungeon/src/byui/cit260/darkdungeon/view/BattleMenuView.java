@@ -8,6 +8,7 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.BattleControl;
 import byui.cit260.darkdungeon.exception.BattleControlException;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import byui.cit260.darkdungeon.model.*;
 //import byui.cit260.darkdungeon.model.Game.player;
 import darkdungeongame.DarkDungeonGame;
@@ -48,7 +49,7 @@ public class BattleMenuView  {
         boolean valid = false; // initialize to not valid
         try {
             while (!valid) { // loop while an invalid value is entered
-                //System.out.print(this.gameMenu);
+                System.out.print(this.gameMenu);
                 value = keyboard.readLine(); //get next line typed
                 value = value.trim(); //trim off leading and trailing blanks
                 if (value.length() <1) { //value is blank
@@ -71,7 +72,7 @@ public class BattleMenuView  {
                 + monster.getStatus() + ")");
         OUTER:
         while (character.isAlive() && monster.isAlive()) {
-            this.console.print(this.gameMenu);
+            //this.console.print(this.gameMenu);
             String action = this.getMenuOption();
             switch (action) {
                 case "S":
@@ -140,7 +141,7 @@ public class BattleMenuView  {
         }
         
     }
-    private void open() throws BattleControlException {
+    private void open() throws BattleControlException, MapControlException {
        TreasureChestView chestView = new TreasureChestView();
        boolean open = chestView.ChestOpenView();
     }
