@@ -110,4 +110,10 @@ public class BattleControl {
     public static int attackRand(int minAttackDamage, int maxAttackDamage) throws BattleControlException {
         return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
+    
+    public static void addPotion(Inventory potion, Inventory fireScroll) throws MapControlException {
+        potion.setItemAmount((potion.getItemAmount())+1);
+        fireScroll.setItemAmount((fireScroll.getItemAmount())+1);
+        
+    }
 }

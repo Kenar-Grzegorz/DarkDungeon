@@ -8,6 +8,8 @@ package byui.cit260.darkdungeon.view;
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.game;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
+import byui.cit260.darkdungeon.enums.Item;
+import byui.cit260.darkdungeon.exception.GameControlException;
 import byui.cit260.darkdungeon.model.CharacterSelection;
 import byui.cit260.darkdungeon.model.Game;
 import static byui.cit260.darkdungeon.model.Game.*;
@@ -16,6 +18,10 @@ import byui.cit260.darkdungeon.model.Location;
 import byui.cit260.darkdungeon.model.Map;
 import byui.cit260.darkdungeon.model.Scene;
 import darkdungeongame.DarkDungeonGame;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +43,9 @@ public class GameMenuView extends View {
                 + "\n|        M. Map                     |"
                 + "\n|        N. Map 2                   |"
                 + "\n|        I. View Inventory          |"
-                + "\n|        P. Print                   |"
+                + "\n|        P. Print Locations         |"
+                + "\n|        PP. Print Names            |"
+                + "\n|        PI. Print Inventory        |"
                 + "\n|        S. Save Game               |"
                 + "\n|        B. Back to Previous Menu   |"
                 + "\n====================================="
@@ -67,8 +75,22 @@ public class GameMenuView extends View {
             case "I":
                 this.viewInventory();
                 break;
-            case "B": //print to file
+            case "P": {
+            try {
+                //print to file
                 this.printLocations();
+            } catch (GameControlException ex) {
+                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+                break;
+            case "pp":
+        
+                this.savePlayerNames();
+            
+                break;
+            case "PI":
+                this.printInventoty();
                 break;
             case "S": //save current Game
                 this.saveGame();
@@ -224,7 +246,8 @@ public class GameMenuView extends View {
                     }
                     this.console.println("|");
                 }
-            } catch (Exception e) {
+            } 
+            catch (Exception e) {
                 ErrorView.display(this.getClass().getName(),"Error");
             }
         // calculate percentage of map
@@ -239,15 +262,43 @@ public class GameMenuView extends View {
         }
     }
 
-    private void printLocations(){
+    private void printLocations() throws GameControlException{
         System.out.println("\n\nEnter the file path for file where the game is to be saved.");
         String filePath = this.getInput2();
-        
+        boolean response = true;
         try {
-            GameControl.printLocation(this.scenePrint(), filePath);
+            response = GameControl.printLocation(filePath);
+        } 
+        catch (Exception ex){
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        if (response == true) {this.console.println("Your file print completed successfully");
+        }
+        else {this.console.println("Your file didnt print did not complete successfully");}
+    }
+    
+    public void savePlayerNames()  {
+        System.out.println("\n\nEnter the file path for file where the game is to be saved.");
+        String filePath = this.getInput2();
+        try {
+            GameControl.printNames(filePath);
         } catch (Exception ex){
             ErrorView.display("GameMenuView", ex.getMessage());
         }
+    }
+    
+    private void printInventoty() {
+        System.out.println("\n\nEnter the file path for file where the game is to be saved.");
+        String filePath = this.getInput2();
+        boolean response = false;
+        try {
+            response = GameControl.printInventory(filePath);
+        } catch (Exception ex){
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        if (response == true) {this.console.println("Your file print completed successfully");
+        }
+        else {this.console.println("Your file didnt print did not complete successfully");}
     }
     
     private void saveGame() {
@@ -262,7 +313,7 @@ public class GameMenuView extends View {
             }
         }
         else {
-            ErrorView.display(this.getClass().getName(),"\n**************************************"
+            ErrorView.display(this.getClass().getName(),"**************************************"
                     + "********************");
             ErrorView.display(this.getClass().getName(),"\t # Please Select a Character First #");
             ErrorView.display(this.getClass().getName(),"**************************************"

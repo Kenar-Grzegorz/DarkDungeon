@@ -20,10 +20,13 @@ import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,18 +35,15 @@ import java.lang.reflect.Field;
 public class GameControl {
     public static CharacterSelection warrior = new CharacterSelection();
     
-    public static Game game;
+    public static Game game = new Game();
 
     public static void createNewGame(Player player) throws MapControlException {
         game = new Game();
+        
         DarkDungeonGame.setCurrentGame(game);
-        
-        
         game.setPlayer(player);
-        
         Inventory[] inventoryList = GameControl.createInventoryList();
         game.setInventory(inventoryList);
-        
         Map map = MapControl.createMap(); //create a new map
         game.setMap(map);
         
@@ -106,15 +106,82 @@ public class GameControl {
         }
     }
     
-    public static void printLocation(Scene SceneType, String filepath) throws GameControlException{
-        
-        try (FileOutputStream fops = new FileOutputStream(filepath)){
-            ObjectOutputStream output = new ObjectOutputStream(fops);
-            
-            output.writeObject(SceneType);
-        } catch (IOException e){
-            throw new GameControlException(e.getMessage());
+    public static boolean printLocation(String filePath) throws GameControlException {
+       
+        Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
+        Map map = game.getMap(); // retreive the map from game
+        Location[][] locations = map.getLocations();
+        String fileLocation = filePath;
+        int total = 0;
+        //boolean response = false;
+        try {
+            PrintWriter out = new PrintWriter(fileLocation);
+            out.println("\n                      Map Report                           ");
+            out.printf("%n%-20s%10s%10s%10s%10s%10s", "   Name    ", "MapSymbol", "Visited", "Row", "Column","Number");
+            out.printf("%n%-20s%10s%10s%10s%10s%10s", "-----------", "---------", "-------", "---", "------","------");
+            for(Location[] d : locations){ // runs through inventory row
+                //int column=0; //resets row
+                for(Location mapb : d){ // runs through column
+                    total++;
+                    if (mapb.getScene()!=null) 
+                        out.printf("%n%-20s%8s%10b%10d%10d%10d", mapb.getScene().getName()
+                                                                , mapb.getScene().getMapSymbol()
+                                                                , mapb.getVisited()
+                                                                , mapb.getRow()
+                                                                , mapb.getColumn()
+                                                                , total);
+                    //else 
+                       // out.printf("No Scene for row: "+ mapb.getRow()+" column: "+ mapb.getColumn());
+                }
+            }
+        return true; // return amount
         }
+        
+        catch (IOException ee) {
+            throw new GameControlException(ee.getMessage());
+        }
+        
+    }
+
+    public static void printNames(String filePath) throws IOException {
+        //FileWriter outFile = null;
+        String fileLocation = filePath;
+        try (FileWriter outFile = new FileWriter(fileLocation)){
+           
+            
+            outFile.write("Fred\n");
+            outFile.write("Wilma\n");
+            outFile.write("Pebbles\n");
+            outFile.write("Dino\n");
+            outFile.write("Barney\n");
+            
+            outFile.flush();
+            
+        } catch (IOException ex) {
+            System.out.println("Error saving players to file");
+        }
+    }
+
+    public static boolean printInventory(String filePath) throws GameControlException {
+        String fileLocation = filePath;
+        Inventory[] inventory = game.getInventory();
+        boolean response = false;
+        try (PrintWriter out = new PrintWriter(fileLocation)) {
+            
+            out.println("\n\n              Inventory Repoert                     ");
+            out.printf("%n%-20s%10s%10s%10s", "Description", "Damage", "Heal", "Stock");
+            out.printf("%n%-20s%10s%10s%10s", "-----------", "------", "----", "-----");
+            for (Inventory item : inventory) {
+                out.printf("%n%-20s%9d%10s%10s", item.getItemName()
+                                                 , item.getItemDamage()
+                                                 , item.getItemHeal()
+                                                 , item.getItemAmount());
+            
+            }
+            return true;
+        } catch (IOException ex) {
+             throw new GameControlException(ex.getMessage());
+        }   
     }
     
     public int numberOfLocations(){

@@ -6,7 +6,9 @@
 package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.*;
+import static byui.cit260.darkdungeon.control.GameControl.game;
 import byui.cit260.darkdungeon.exception.BattleControlException;
+import byui.cit260.darkdungeon.exception.MapControlException;
 import darkdungeongame.DarkDungeonGame;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -34,7 +36,7 @@ public class TreasureChestView {
                         + "\nPlease answer the equation to gain access";
      }
 
-    public boolean ChestOpenView() throws BattleControlException {
+    public boolean ChestOpenView() throws BattleControlException, MapControlException {
         boolean done = false; // set to not done
         do {
         calculate();
@@ -95,7 +97,7 @@ public class TreasureChestView {
         
     }
 
-    private boolean doAction(int userAnswer) {
+    private boolean doAction(int userAnswer) throws MapControlException {
 
         if (userAnswer==getAnswer()) { 
             choice1();
@@ -108,9 +110,10 @@ public class TreasureChestView {
         }
     }
 
-    private void choice1(){
+    private void choice1() throws MapControlException{
         this.console.println("You have answered the question correctly! " + random1 + " + " + random2 + " = " + answer);
-        this.console.println("The Chest is now open");
+        this.console.println("The Chest is now open, you have recieved 1 potion and 1 firescroll");
+        BattleControl.addPotion(game.getPotion(),game.getFirescroll());
     }
     private void choice2(){
         ErrorView.display(this.getClass().getName(),"incorrect try again");

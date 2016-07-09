@@ -1,0 +1,11 @@
+
+
+       Inventory Repoert             
+
+Description             Damage     Stock
+-----------           --------     -----
+Firescroll               45            5
+Potion                    0            3
+OmniSlash                45            5
+Armageddon               45            5
+TestItem                 45            0

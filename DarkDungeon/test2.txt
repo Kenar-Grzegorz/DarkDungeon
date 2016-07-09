@@ -1,0 +1,11 @@
+
+
+              Inventory Repoert                     
+
+Description             Damage      Heal     Stock
+-----------             ------      ----     -----
+Firescroll                 45         0         5
+Potion                      0        25         3
+OmniSlash                  45         0         5
+Armageddon                 45         0         5
+TestItem                   45         0         0

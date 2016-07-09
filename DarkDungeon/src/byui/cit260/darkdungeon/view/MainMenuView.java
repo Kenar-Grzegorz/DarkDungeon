@@ -85,6 +85,7 @@ public class MainMenuView extends View {
     
     private void startNewGame() throws MapControlException {
         //Create a new Game
+        
         GameControl.createNewGame(DarkDungeonGame.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
