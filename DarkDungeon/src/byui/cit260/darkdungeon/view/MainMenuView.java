@@ -26,6 +26,7 @@ public class MainMenuView extends View {
                 + "\n| Options:                         |"
                 + "\n|   N. Start a New Game            |"
                 + "\n|   L. Load a saved Game           |"
+                + "\n|   S. Save Game                   |"
                 + "\n|   H. Help                        |"
                 + "\n|   B. Back to Previous Menu       |"
                 + "\n===================================="

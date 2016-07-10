@@ -46,7 +46,7 @@ public class GameMenuView extends View {
                 + "\n|        P. Print Locations         |"
                 + "\n|        PP. Print Names            |"
                 + "\n|        PI. Print Inventory        |"
-                + "\n|        S. Save Game               |"
+                //+ "\n|        S. Save Game               |"
                 + "\n|        B. Back to Previous Menu   |"
                 + "\n====================================="
                 + "\nMake your Selection ~~~> ");

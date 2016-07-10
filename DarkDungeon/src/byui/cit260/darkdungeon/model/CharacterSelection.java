@@ -23,7 +23,7 @@ public class CharacterSelection implements Serializable {
     private int manaAmount;
     private int abilityDamage;
     private int elementalDamage;
-    private boolean exist = false;
+    private boolean exist;
     private Actor actor;
     
 
