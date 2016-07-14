@@ -125,7 +125,7 @@ public class BattleMenuView  {
                     character.setHealth(charHealth);}
                 }
                 catch (Throwable ia) {
-                    ErrorView.display(this.getClass().getName(),ia.getMessage());
+                    ErrorView.display(this.getClass().getName(),ia.getMessage()+"Error from the Monster Attack");
                 }
            }
             this.console.println("(" + character.getStatus() + " / " + character.getManaStatus() + " / " + monster.getStatus() + ")");

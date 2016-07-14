@@ -74,21 +74,50 @@ public class ItemMenuView extends View {
         return false;
     }
     private void usePotion() throws MapControlException {
-        BattleControl.heal(game.getPotion(), game.getWarrior());
-        
+       if (game.getPotion().getItemAmount()>0){
+           this.console.println("*  You have used a potion  *  `  `  \\ \\(`^')/ /  '  '\n");
+           BattleControl.heal(game.getPotion(), game.getWarrior());
+            this.console.println(warrior.getCharacterName()+" drinks a healing potion. You have "+game.getPotion().getItemAmount()+" left.");
+            this.console.println(warrior.getStatus());
+        } else {
+            ErrorView.display(this.getClass().getName(),"*  You've exhausted your potion supply!  *\n");
+        }
         
     }
     private void useFireScroll() throws MapControlException { 
-        BattleControl.itemDefend(game.getWarrior(), game.getMonster(), game.getFirescroll());
+        if (game.getFirescroll().getItemAmount()>0){
+            this.console.println("*  You have activated the "+game.getFirescroll().getItemName()+ " *\n" + game.getFirescroll().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+            BattleControl.itemDefend(game.getWarrior(), game.getMonster(), game.getFirescroll());
+            this.console.println("You have hit the "+ game.getMonster().getMonsterName()+" for "+game.getFirescroll().getItemDamage()+" of Damage!!");
+            try {
+                if (game.getMonster().getHealth() == 0||game.getMonster() == null) {
+                    this.console.println("\t" + game.getPlayer().getName() + " transforms the skull of " + game.getMonster().getMonsterName()
+                    + " into dust to never be seen again");
+                }
+            }
+            catch (Exception e) {}
+        }
+        else {
+            this.console.println("You have exhausted your Mana amount, You have: "+game.getWarrior().getManaAmount()+" Mana");
+        }
     }
 
     private void useEther() {
-        if (game.getEther().getItemAmount()>0)BattleControl.useEther(game.getWarrior(), game.getEther());
-        else System.out.println("You do not have enough Ethers");
+        if (game.getEther().getItemAmount()>0){
+            this.console.println("*  You have activated the "+game.getEther().getItemName()+ " *\n" + game.getEther().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+            BattleControl.useEther(game.getWarrior(), game.getEther());
+            this.console.println(warrior.getManaStatus());
+           
+        }
+        else this.console.println("You do not have enough Ethers");
     }
 
     private void useTent() {
-        if (game.getTent().getItemAmount()>0)BattleControl.useTent(game.getWarrior(), game.getTent());
-        else System.out.println("You do not have enough Tents");
+        if (game.getTent().getItemAmount()>0){
+            this.console.println("*  You have activated the "+ game.getTent().getItemName()+ " *\n"+ game.getTent().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+            BattleControl.useTent(game.getWarrior(), game.getTent());
+            this.console.println(warrior.getManaStatus()+" "+warrior.getStatus());
+        }
+        else this.console.println("You do not have enough Tents");
     }
 }

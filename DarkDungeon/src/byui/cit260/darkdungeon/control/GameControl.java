@@ -69,7 +69,7 @@ public class GameControl {
     public static CharacterSelection createWarrior() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
         //CharacterSelection warrior = new CharacterSelection();
-        warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",100,10,50,10,30,50,50,true);
+        warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",110,20,50,10,30,50,50,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.warrior.ordinal()] = warrior;
         return warrior;
@@ -77,7 +77,7 @@ public class GameControl {
     public static CharacterSelection createPaladin() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
         CharacterSelection paladin = new CharacterSelection();
-        warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 100,10,40,10,30,40,60,true);
+        warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 120,20,40,10,30,40,60,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.paladin.ordinal()] = paladin;
         return warrior;
@@ -89,10 +89,8 @@ public class GameControl {
              ObjectInputStream output = new ObjectInputStream(fips);
              
              game = (Game) output.readObject();
-         }catch (FileNotFoundException fnfe){
-             throw new GameControlException(fnfe.getMessage());
          }catch(Exception e){
-             throw new GameControlException(e.getMessage());
+             throw new GameControlException(e.getMessage()+"Error Loading the game");
          }
          DarkDungeonGame.setCurrentGame(game);
     }
@@ -104,7 +102,7 @@ public class GameControl {
             
             output.writeObject(game);
         } catch (IOException e){
-            throw new GameControlException(e.getMessage());
+            throw new GameControlException(e.getMessage()+"Error Saving the game");
         }
     }
     
@@ -140,12 +138,12 @@ public class GameControl {
         }
         
         catch (IOException ee) {
-            throw new GameControlException(ee.getMessage());
+            throw new GameControlException(ee.getMessage()+"Error Saving Items to a file");
         }
         
     }
 
-    public static void printNames(String filePath) throws IOException {
+    public static void printNames(String filePath) throws IOException, GameControlException {
         //FileWriter outFile = null;
         String fileLocation = filePath;
         try (FileWriter outFile = new FileWriter(fileLocation)){
@@ -160,7 +158,7 @@ public class GameControl {
             outFile.flush();
             
         } catch (IOException ex) {
-            System.out.println("Error saving players to file");
+            throw new GameControlException(ex.getMessage()+"Error saving players to file");
         }
     }
 
@@ -182,7 +180,7 @@ public class GameControl {
             }
             return true;
         } catch (IOException ex) {
-             throw new GameControlException(ex.getMessage());
+             throw new GameControlException(ex.getMessage()+"Error saving items to a file");
         }   
     }
     

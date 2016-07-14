@@ -79,7 +79,7 @@ public class MainMenuView extends View {
                 break; //end of loop
             }
         }
-        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"\nError Reading Input: " + e.getMessage());
         }
         return value; // return the value
     }

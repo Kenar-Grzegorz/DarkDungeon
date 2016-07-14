@@ -72,60 +72,27 @@ public class BattleControl {
     
     public static void heal(Inventory potion, CharacterSelection warrior) throws MapControlException {
         int amount = potion.getItemAmount();
-        if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
-            int health = warrior.getHealth() + potion.getItemHeal();
-            amount--;
-            potion.setItemAmount(amount);
-            warrior.setHealth(health);
-            System.out.println(warrior.getCharacterName()+" drinks a healing potion. You have "+potion.getItemAmount()+" left.");
-            System.out.println(warrior.getStatus());
-        } else {
-            throw new MapControlException("*  You've exhausted your potion supply!  *\n");
-            //System.out.println("*  You've exhausted your potion supply!  *\n");
-        }
-        System.out.println("*  You have " + amount + " potions left.  *\n");
+        int health = warrior.getHealth() + potion.getItemHeal();
+        amount--;
+        potion.setItemAmount(amount);
+        warrior.setHealth(health);
+            
     }
     
     public static void itemDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
         int amount = item.getItemAmount();
-        System.out.println(item.getItemAmount());
-        if (item.getItemAmount()>0){
-            System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
-            int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
-            amount--;
-            item.setItemAmount(amount);
-            monster.setHealth(health);
-            System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
-            if (health == 0) {
-                System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
-                + " into dust to never be seen again");
-            }
-        }
-        else {
-            //System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
-            throw new MapControlException("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
-        }
+        int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
+        amount--;
+        item.setItemAmount(amount);
+        monster.setHealth(health);
     }
     
     public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
         int mana = character.getManaAmount();
-        System.out.println(item.getItemAmount());
-        if (mana>item.getItemAmount()){
-            System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
-            mana = (mana-item.getItemAmount());
-            character.setManaAmount(mana);
-            int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
-            System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
-            if (health == 0) {
-                System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
-                + " into dust to never be seen again");
-            }
-            monster.setHealth(health);
-        }
-        else {
-            //System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
-            throw new MapControlException("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
-        }
+        mana = (mana-item.getItemAmount());
+        character.setManaAmount(mana);
+        int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
+        monster.setHealth(health);
     }
     
     public static int attackRand(int minAttackDamage, int maxAttackDamage) throws BattleControlException {
@@ -139,11 +106,10 @@ public class BattleControl {
 
     public static void useEther(CharacterSelection warrior, Inventory ether) {
         int mana = warrior.getManaAmount();
-        System.out.println("*  You have activated the "+ether.getItemName()+ " *\n");System.out.println(ether.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
-        mana--;
-        ether.setItemAmount(mana);
-        warrior.setManaAmount(warrior.getManaAmount()+ether.getItemHeal());
-        System.out.println(warrior.getManaStatus());
+        int item = ether.getItemAmount();
+        item--;
+        ether.setItemAmount(item);
+        warrior.setManaAmount(mana+ether.getItemHeal());
     }
 
     public static void addManatoMana(Inventory ether) {
@@ -156,12 +122,10 @@ public class BattleControl {
 
     public static void useTent(CharacterSelection warrior, Inventory tent) {
         int mana = tent.getItemAmount();
-        System.out.println("*  You have activated the "+tent.getItemName()+ " *\n");System.out.println(tent.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
         mana--;
         tent.setItemAmount(mana);
         warrior.setManaAmount(40);
-        warrior.setHealth(100);
-        System.out.println(warrior.getManaStatus()+" "+warrior.getStatus());
+        warrior.setHealth(120);
     }
 
     public static void addTent(Inventory tent) {

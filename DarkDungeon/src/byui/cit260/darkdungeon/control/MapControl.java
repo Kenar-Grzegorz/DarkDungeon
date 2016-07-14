@@ -21,10 +21,6 @@ import static java.lang.Math.random;
  */
 public class MapControl {
 
-    public static int random(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public static Map createMap() throws MapControlException {
         // create the map
         Map map = new Map(6, 5);
@@ -54,11 +50,8 @@ public class MapControl {
         Actor[] actors= Actor.values();
         for (Actor actor : actors) { 
             Point coordinates = actor.getCoordinates();
-            try {
-                MapControl.moveActorToLocation(actor, coordinates);
-            } catch (MapControlException me) {
-                System.out.println(me.getMessage());
-            }
+            MapControl.moveActorToLocation(actor, coordinates);
+            
         }
     
     }

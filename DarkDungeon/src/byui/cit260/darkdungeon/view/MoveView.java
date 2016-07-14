@@ -165,7 +165,7 @@ public class MoveView extends View{
             case "Q": //West
                 try {
                     game.getWarrior().setHealth(0);
-                    warrior.setExist(false);
+                    game.getWarrior().setExist(false);
                     
                     }
                 catch (Throwable mo) {
