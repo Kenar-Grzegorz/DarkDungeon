@@ -25,6 +25,13 @@ import java.util.Scanner;
  * @author Florian
  */
 public class MoveView extends View{
+   private String bannerTop;
+   private String north;
+   private String south;
+   private String east;
+   private String west;
+   private String bannerBottom;
+   
    int columnCurrent;
    int rowCurrent;
    boolean northPossible;
@@ -37,31 +44,26 @@ public class MoveView extends View{
     //private final String promptMessage;
     //private final String menu;
     public MoveView() {
-        super("\n"
+        this.bannerTop=("\n"
                   + "\n|=====================================|"
                   + "\n|               Movement              |"
-                  + "\n|=====================================|"
-                  + "\n|    N - North                        |"
-                  + "\n|    S - South                        |"
-                  + "\n|    E - East                         |"
-                  + "\n|    W - West                         |"
-                  + "\n|    M - Quit and Go to Main Menu     |"
-                  + "\n|    B. Back to Previous Menu         |"
+                  + "\n|=====================================|");
+        
+        this.bannerBottom=("\n|    B. Back to Previous Menu         |"
                   + "\n|    Q - Quit to the Main Menu        |"
                   + "\n|=====================================|"
                   + "\nWhich direction would you like to travel? ~~~>");
+        
+        this.north=("\n|    N - North                        |");
+        this.south=("\n|    S - South                        |");
+        this.east=("\n|    E - East                         |");
+        this.west=("\n|    W - West                         |");
     }
     
     @Override
     public void display() {
         game = DarkDungeonGame.getCurrentGame(); // retreive the game
         map = game.getMap(); // retreive the map from game
-//        rowCurrent = map.getCurrentRow();
-//        columnCurrent = map.getCurrentColumn();
-//        northPossible = roomExists(rowCurrent,(columnCurrent+1));
-//        southPossible = roomExists(rowCurrent,(columnCurrent-1));
-//        eastPossible = roomExists((rowCurrent+1),columnCurrent);
-//        westPossible = roomExists((rowCurrent-1),columnCurrent);
         boolean done = false; // set to not done
         String menuOption;
         String className = this.getClass().getSimpleName();
@@ -80,15 +82,15 @@ public class MoveView extends View{
             eastPossible = roomExists((rowCurrent+1),columnCurrent);
             westPossible = roomExists((rowCurrent-1),columnCurrent);
             System.out.println(map.getCurrentLocation().getScene().getDescription());
-            
-            System.out.print("Which direction would you like to travel? ~~~>  (Q) Quit, (B) Back ");
-            if (northPossible) System.out.print("(N) North" );
-            if (southPossible) System.out.print(" (S) South" );
-            if (eastPossible) System.out.print(" (E) East" );
-            if (westPossible) System.out.print(" (W) West" );
-            System.out.print(" ? ");
-            menuOption = this.getInput();
-            
+            if (!"FN".equals(map.getCurrentLocation().getScene().getMapSymbol())){System.out.print(this.bannerTop);
+            if (northPossible) System.out.print(this.north);
+            if (southPossible) System.out.print(this.south);
+            if (eastPossible) System.out.print(this.east);
+            if (westPossible) System.out.print(this.west);
+            System.out.print(this.bannerBottom);
+            menuOption = this.getInput();}
+            else { game.getWarrior().setHealth(0);
+                    warrior.setExist(false);return;}
             if (menuOption.toUpperCase().equals("B")) //user will quit
                 return; // exit game
             //display next view
@@ -125,8 +127,8 @@ public class MoveView extends View{
         switch (choice) {
             case "N": //North
                 try {
-                    this.North();
-                    
+                    if (northPossible)this.North();
+                    else System.out.println("You cannot go in that direction");
                 }
                 catch (Throwable mo) {
                     ErrorView.display(this.getClass().getName(),mo + " - was a error");
@@ -134,7 +136,9 @@ public class MoveView extends View{
                 break;
             case "S": //South
                 try {
-                    this.South();
+                    
+                    if (southPossible)this.South();
+                    else System.out.println("You cannot go in that direction");
                     }
                 catch (Throwable mo) {
                     ErrorView.display(this.getClass().getName(),mo + " - was a error");
@@ -142,7 +146,8 @@ public class MoveView extends View{
                 break;
             case "E": //East
                 try {
-                    this.East();
+                    if (eastPossible)this.East();
+                    else System.out.println("You cannot go in that direction");
                     }
                 catch (Throwable mo) {
                     ErrorView.display(this.getClass().getName(),mo + " - was a error");
@@ -150,7 +155,8 @@ public class MoveView extends View{
                 break;
             case "W": //West
                 try {
-                    this.West();
+                    if (westPossible)this.West();
+                    else System.out.println("You cannot go in that direction");
                     }
                 catch (Throwable mo) {
                     ErrorView.display(this.getClass().getName(),mo + " - was a error");
@@ -198,27 +204,15 @@ public class MoveView extends View{
         //int column = map.getCurrentColumn();
         if (northPossible) {
             MapControl.movePlayer(map, rowCurrent, (columnCurrent+1));
-    //        System.out.println("row: "+map.getCurrentRow());
-    //        System.out.println("column: "+map.getCurrentColumn());
-             open();
-    //        map.setLocations((map.getCurrentRow()++));
-    //        doAction2("CL");
-            //locations[row][column].getScene().getMapSymbol();
-            //System.out.println(map.getCurrentLocation().getScene().getDescription());
+            open();
         }
         else this.console.println("Cant go that way");
     }
     private void South() throws BattleControlException {
         
         this.console.println("***You have chosen South***");
-        //Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
-        //Map map = game.getMap(); // retreive the map from game
-        //int row = map.getCurrentRow();
-        //int column = map.getCurrentColumn();
         if (southPossible) {
             MapControl.movePlayer(map, rowCurrent, (columnCurrent-1));
-    //        System.out.println("row: "+map.getCurrentRow());
-    //        System.out.println("column: "+map.getCurrentColumn());
             open();
         }
         else this.console.println("Cant go that way");
@@ -226,14 +220,8 @@ public class MoveView extends View{
      private void East() throws BattleControlException {
         
         this.console.println("***You have chosen East***");
-        //Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
-        //Map map = game.getMap(); // retreive the map from game
-        //int row = map.getCurrentRow();
-        //int column = map.getCurrentColumn();
         if (eastPossible) {
             MapControl.movePlayer(map, (rowCurrent+1), columnCurrent);
-    //        System.out.println("row: "+map.getCurrentRow());
-    //        System.out.println("column: "+map.getCurrentColumn());
             open();
         }
         else this.console.println("Cant go that way");
@@ -241,21 +229,15 @@ public class MoveView extends View{
       private void West() throws BattleControlException {
         
         this.console.println("***You have chosen West***");
-        //Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
-        //Map map = game.getMap(); // retreive the map from game
-        //int row = map.getCurrentRow();
-        //int column = map.getCurrentColumn();
         if (westPossible) {
             MapControl.movePlayer(map, (rowCurrent-1), columnCurrent);
-    //        System.out.println("row: "+map.getCurrentRow());
-    //        System.out.println("column: "+map.getCurrentColumn());
             open();
         }
         else this.console.println("Cant go that way");
     }
       
       private void open() throws BattleControlException {
-        GameControl.createNewBattle();
+        GameControl.createNewBattle(map);
       }
 
       public boolean doAction2(String mapOption) { 

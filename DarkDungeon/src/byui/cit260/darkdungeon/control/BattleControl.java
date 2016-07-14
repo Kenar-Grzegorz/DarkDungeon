@@ -74,12 +74,10 @@ public class BattleControl {
         int amount = potion.getItemAmount();
         if (amount>0){System.out.println("*  You have used a potion  *\n");System.out.println("  `  `  \\ \\(`^')/ /  '  '\n");
             int health = warrior.getHealth() + potion.getItemHeal();
-            System.out.println("before"+potion.getItemAmount());
             amount--;
             potion.setItemAmount(amount);
             warrior.setHealth(health);
-            System.out.println("after"+potion.getItemAmount());
-            System.out.println(game.getPlayer()+" drinks a healing potion.");
+            System.out.println(warrior.getCharacterName()+" drinks a healing potion. You have "+potion.getItemAmount()+" left.");
             System.out.println(warrior.getStatus());
         } else {
             throw new MapControlException("*  You've exhausted your potion supply!  *\n");
@@ -88,11 +86,34 @@ public class BattleControl {
         System.out.println("*  You have " + amount + " potions left.  *\n");
     }
     
-    public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
+    public static void itemDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
+        int amount = item.getItemAmount();
         System.out.println(item.getItemAmount());
-        if (character.getManaAmount()>item.getItemAmount()){
+        if (item.getItemAmount()>0){
             System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
-            character.setManaAmount(character.getManaAmount()-item.getItemAmount());
+            int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
+            amount--;
+            item.setItemAmount(amount);
+            monster.setHealth(health);
+            System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
+            if (health == 0) {
+                System.out.println("\t" + game.getPlayer() + " transforms the skull of " + monster.getMonsterName()
+                + " into dust to never be seen again");
+            }
+        }
+        else {
+            //System.out.println("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
+            throw new MapControlException("You have exhausted your Mana amount, You have: "+character.getManaAmount()+" Mana");
+        }
+    }
+    
+    public static void abilityDefend(CharacterSelection character, Monster monster, Inventory item) throws MapControlException {
+        int mana = character.getManaAmount();
+        System.out.println(item.getItemAmount());
+        if (mana>item.getItemAmount()){
+            System.out.println("*  You have activated the "+item.getItemName()+ " *\n");System.out.println(item.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+            mana = (mana-item.getItemAmount());
+            character.setManaAmount(mana);
             int health = (monster.getHealth()>item.getItemDamage()) ? monster.getHealth()-item.getItemDamage() :0;
             System.out.println("You have hit the "+ monster.getMonsterName()+" for "+item.getItemDamage()+" of Damage!!");
             if (health == 0) {
@@ -111,9 +132,39 @@ public class BattleControl {
         return BattleControl.random(minAttackDamage, maxAttackDamage);
     }
     
-    public static void addPotion(Inventory potion, Inventory fireScroll) throws MapControlException {
+    public static void addPotion(Inventory potion) throws MapControlException {
         potion.setItemAmount((potion.getItemAmount())+1);
-        fireScroll.setItemAmount((fireScroll.getItemAmount())+1);
         
+    }
+
+    public static void useEther(CharacterSelection warrior, Inventory ether) {
+        int mana = warrior.getManaAmount();
+        System.out.println("*  You have activated the "+ether.getItemName()+ " *\n");System.out.println(ether.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+        mana--;
+        ether.setItemAmount(mana);
+        warrior.setManaAmount(warrior.getManaAmount()+ether.getItemHeal());
+        System.out.println(warrior.getManaStatus());
+    }
+
+    public static void addManatoMana(Inventory ether) {
+        ether.setItemAmount(ether.getItemAmount()+1);
+    }
+
+    public static void addFirescroll(Inventory firescroll) {
+        firescroll.setItemAmount((firescroll.getItemAmount())+1);
+    }
+
+    public static void useTent(CharacterSelection warrior, Inventory tent) {
+        int mana = tent.getItemAmount();
+        System.out.println("*  You have activated the "+tent.getItemName()+ " *\n");System.out.println(tent.getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
+        mana--;
+        tent.setItemAmount(mana);
+        warrior.setManaAmount(40);
+        warrior.setHealth(100);
+        System.out.println(warrior.getManaStatus()+" "+warrior.getStatus());
+    }
+
+    public static void addTent(Inventory tent) {
+        tent.setItemAmount((tent.getItemAmount())+1);
     }
 }

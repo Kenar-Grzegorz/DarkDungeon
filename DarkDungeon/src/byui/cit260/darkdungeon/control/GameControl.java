@@ -54,9 +54,11 @@ public class GameControl {
         move.display();
     }
     
-    public static void createNewBattle() throws BattleControlException {
+    public static void createNewBattle(Map map) throws BattleControlException {
         //monster = Monster.newMonsterInstance();
-        game.setMonster(Monster.newRandomInstance());
+        if ("FN".equals(map.getCurrentLocation().getScene().getMapSymbol())) {
+        game.setMonster(Monster.newBossInstance());}
+        else game.setMonster(Monster.newRandomInstance());
         gameMenu.battleStart(DarkDungeonGame.getPlayer(), game.getWarrior(), game.getMonster());
     }
 
@@ -251,7 +253,7 @@ public class GameControl {
     }
     
     private static class Constants {
-        public final static int NUMBER_OF_INVENTORY_ITEMS=5;
+        public final static int NUMBER_OF_INVENTORY_ITEMS=7;
     }
     
     public static Inventory[] createInventoryList() {
@@ -259,7 +261,7 @@ public class GameControl {
         
         Inventory fireScroll = new Inventory("Firescroll", "The power of Fire surges throughout your body", 45, 0, 5);game.setFirescroll(fireScroll);
         inventory[Item.firescroll.ordinal()] = fireScroll;
-        Inventory potion = new Inventory("Potion", "A devine glow covers your body", 0,25,3);game.setPotion(potion);
+        Inventory potion = new Inventory("Potion", "A devine glow covers your body", 0,50,3);game.setPotion(potion);
         inventory[Item.potion.ordinal()] = potion;
         Inventory omniSlash = new Inventory("OmniSlash", "You fill your sword with your life force, It comes to life with the thirst of blood", 45, 0, 5);game.setOmniSlash(omniSlash);
         inventory [Item.omniSlash.ordinal()] = omniSlash;
@@ -267,6 +269,10 @@ public class GameControl {
         inventory [Item.armageddon.ordinal()] = armageddon;
         Inventory testItem = new Inventory("TestItem", "Just your good old fashioned test item", 45, 0, 0);game.setTestItem(testItem);
         inventory [Item.testItem.ordinal()] = testItem;
+        Inventory ether = new Inventory("Ether", "Your Magical properties have been restored", 5, 0, 1);game.setEther(ether);
+        inventory [Item.ether.ordinal()] = ether;
+        Inventory tent = new Inventory("Tent", "Your Health and Mana have been Magically revived ", 0, 0, 1);game.setTent(tent);
+        inventory [Item.tent.ordinal()] = tent;
         return inventory;
     }
     

@@ -27,6 +27,9 @@ public class Game implements Serializable{
     private Inventory omniSlash;      
     private Inventory armageddon;
     private Inventory testItem;
+    private Inventory ether;
+    private Inventory tent;
+    
     
     public Game() {
         
@@ -52,6 +55,22 @@ public class Game implements Serializable{
         Game.gameMenu = gameMenu;
     }
 
+    public Inventory getTent() {
+        return tent;
+    }
+
+    public void setTent(Inventory tent) {
+        this.tent = tent;
+    }
+    
+    public Inventory getEther() {
+        return ether;
+    }
+
+    public void setEther(Inventory ether) {
+        this.ether = ether;
+    }
+    
     public Monster getMonster() {
         return monster;
     }

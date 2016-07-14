@@ -12,6 +12,7 @@ import byui.cit260.darkdungeon.exception.MapControlException;
 import darkdungeongame.DarkDungeonGame;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -23,6 +24,7 @@ import java.util.Scanner;
 public class TreasureChestView {
     protected final BufferedReader keyboard = DarkDungeonGame.getInFile();
     protected final PrintWriter console = DarkDungeonGame.getOutFile();
+    Random rand = new Random();
     private String question;
     private int random1;
     private int random2;
@@ -111,9 +113,12 @@ public class TreasureChestView {
     }
 
     private void choice1() throws MapControlException{
-        this.console.println("You have answered the question correctly! " + random1 + " + " + random2 + " = " + answer);
-        this.console.println("The Chest is now open, you have recieved 1 potion and 1 firescroll");
-        BattleControl.addPotion(game.getPotion(),game.getFirescroll());
+        System.out.println("You have answered the question correctly! " + random1 + " + " + random2 + " = " + answer);
+        System.out.print("The Chest is now open, you have recieved ");
+        BattleControl.addPotion(game.getPotion());System.out.print("1 potion ");
+        if (rand.nextInt(100) < 85) {BattleControl.addFirescroll(game.getFirescroll());System.out.print("1 fireScroll");}
+        if (rand.nextInt(100) < 40) {BattleControl.addManatoMana(game.getEther());System.out.print("1 vile of ether");}
+        if (rand.nextInt(100) < 35) {BattleControl.addTent(game.getTent());System.out.print("1 Tent");}
     }
     private void choice2(){
         ErrorView.display(this.getClass().getName(),"incorrect try again");

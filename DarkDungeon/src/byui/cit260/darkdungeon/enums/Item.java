@@ -15,7 +15,9 @@ public enum Item {
         potion,
         omniSlash,
         armageddon,
-        testItem;
+        testItem,
+        ether,
+        tent;
         
         private final int value;
 

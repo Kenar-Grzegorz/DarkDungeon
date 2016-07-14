@@ -90,7 +90,7 @@ public class Monster implements Serializable {
                 } else if (i==19) {
            return new Monster("Heucuva",120,12,15,25,20);
                 } else if (i==20) {
-           return new Monster("Lich",1200,20,18,30,40);
+           return new Monster("Lich",120,20,18,30,40);
                 } else if (i==21) {
            return new Monster("Lurker",50,8,5,12,10);
                 } else if (i==22) {
@@ -120,13 +120,13 @@ public class Monster implements Serializable {
                 } else if (i==34) {
            return new Monster("Will o’ wisp",15,7,1,4,1);
                 } else if (i==35) {
-           return new Monster("Zombie",45,4,2,10,10);
+           return new Monster("Zombie",35,4,2,10,10);
         } else {
-            return new Monster("Dragon",70,2,2,2,2);
+            return new Monster("Bloody Zombie",45,4,2,10,10);
                }
     }
     public static Monster newBossInstance() {
-        return new Monster("Dragon",70,2,2,2,2);
+        return new Monster("Dragon",120,18,25,35,25);
     }
     public String getMonsterName() {
         return monsterName;

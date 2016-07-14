@@ -27,6 +27,8 @@ public class ItemMenuView extends View {
                 + "\n====================================="
                 + "\n| Options:                          |"
                 + "\n|        P. Potion                  |"
+                + "\n|        E. Ether                   |"
+                + "\n|        T. Tent                    |"
                 + "\n|        F. Fire Scroll             |"
                 + "\n|        B. Back to Previous Menu   |"
                 + "\n====================================="
@@ -40,22 +42,30 @@ public class ItemMenuView extends View {
         
         switch (choice) {
             case "P": {
-            try {
-                //potion
-                this.usePotion();
-            } catch (MapControlException ex) {
-                ErrorView.display(this.getClass().getName(),ex.getMessage());
+                try {
+                    //potion
+                    this.usePotion();
+                } catch (MapControlException ex) {
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
+                }
             }
-        }
                 return true;
-            case "F": {
-            try {
-                //Fire Scroll
-                this.useFireScroll();
-            } catch (MapControlException ex) {
-                ErrorView.display(this.getClass().getName(),ex.getMessage());
+            case "E": {
+                this.useEther();
+                return true;
             }
-        }
+            case "T": {
+                this.useTent();
+                return true;
+            }
+            case "F": {
+                try {
+                    //Fire Scroll
+                    this.useFireScroll();
+                } catch (MapControlException ex) {
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
+                }
+            }
                 return true;
             default:
                 ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
@@ -69,6 +79,16 @@ public class ItemMenuView extends View {
         
     }
     private void useFireScroll() throws MapControlException { 
-        BattleControl.abilityDefend(game.getWarrior(), game.getMonster(), game.getFirescroll());
+        BattleControl.itemDefend(game.getWarrior(), game.getMonster(), game.getFirescroll());
+    }
+
+    private void useEther() {
+        if (game.getEther().getItemAmount()>0)BattleControl.useEther(game.getWarrior(), game.getEther());
+        else System.out.println("You do not have enough Ethers");
+    }
+
+    private void useTent() {
+        if (game.getTent().getItemAmount()>0)BattleControl.useTent(game.getWarrior(), game.getTent());
+        else System.out.println("You do not have enough Tents");
     }
 }
