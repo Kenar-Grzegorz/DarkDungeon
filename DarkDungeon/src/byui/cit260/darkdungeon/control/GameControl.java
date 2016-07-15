@@ -93,7 +93,7 @@ public class GameControl {
     public static CharacterSelection createSamurai() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
         CharacterSelection samurai = new CharacterSelection();
-        warrior = new CharacterSelection("The Noble Warrior -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
+        warrior = new CharacterSelection("The Noble Samura -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.samurai.ordinal()] = samurai;
         return warrior;
