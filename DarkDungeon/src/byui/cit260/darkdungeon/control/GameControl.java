@@ -82,7 +82,30 @@ public class GameControl {
         fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
         return warrior;
     }
-
+    public static CharacterSelection createMage() {
+        CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
+        CharacterSelection mage = new CharacterSelection();
+        warrior = new CharacterSelection("The Powerful Magi -","- Master of the mystic arts",80,15,40,5,60,80,80,true);
+        game.setWarrior(warrior);
+        fighter[CharacterSelection.Actor.mage.ordinal()] = mage;
+        return warrior;
+    }
+    public static CharacterSelection createSamurai() {
+        CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
+        CharacterSelection samurai = new CharacterSelection();
+        warrior = new CharacterSelection("The Noble Warrior -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
+        game.setWarrior(warrior);
+        fighter[CharacterSelection.Actor.samurai.ordinal()] = samurai;
+        return warrior;
+    }
+    public static CharacterSelection createThief() {
+        CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
+        CharacterSelection thief = new CharacterSelection();
+        warrior = new CharacterSelection("The Crafty Thief -","- Walker in the Shadows",60,10,30,10,30,40,40,true);
+        game.setWarrior(warrior);
+        fighter[CharacterSelection.Actor.paladin.ordinal()] = thief;
+        return warrior;
+    }
     public static void getLoadSavedGame(String filepath) throws GameControlException {
         Game game = null;
          try(FileInputStream fips = new FileInputStream(filepath)){

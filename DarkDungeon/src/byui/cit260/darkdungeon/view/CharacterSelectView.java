@@ -30,6 +30,9 @@ public class CharacterSelectView {
                 + "\n| Options:                          |"
                 + "\n|        1. Warrior                 |"
                 + "\n|        2. Paladin                 |"
+                + "\n|        3. Mage                    |"
+                + "\n|        4. Samurai                 |"
+                + "\n|        5. Thief                   |"
                 + "\n|        B. Back to Previous Menu   |"
                 + "\n====================================="
                 + "\n Please Choose a Number ~~~~~~~~~~~> ";
@@ -94,6 +97,22 @@ public class CharacterSelectView {
                 warrior = GameControl.createPaladin();
                 this.doNext();
                 return true;
+                
+           case 3: //Mage
+                warrior = GameControl.createMage();
+                this.doNext();
+                return true;
+                
+           case 4: //Samuari
+                warrior = GameControl.createSamurai();
+                this.doNext();
+                return true;
+                
+           case 5: //Thief
+                warrior = GameControl.createThief();
+                this.doNext();
+                return true;
+                
             default:
                 ErrorView.display(this.getClass().getName(),"*** Invalid Selection *** Try again");
                 
