@@ -15,7 +15,10 @@ import java.io.Serializable;
 public enum Actor implements Serializable {
     
     warrior("Test1"),
-    paladin("Test2");
+    paladin("Test2"),
+    mage("Test3"),
+    Samurai("Test4"),
+    Thief("Test5");
     
     private final Point coordinates;
     private final String description;

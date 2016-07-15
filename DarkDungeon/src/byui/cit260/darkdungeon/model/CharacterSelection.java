@@ -218,7 +218,10 @@ public class CharacterSelection implements Serializable {
     }
     public enum Actor{
         warrior,
-        paladin
+        paladin,
+        mage,
+        samurai,
+        thief;
         
 //        private final String description;
 //        
@@ -229,6 +232,12 @@ public class CharacterSelection implements Serializable {
 //        public String getDescription(){
 //            return description;
 //        }
+
+        public static class mage {
+
+            public mage() {
+            }
+        }
     }
     /*public void defend(Monster monster) {
         int attackStrength = monster.attack();
