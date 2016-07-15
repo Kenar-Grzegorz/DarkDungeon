@@ -1,0 +1,32 @@
+
+                      Map Report                           
+
+   Name              MapSymbol   Visited       Row    Column    Number
+-----------          ---------   -------       ---    ------    ------
+startingScene             ST      true         0         0         1
+atriumScene               AT     false         0         1         2
+storageScene              CL     false         0         2         3
+libraryScene              LB     false         0         3         4
+officeScene               OF     false         0         4         5
+chapelScene               CH     false         1         0         6
+studyScene                SD     false         1         1         7
+privateQuartersScene      CL     false         1         2         8
+bedRoomScene              BD     false         1         3         9
+sanctuaryScene            SN     false         1         4        10
+ceremonyRoomScene         CM     false         2         0        11
+cryptEntranceScene        CE     false         2         1        12
+areaOneScene              AO      true         2         2        13
+areaTwoScene              AT     false         2         3        14
+areaThreeScene            CT     false         2         4        15
+areaFourScene             AF     false         3         0        16
+guardRoomScene            GR     false         3         1        17
+mageLabScene              ML     false         3         2        18
+caveOneScene              CO     false         3         3        19
+crystalCaveScene          CC     false         3         4        20
+mushroomCaveScene         MC     false         4         0        21
+gaurdianScene             GU     false         4         1        22
+summoningRoomScene        SR     false         4         2        23
+morgueScene               MG     false         4         3        24
+livingQuartersScene       NR     false         4         4        25
+dragonCaveScene           DC     false         5         0        26
+finishScene               FN     false         5         1        27
