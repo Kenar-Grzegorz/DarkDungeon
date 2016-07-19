@@ -11,6 +11,7 @@ import byui.cit260.darkdungeon.model.Map;
 import byui.cit260.darkdungeon.model.Scene;
 import byui.cit260.darkdungeon.enums.SceneType;
 import byui.cit260.darkdungeon.model.CharacterSelection;
+import byui.cit260.darkdungeon.model.Game;
 import darkdungeongame.DarkDungeonGame;
 import java.awt.Point;
 import static java.lang.Math.random;
@@ -392,5 +393,34 @@ public class MapControl {
         }
 
     }
+    
+    public static void MapList() { 
+          //mapOption = mapOption.toUpperCase();
+            Game game = DarkDungeonGame.getCurrentGame(); // retreive the game
+            Map map = game.getMap(); // retreive the map from game
+            Location[][] locations = map.getLocations(); // retreive the locations from map
+            int row =0;
+            int column = 0;
+            int a=0;
+            int b=0;
+            for (row = 0; row < locations.length; row++) {
+                
+                System.out.println(a++);
+                b = 0;
+                for (column = 0; column < locations[row].length; column++) {
+                    if (locations[row][column].getScene() != null) {
+                        //if (mapOption.equals(locations[row][column].getScene().getMapSymbol())) {
+                            //MapControl.movePlayer(map, row, column);
+                            //return true;
+                            //System.out.println(locations[row][column].getColumn());
+                            System.out.println(b++);
+                            
+                        //}
+                    }
+                }
+            }
+            System.out.println("\n*** Invalid selection *** Try Again later");
+            //return false;
+        }
 
 }
