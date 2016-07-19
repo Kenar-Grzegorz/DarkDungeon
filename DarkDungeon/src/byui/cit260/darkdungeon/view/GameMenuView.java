@@ -5,6 +5,7 @@
  */
 package byui.cit260.darkdungeon.view;
 
+import byui.cit260.darkdungeon.control.CalculatorControl;
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.game;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
@@ -35,21 +36,21 @@ public class GameMenuView extends View {
 
     public GameMenuView() {
         super("\n"
-                + "\n====================================="
-                + "\n|           Game Menu               |"
-                + "\n====================================="
-                + "\n| Options:                          |"
-                + "\n|        C. Choose a Character      |"
-                + "\n|        D. Dungeon                 |"
-                + "\n|        M. Map                     |"
-                + "\n|        N. Map 2                   |"
-                + "\n|        I. View Inventory          |"
-                + "\n|        P. Print Locations         |"
-                + "\n|        PP. Print Names            |"
-                + "\n|        PI. Print Inventory        |"
-                + "\n|        T. Test                    |"
-                + "\n|        B. Back to Previous Menu   |"
-                + "\n====================================="
+                + "\n======================================"
+                + "\n|           Game Menu                |"
+                + "\n======================================"
+                + "\n| Options:                           |"
+                + "\n|        C. Choose a Character       |"
+                + "\n|        D. Dungeon                  |"
+                + "\n|        M. Map                      |"
+                + "\n|        N. Map 2                    |"
+                + "\n|        I. View Inventory           |"
+                + "\n|        P. Print Locations          |"
+                + "\n|        PP. Print Names             |"
+                + "\n|        PI. Print Inventory         |"
+                + "\n|        T. Test your Math Skills    |"
+                + "\n|        B. Back to Previous Menu    |"
+                + "\n======================================"
                 + "\nMake your Selection ~~~> ");
 
     }
@@ -94,7 +95,8 @@ public class GameMenuView extends View {
                 this.saveGame();
                 break;
             case "T":
-                MapControl.MapList();
+                this.mathSkill();
+                break;
             default:
                 ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
@@ -111,10 +113,62 @@ public class GameMenuView extends View {
         try {
             while (!valid) { // loop while an invalid value is entered
                 value = this.keyboard.readLine(); //get next line typed
-                this.console.println(value);
+                //this.console.println(value);
                 value = value.trim(); //trim off leading and trailing blanks
                 if (value.length() <1) { //value is blank
                     ErrorView.display(this.getClass().getName(),"\n*** Value cannot be blank ***");
+                    continue;
+                }
+                break; //end of loop
+            }
+        }
+        catch (Exception e) {System.out.println("Error Reading Input: " + e.getMessage());
+        }
+        return value; // return the value
+    }
+    
+    private double getInput3() {
+        boolean valid = false; // initialize to not valid
+        double value= 0;
+        String input = null; //value to be returned
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                input = keyboard.readLine();
+                input = input.trim(); //trim off leading and trailing blanks
+                if ("Q".equals(input)||"q".equals(input)) {input = "0";}
+                if (input.length() <1) { //Check if value is blank
+                    ErrorView.display(this.getClass().getName(),"Value cannot be blank");
+                    continue;
+                }
+                else {
+                    try {
+                        value = Double.parseDouble(input);
+                        //value = Integer.parseInt(input);
+                        if (value <0||value>10){ //value is blank
+                            ErrorView.display(this.getClass().getName(),"Value has to be between 0 and 10");
+                            continue;}
+                        else {break;}
+                    }
+                    catch (NumberFormatException ne) {
+                        ErrorView.display(this.getClass().getName(),"Value must be a number!");
+                    }
+                }
+            }
+        }
+        catch (Exception e) {ErrorView.display(this.getClass().getName(),"Error Reading Input: " + e.getMessage());}
+        return value; // return the value
+    }
+    
+    public String getInput4() {
+        String specialChars = "+-*/";
+        String value = null; //value to be returned
+        boolean valid = false; // initialize to not valid
+        try {
+            while (!valid) { // loop while an invalid value is entered
+                value = this.keyboard.readLine(); //get next line typed
+                value = value.trim(); //trim off leading and trailing blanks
+                if (!specialChars.contains(value)) { //value is blank
+                    ErrorView.display(this.getClass().getName(),"\n*** Value must be +, - , * , /  ***");
                     continue;
                 }
                 break; //end of loop
@@ -343,6 +397,24 @@ public class GameMenuView extends View {
 
     public void setGate(boolean gate) {
         this.gate = gate;
+    }
+
+    private void mathSkill() {
+        this.console.println("Please choose your first number ~~>");
+        double one = getInput3();
+        this.console.println("Please choose your opperand ~~>");
+        String sign = getInput4();
+        this.console.println("Please choose your Second number ~~>");
+        double two = getInput3();
+        this.console.println("What is the answer of " + one + " " + sign + " " + two + " = ");
+        double answer = getInput3();
+        try {
+        if (CalculatorControl.calculator(one, two, answer, sign)==true)
+            this.console.println("Correct");
+        else {this.console.println(CalculatorControl.response()); }
+        }
+        catch(Exception e) {ErrorView.display("GameMenuView", e.getMessage());}
+        
     }
 
 }
