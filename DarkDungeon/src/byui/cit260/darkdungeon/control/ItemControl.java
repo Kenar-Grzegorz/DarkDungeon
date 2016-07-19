@@ -19,12 +19,15 @@ public class ItemControl {
         if (health < 1 || health > 200) {throw new ItemControlException("\n Error - Health "+ health + " must be between 1 and 200");}
         if (itemAmount<=0) {return health;}
         else if (health > (200-healAmount) || health > 200) {return health = 200;}
-        else { health += healAmount; 
+        else { health = add(health, healAmount) ; 
         return health;
         }
     } 
     
+    public static int add(int health, int healAmount) {
+        return health += healAmount;
     
+    }
     
    
     
