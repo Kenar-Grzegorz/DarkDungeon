@@ -76,10 +76,10 @@ public class GameControl {
     }
     public static CharacterSelection createPaladin() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection paladin = new CharacterSelection();
+        //CharacterSelection paladin = new CharacterSelection();
         warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 120,20,40,10,30,40,60,true);
         game.setWarrior(warrior);
-        fighter[CharacterSelection.Actor.paladin.ordinal()] = paladin;
+        fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
         return warrior;
     }
     public static CharacterSelection createMage() {
@@ -93,7 +93,7 @@ public class GameControl {
     public static CharacterSelection createSamurai() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
         CharacterSelection samurai = new CharacterSelection();
-        warrior = new CharacterSelection("The Noble Warrior -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
+        warrior = new CharacterSelection("The Noble Samura -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.samurai.ordinal()] = samurai;
         return warrior;
@@ -157,6 +157,8 @@ public class GameControl {
                        // out.printf("No Scene for row: "+ mapb.getRow()+" column: "+ mapb.getColumn());
                 }
             }
+        out.flush();
+        out.close();
         return true; // return amount
         }
         

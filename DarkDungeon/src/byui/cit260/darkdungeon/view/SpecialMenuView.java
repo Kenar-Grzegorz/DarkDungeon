@@ -63,10 +63,13 @@ public class SpecialMenuView extends View {
             this.console.println("*  You have activated the "+ game.getOmniSlash().getItemName()+ " *\n"+ game.getOmniSlash().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             BattleControl.abilityDefend(game.getWarrior(), game.getMonster(), game.getOmniSlash());
             this.console.println("You have hit the "+ game.getMonster().getMonsterName()+" for "+game.getOmniSlash().getItemDamage()+" of Damage!!");
-            if (game.getMonster().getHealth() == 0) {
-                this.console.println("\t" + game.getPlayer().getName() + " transforms the skull of " + game.getMonster().getMonsterName()
-                + " into dust to never be seen again");
+            try {
+                if (game.getMonster().getHealth() == 0) {
+                    this.console.println("\t" + game.getPlayer().getName() + " transforms the skull of " + game.getMonster().getMonsterName()
+                    + " into dust to never be seen again");
+                }
             }
+            catch (Exception e) {}
         }
         else {
             ErrorView.display(this.getClass().getName(),"You have exhausted your Mana amount, You have: "+ game.getWarrior().getManaAmount()+" Mana");
