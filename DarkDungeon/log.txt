@@ -1,1 +1,2 @@
-byui.cit260.darkdungeon.view.GameMenuView - NAME           STRENGTH  IN STOCK                                                            
+byui.cit260.darkdungeon.view.GameMenuView - NAME           STRENGTH  IN STOCK                                                           byui.cit260.darkdungeon.view.BattleMenuView - Error Reading Input: null
+byui.cit260.darkdungeon.view.MoveView - java.lang.NullPointerException - was a error
