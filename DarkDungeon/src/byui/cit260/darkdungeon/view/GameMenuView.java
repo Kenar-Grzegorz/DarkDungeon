@@ -8,6 +8,7 @@ package byui.cit260.darkdungeon.view;
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.game;
 import static byui.cit260.darkdungeon.control.GameControl.warrior;
+import byui.cit260.darkdungeon.control.MapControl;
 import byui.cit260.darkdungeon.enums.Item;
 import byui.cit260.darkdungeon.exception.GameControlException;
 import byui.cit260.darkdungeon.model.CharacterSelection;
@@ -46,7 +47,7 @@ public class GameMenuView extends View {
                 + "\n|        P. Print Locations         |"
                 + "\n|        PP. Print Names            |"
                 + "\n|        PI. Print Inventory        |"
-                //+ "\n|        S. Save Game               |"
+                + "\n|        T. Test                    |"
                 + "\n|        B. Back to Previous Menu   |"
                 + "\n====================================="
                 + "\nMake your Selection ~~~> ");
@@ -75,14 +76,11 @@ public class GameMenuView extends View {
             case "I":
                 this.viewInventory();
                 break;
-            case "P": {
-            try {
+            case "P": 
                 //print to file
                 this.printLocations();
-            } catch (GameControlException ex) {
-                Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+            
+            
                 break;
             case "pp":
         
@@ -95,6 +93,8 @@ public class GameMenuView extends View {
             case "S": //save current Game
                 this.saveGame();
                 break;
+            case "T":
+                MapControl.MapList();
             default:
                 ErrorView.display(this.getClass().getName(),"\n*** Invalid Selection *** Try again");
                 break;
@@ -262,7 +262,7 @@ public class GameMenuView extends View {
         }
     }
 
-    private void printLocations() throws GameControlException{
+    private void printLocations() {
         System.out.println("\n\nEnter the file path for file where the game is to be saved.");
         String filePath = this.getInput2();
         boolean response = true;
