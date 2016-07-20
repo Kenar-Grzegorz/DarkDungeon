@@ -148,7 +148,7 @@ public class MoveView extends View{
             southPossible = roomExists(rowCurrent,(columnCurrent-1));
             eastPossible = roomExists((rowCurrent+1),columnCurrent);
             westPossible = roomExists((rowCurrent-1),columnCurrent);
-            System.out.println(map.getCurrentLocation().getScene().getDescription());
+            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
             if (!"FN".equals(map.getCurrentLocation().getScene().getMapSymbol())){System.out.print(this.bannerTop);
             if (northPossible) System.out.print(this.north);
             if (southPossible) System.out.print(this.south);
@@ -276,7 +276,9 @@ public class MoveView extends View{
         //Map map = game.getMap(); // retreive the map from game
         //int row = map.getCurrentRow();
         //int column = map.getCurrentColumn();
+        
         if (northPossible) {
+            
             MapControl.movePlayer(map, rowCurrent, (columnCurrent+1));
             open();
         }
@@ -286,6 +288,7 @@ public class MoveView extends View{
         
         this.console.println("***You have chosen South***");
         if (southPossible) {
+            
             MapControl.movePlayer(map, rowCurrent, (columnCurrent-1));
             open();
         }
@@ -295,7 +298,11 @@ public class MoveView extends View{
         
         this.console.println("***You have chosen East***");
         if (eastPossible) {
-            MapControl.movePlayer(map, (rowCurrent+1), columnCurrent);
+            if (rowCurrent==4&&columnCurrent!=0) {
+                MapControl.movePlayer(map, (rowCurrent+1), (columnCurrent-4));}
+            else {
+                MapControl.movePlayer(map, (rowCurrent+1), columnCurrent);
+            }
             open();
         }
         else this.console.println("Cant go that way");
