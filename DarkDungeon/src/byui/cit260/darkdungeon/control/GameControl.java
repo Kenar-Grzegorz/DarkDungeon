@@ -58,7 +58,7 @@ public class GameControl {
         //monster = Monster.newMonsterInstance();
         if ("FN".equals(map.getCurrentLocation().getScene().getMapSymbol())) {
         game.setMonster(Monster.newBossInstance());}
-        else game.setMonster(Monster.newRandomInstance());
+        else {game.setMonster(Monster.newRandomInstance());}
         gameMenu.battleStart(DarkDungeonGame.getPlayer(), game.getWarrior(), game.getMonster());
     }
 

@@ -108,13 +108,13 @@ public class Monster implements Serializable {
                 } else if (i==28) {
            return new Monster("Roper",80,11,10,15,5);
                 } else if (i==29) {
-           return new Monster("Shadow",75,17,15,20,15);
+           return new Monster("Shadow",75,15,15,20,15);
                 } else if (i==30) {
            return new Monster("Skeleton",20,9,2,8,2);
                 } else if (i==31) {
            return new Monster("Spectre",75,16,15,20,10);
                 } else if (i==32) {
-           return new Monster("Vampire",120,20,20,40,25);
+           return new Monster("Vampire",100,15,20,40,25);
                 } else if (i==33) {
            return new Monster("Wight",40,12,5,15,10);
                 } else if (i==34) {
@@ -126,7 +126,7 @@ public class Monster implements Serializable {
                }
     }
     public static Monster newBossInstance() {
-        return new Monster("Dragon",120,20,25,35,25);
+        return new Monster("~ Dracolich ~",120,20,25,35,25);
     }
     public String getMonsterName() {
         return monsterName;

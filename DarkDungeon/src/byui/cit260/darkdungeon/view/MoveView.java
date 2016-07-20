@@ -31,6 +31,9 @@ public class MoveView extends View{
    private String east;
    private String west;
    private String bannerBottom;
+   private String beforeBattle;
+   private String afterBattle;
+   private String deadAfterBattle;
    
    int columnCurrent;
    int rowCurrent;
@@ -58,6 +61,70 @@ public class MoveView extends View{
         this.south=("\n|    S - South                        |");
         this.east=("\n|    E - East                         |");
         this.west=("\n|    W - West                         |");
+        this.beforeBattle=("******************************************************************************************************"
+                       + "\n* As you descend ever deeper into these ancient ruins the torch you are carrying begins to flicker   *"
+                       + "\n* and fail. Your supply of torches is nearly exhausted and you may have to turn back soon or be      *"
+                       + "\n* trapped here without any light source. How long has it been since you came down here? Hours? Days? *"
+                       + "\n* From the number of torches, you have gone through probably at least 10 or 12 hours. You need to    *"
+                       + "\n* rest and eat. Unfortunately, it seems as if every time you have stopped you have been attacked by  *"
+                       + "\n* some vile creature. You unpack some journey bread from you backpack and smear it with some fruit   *"
+                       + "\n* preserves. This will have to hold you over till you can get back to the surface.                   *"
+                       + "\n*                                                                                                    *"
+                       + "\n* Once you have gobbled down the last of the bread and drank some water you begin to notice that the *"
+                       + "\n* tunnel you are in seems to be leveling out. There is also a smell possibly of Sulphur or brimstone.*"
+                       + "\n* As you continue to walk you notice that the humidity and temperature has also begun to increase.   *"
+                       + "\n* You come to a bend in the tunnel and as you peer around the corner you see an open door and a      *"
+                       + "\n* bright yellowish light. As you cautiously you approach the door you here a laugh and a voice say no*"
+                       + "\n* need to tip toe I’ve been expecting you ever since you followed me down last night. I hope my pets *"
+                       + "\n* have kept you entertained. Please do come in.                                                      *"
+                       + "\n*                                                                                                    *" 
+                       + "\n* As you step into the large cavernous chamber you see a tall man in black armor holding a wooden ash*"
+                       + "\n* white Staff standing near a door on the other side of the chamber. The Staff he is holding has a   *"
+                       + "\n* large green orb attached to the top with black iron bands that have been cast to look like skeletal*"
+                       + "\n* fingers clutching the stone. Black Runes are burned into the shaft of the staff. In the center of  *"
+                       + "\n* the chamber is a huge pile of bones. The armored figure laughs and says.                           *" 
+                       + "\n*                                                                                                    *" 
+                       + "\n* I suppose you have many questions and are wondering what I am doing down here. But wait, where are *"
+                       + "\n* my manners, let me introduce myself. My name is Hends Solthresh, formerly a Paladin of Praydon and *"
+                       + "\n* more recently a Champion of Thantos God of Death. I no longer work for either of them though and   *"
+                       + "\n* consider myself a free agent if you will. I prefer the title of Necromancer nowadays.              *"
+                       + "\n*                                                                                                    *" 
+                       + "\n* Well I have enjoyed watching you play with my pets but I am very busy and I have things I need to  *"
+                       + "\n* be doing like raising up my undead army to conquer the surface world . So I am afraid I must take  *"
+                       + "\n* my leave of you but worry not I am sure Ragnor will be willing to play with you for a little while *"
+                       + "\n* but do be careful – I’m afraid he bites.                                                              *"
+                       + "\n*                                                                                                    *"
+                       + "\n* As he finishes his little tirade you hear the door behind you shut and lock and the pile of bones  *"
+                       + "\n* in front of you begin to move. As the bones shift and move you realize that they are not just a    *"
+                       + "\n* random assortment of bones but actually they are part of a very large skeletal dragon.             *"
+                       + "\n*                                                                                                    *"
+                       + "\n* The Necromancer chuckles and says as he turns to leave,” Ragnor, I told you I bring you a toy to   *"
+                       + "\n* play with try to not destroy it too quickly.”                                                           *"
+                       + "\n*                                                                                                    *"
+                       + "\n* You are being attacked by a Dracolich what do you do?                                              *"
+                       + "\n******************************************************************************************************");
+         this.afterBattle=("*********************************************************************************************************"
+                       + "\n* The ethereal green flame around the Dracolichs skeletal form slowly fades as your final blow shatters *"
+                       + "\n* its skull and its dry brittle bones crumble to dust. You have won your battle – how, you may never    *"
+                       + "\n* really be sure. For a brief moment during the battle just as you thought you were done for suddenly   *"
+                       + "\n* you felt a sense of calm come over you and your moves and attacks just flowed naturally.              *"
+                       + "\n*                                                                                                       *"
+                       + "\n* You are exhausted and even your aches have aches. You quickly tend to your more serious wounds        *"
+                       + "\n* stopping the bleeding before you rest. Unfortunately the Necromancer is gone.  You have foiled his    *"
+                       + "\n* plans for now and the Dracolich’s treasure horde is more than you ever imagined. It is going to take  *"
+                       + "\n* you some time to find a way to transport this back to a safe place. After loading up the first load of*"
+                       + "\n* treasure you follow the escape passage that the Necromancer used to the surface. Upon reaching the    *"
+                       + "\n* surface you find that you are on a cliff overlooking the port city of Silvermist just as the sun      *"
+                       + "\n* begins to rise over the bay.                                                                          *"
+                       + "\n*********************************************************************************************************\n");
+     this.deadAfterBattle=("*********************************************************************************************************"
+                       + "\n*                                                                                                       *"
+                       + "\n*  The Dragon slashes his skeletal claws across your throat ripping open your neck. As the life blood   *" 
+                       + "\n*  spurts out from your body you feel yourself fading. You are in shock you were so close to winning    *"
+                       + "\n*  this battle and completing you mission now no one will know the danger the world is in. The light in *"
+                       + "\n*  yours eyes dim and the world goes black.                                                             *"
+                       + "\n*                                                                                                       *"
+                       + "\n*********************************************************************************************************");
     }
     
     @Override
@@ -89,8 +156,15 @@ public class MoveView extends View{
             if (westPossible) System.out.print(this.west);
             System.out.print(this.bannerBottom);
             menuOption = this.getInput();}
-            else { game.getWarrior().setHealth(0);
-                    warrior.setExist(false);return;}
+            else {
+                try {
+                this.openDracolich();
+                game.getWarrior().setHealth(0);
+                warrior.setExist(false);
+                }
+                catch (Exception e) {ErrorView.display(this.getClass().getName(),e + " - was a error");}
+                return;
+            }
             if (menuOption.toUpperCase().equals("B")) //user will quit
                 return; // exit game
             //display next view
@@ -238,6 +312,13 @@ public class MoveView extends View{
       
       private void open() throws BattleControlException {
         GameControl.createNewBattle(map);
+      }
+      
+      private void openDracolich() throws BattleControlException {
+            System.out.println(this.beforeBattle);
+            GameControl.createNewBattle(map);
+            if (!game.getWarrior().isDead()) System.out.println(this.afterBattle);
+            else {System.out.println(this.deadAfterBattle);}
       }
 
       public boolean doAction2(String mapOption) { 
