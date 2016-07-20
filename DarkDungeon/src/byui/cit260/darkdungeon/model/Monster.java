@@ -50,7 +50,81 @@ public class Monster implements Serializable {
         } while (monstersSeen.contains(i));
         monstersSeen.add(i);
         if (i == 0) {
-            return new Monster("Banshee",45,10,10,20,25);
+            return new Monster("Banshee",15,10,10,20,25);
+                } else if (i==1) {
+            return new Monster("Large Bat",10,1,1,3,1);
+                } else if (i==2) {
+            return new Monster("Giant Beetle",5,3,1,5,1);
+                } else if (i==3) {
+            return new Monster("Carrion Crawler",15,7,5,10,15);
+                } else if (i==4) {
+           return new Monster("Cave Fisher",15,6,1,8,1);
+                } else if (i==5) {
+           return new Monster("Giant Centipede",15,5,1,3,5);
+                } else if (i==6) {
+           return new Monster("Crawling Claw",15,10,1,3,1);
+                } else if (i==7) {
+           return new Monster("Death Knight",15,15,15,25,50);
+                } else if (i==8) {
+           return new Monster("Air Elemental",15,18,25,35,25);
+                } else if (i==9) {
+           return new Monster("Earth Elemental",15,18,25,35,25);
+                } else if (i==10) {
+           return new Monster("Fire Elemental",15,18,30,45,25);
+                } else if (i==11) {
+           return new Monster("Water Elemental",15,18,20,30,25);
+                } else if (i==12) {
+           return new Monster("Gargoyle",15,12,5,15,5);
+                } else if (i==13) {
+           return new Monster("Gelatinous Cube",15,8,5,15,5);
+                } else if (i==14) {
+           return new Monster("Ghost",15,15,15,25,50);
+                } else if (i==15) {
+           return new Monster("Ghoul",15,11,15,25,10);
+                } else if (i==16) {
+           return new Monster("Gnoll",15,5,5,8,2);
+                } else if (i==17) {
+           return new Monster("Goblin",15,4,1,5,2);
+                } else if (i==18) {
+           return new Monster("Stone Golem",15,15,15,25,20);
+                } else if (i==19) {
+           return new Monster("Heucuva",15,12,15,25,20);
+                } else if (i==20) {
+           return new Monster("Lich",15,15,18,30,40);
+                } else if (i==21) {
+           return new Monster("Lurker",15,8,5,12,10);
+                } else if (i==22) {
+           return new Monster("Mimic",15,7,5,12,10);
+                } else if (i==23) {
+           return new Monster("Mummy",15,12,15,20,80);
+                } else if (i==24) {
+           return new Monster("Phantom",15,16,15,20,10);
+                } else if (i==25) {
+           return new Monster("Poltergeist",15,14,15,20,10);
+                } else if (i==26) {
+           return new Monster("Giant Rat",10,1,1,3,5);
+                } else if (i==27) {
+           return new Monster("Revenant",15,17,12,18,15);
+                } else if (i==28) {
+           return new Monster("Roper",15,11,10,15,5);
+                } else if (i==29) {
+           return new Monster("Shadow",15,15,15,20,15);
+                } else if (i==30) {
+           return new Monster("Skeleton",15,9,2,8,2);
+                } else if (i==31) {
+           return new Monster("Spectre",15,16,15,20,10);
+                } else if (i==32) {
+           return new Monster("Vampire",15,15,20,40,25);
+                } else if (i==33) {
+           return new Monster("Wight",15,12,5,15,10);
+                } else if (i==34) {
+           return new Monster("Will o’ wisp",15,7,1,4,1);
+                } else if (i==35) {
+           return new Monster("Zombie",15,4,2,10,10);
+        } else {
+            return new Monster("Bloody Zombie",15,4,2,10,10);
+               }
+           /* return new Monster("Banshee",45,10,10,20,25);
                 } else if (i==1) {
             return new Monster("Large Bat",10,1,1,3,1);
                 } else if (i==2) {
@@ -123,10 +197,10 @@ public class Monster implements Serializable {
            return new Monster("Zombie",35,4,2,10,10);
         } else {
             return new Monster("Bloody Zombie",45,4,2,10,10);
-               }
+               }*/
     }
     public static Monster newBossInstance() {
-        return new Monster("~ Dracolich ~",120,20,25,35,25);
+        return new Monster("~ Dracolich ~",30,20,25,35,25);
     }
     public String getMonsterName() {
         return monsterName;
