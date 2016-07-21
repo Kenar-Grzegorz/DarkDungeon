@@ -299,14 +299,14 @@ public class MapControl {
 
         Scene dragonCaveScene = new Scene();
         dragonCaveScene.setDescription(
-                "\n This Cavern is occupied by a Large DracoLich");
+                "\n You are in a long smokey hallway with large amount of smoke and the screaching of nails on the ground");
         dragonCaveScene.setMapSymbol("DC");
         dragonCaveScene.setName("dragonCaveScene");
         dragonCaveScene.setBlocked(false);
         scenes[Scene.SceneType.dragonCaveScene.ordinal()] = dragonCaveScene;
 
         Scene finishScene = new Scene();
-        finishScene.setDescription("\n You have defeted the Dragon! Unfortunately the Necromancer slipped away in the midst of your fight with the Dragon.");
+        finishScene.setDescription("\n Final Fight");
         finishScene.setMapSymbol("FN");
         finishScene.setName("finishScene");
         finishScene.setBlocked(false);

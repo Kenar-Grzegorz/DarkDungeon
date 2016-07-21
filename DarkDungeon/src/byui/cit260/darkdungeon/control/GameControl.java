@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * @author gregg
  */
 public class GameControl {
-    public static CharacterSelection warrior = new CharacterSelection();
+    
     
     public static Game game = new Game();
 
@@ -68,7 +68,7 @@ public class GameControl {
    
     public static CharacterSelection createWarrior() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        //CharacterSelection warrior = new CharacterSelection();
+        CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",110,20,50,10,30,50,50,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.warrior.ordinal()] = warrior;
@@ -76,7 +76,7 @@ public class GameControl {
     }
     public static CharacterSelection createPaladin() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        //CharacterSelection paladin = new CharacterSelection();
+        CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 120,20,40,10,30,40,60,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
@@ -84,26 +84,26 @@ public class GameControl {
     }
     public static CharacterSelection createMage() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection mage = new CharacterSelection();
+        CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Powerful Magi -","- Master of the mystic arts",80,15,40,5,60,80,80,true);
         game.setWarrior(warrior);
-        fighter[CharacterSelection.Actor.mage.ordinal()] = mage;
+        fighter[CharacterSelection.Actor.mage.ordinal()] = warrior;
         return warrior;
     }
     public static CharacterSelection createSamurai() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection samurai = new CharacterSelection();
+        CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Noble Samura -","- Honorable servant of the people" ,120,20,30,15,20,40,50,true);
         game.setWarrior(warrior);
-        fighter[CharacterSelection.Actor.samurai.ordinal()] = samurai;
+        fighter[CharacterSelection.Actor.samurai.ordinal()] = warrior;
         return warrior;
     }
     public static CharacterSelection createThief() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection thief = new CharacterSelection();
+        CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Crafty Thief -","- Walker in the Shadows",60,10,30,10,30,40,40,true);
         game.setWarrior(warrior);
-        fighter[CharacterSelection.Actor.paladin.ordinal()] = thief;
+        fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
         return warrior;
     }
     public static void getLoadSavedGame(String filepath) throws GameControlException {

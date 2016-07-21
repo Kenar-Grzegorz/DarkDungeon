@@ -1,4 +1,1 @@
-byui.cit260.darkdungeon.view.TreasureChestView - 
-Value cannot be blank
-byui.cit260.darkdungeon.view.TreasureChestView - 
-Value must be a number!
+byui.cit260.darkdungeon.view.TreasureChestView - incorrect try again
