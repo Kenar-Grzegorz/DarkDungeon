@@ -8,7 +8,7 @@ package byui.cit260.darkdungeon.view;
 import byui.cit260.darkdungeon.control.CalculatorControl;
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.game;
-import static byui.cit260.darkdungeon.control.GameControl.warrior;
+//import static byui.cit260.darkdungeon.control.GameControl.warrior;
 import byui.cit260.darkdungeon.control.MapControl;
 import byui.cit260.darkdungeon.enums.Item;
 import byui.cit260.darkdungeon.exception.GameControlException;
@@ -189,7 +189,7 @@ public class GameMenuView extends View {
         StartAdventureView check = new StartAdventureView();
         //CharacterSelection charac = new CharacterSelection();
         Game gameClass = new Game();
-        if (warrior.isExist() == false || game.getWarrior().getHealth()==0) {
+        if (game.getWarrior().isExist() == false || game.getWarrior().getHealth()==0) {
             this.console.println("\n**************************************"
                     + "********************");
             this.console.println("\t # Please Select a Character First #");
@@ -201,7 +201,7 @@ public class GameMenuView extends View {
         if (check.isGate() == false) {
                 check.display();
         }
-        if (warrior.isExist() == true && check.isGate() == true && game.getWarrior().getHealth()>0) { 
+        if (game.getWarrior().isExist() == true && check.isGate() == true && game.getWarrior().getHealth()>0) { 
             GameControl.createJourney();
         }
         else {
@@ -356,7 +356,7 @@ public class GameMenuView extends View {
     }
     
     private void saveGame() {
-        if (warrior.isExist() == true) {
+        if (game.getWarrior().isExist() == true) {
             System.out.println("\n\nEnter the file path for file where the game is to be saved.");
             String filePath = this.getInput2();
 

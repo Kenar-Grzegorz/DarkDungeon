@@ -77,8 +77,8 @@ public class ItemMenuView extends View {
        if (game.getPotion().getItemAmount()>0){
            this.console.println("*  You have used a potion  *  `  `  \\ \\(`^')/ /  '  '\n");
            BattleControl.heal(game.getPotion(), game.getWarrior());
-            this.console.println(warrior.getCharacterName()+" drinks a healing potion. You have "+game.getPotion().getItemAmount()+" left.");
-            this.console.println(warrior.getStatus());
+            this.console.println(game.getWarrior().getCharacterName()+" drinks a healing potion. You have "+game.getPotion().getItemAmount()+" left.");
+            this.console.println(game.getWarrior().getStatus());
         } else {
             ErrorView.display(this.getClass().getName(),"*  You've exhausted your potion supply!  *\n");
         }
@@ -106,7 +106,7 @@ public class ItemMenuView extends View {
         if (game.getEther().getItemAmount()>0){
             this.console.println("*  You have activated the "+game.getEther().getItemName()+ " *\n" + game.getEther().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             BattleControl.useEther(game.getWarrior(), game.getEther());
-            this.console.println(warrior.getManaStatus());
+            this.console.println(game.getWarrior().getManaStatus());
            
         }
         else this.console.println("You do not have enough Ethers");
@@ -116,7 +116,7 @@ public class ItemMenuView extends View {
         if (game.getTent().getItemAmount()>0){
             this.console.println("*  You have activated the "+ game.getTent().getItemName()+ " *\n"+ game.getTent().getItemDescription()+"  `  `  \\ \\(`^')/ /  '  '\n");
             BattleControl.useTent(game.getWarrior(), game.getTent());
-            this.console.println(warrior.getManaStatus()+" "+warrior.getStatus());
+            this.console.println(game.getWarrior().getManaStatus()+" "+game.getWarrior().getStatus());
         }
         else this.console.println("You do not have enough Tents");
     }

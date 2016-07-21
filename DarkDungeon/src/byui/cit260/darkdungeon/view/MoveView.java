@@ -9,7 +9,7 @@ package byui.cit260.darkdungeon.view;
 
 import byui.cit260.darkdungeon.control.GameControl;
 import static byui.cit260.darkdungeon.control.GameControl.game;
-import static byui.cit260.darkdungeon.control.GameControl.warrior;
+//import static byui.cit260.darkdungeon.control.GameControl.warrior;
 import byui.cit260.darkdungeon.control.MapControl;
 import byui.cit260.darkdungeon.exception.BattleControlException;
 import byui.cit260.darkdungeon.model.CharacterSelection;
@@ -61,7 +61,7 @@ public class MoveView extends View{
         this.south=("\n|    S - South                        |");
         this.east=("\n|    E - East                         |");
         this.west=("\n|    W - West                         |");
-        this.beforeBattle=("******************************************************************************************************"
+        this.beforeBattle=("\n******************************************************************************************************"
                        + "\n* As you descend ever deeper into these ancient ruins the torch you are carrying begins to flicker   *"
                        + "\n* and fail. Your supply of torches is nearly exhausted and you may have to turn back soon or be      *"
                        + "\n* trapped here without any light source. How long has it been since you came down here? Hours? Days? *"
@@ -103,7 +103,7 @@ public class MoveView extends View{
                        + "\n*                                                                                                    *"
                        + "\n* You are being attacked by a Dracolich what do you do?                                              *"
                        + "\n******************************************************************************************************");
-         this.afterBattle=("*********************************************************************************************************"
+         this.afterBattle=("\n\n*********************************************************************************************************"
                        + "\n* The ethereal green flame around the Dracolichs skeletal form slowly fades as your final blow shatters *"
                        + "\n* its skull and its dry brittle bones crumble to dust. You have won your battle – how, you may never    *"
                        + "\n* really be sure. For a brief moment during the battle just as you thought you were done for suddenly   *"
@@ -117,7 +117,7 @@ public class MoveView extends View{
                        + "\n* surface you find that you are on a cliff overlooking the port city of Silvermist just as the sun      *"
                        + "\n* begins to rise over the bay.                                                                          *"
                        + "\n*********************************************************************************************************\n");
-     this.deadAfterBattle=("*********************************************************************************************************"
+     this.deadAfterBattle=("\n\n*********************************************************************************************************"
                        + "\n*                                                                                                       *"
                        + "\n*  The Dragon slashes his skeletal claws across your throat ripping open your neck. As the life blood   *" 
                        + "\n*  spurts out from your body you feel yourself fading. You are in shock you were so close to winning    *"
@@ -132,7 +132,7 @@ public class MoveView extends View{
         game = DarkDungeonGame.getCurrentGame(); // retreive the game
         map = game.getMap(); // retreive the map from game
         boolean done = false; // set to not done
-        String menuOption;
+        String menuOption="";
         String className = this.getClass().getSimpleName();
         
         
@@ -148,19 +148,21 @@ public class MoveView extends View{
             southPossible = roomExists(rowCurrent,(columnCurrent-1));
             eastPossible = roomExists((rowCurrent+1),columnCurrent);
             westPossible = roomExists((rowCurrent-1),columnCurrent);
-            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
-            if (!"FN".equals(map.getCurrentLocation().getScene().getMapSymbol())){System.out.print(this.bannerTop);
+            
+            //if (!"FN".equals(map.getCurrentLocation().getScene().getMapSymbol())){
+            System.out.print(this.bannerTop);
             if (northPossible) System.out.print(this.north);
             if (southPossible) System.out.print(this.south);
             if (eastPossible) System.out.print(this.east);
             if (westPossible) System.out.print(this.west);
             System.out.print(this.bannerBottom);
-            menuOption = this.getInput();}
-            else {
+            menuOption = this.getInput();
+            if (rowCurrent==5&&columnCurrent==0&&menuOption.toUpperCase().equals("N")) {
+            
                 try {
                 this.openDracolich();
                 game.getWarrior().setHealth(0);
-                warrior.setExist(false);
+                game.getWarrior().setExist(false);
                 }
                 catch (Exception e) {ErrorView.display(this.getClass().getName(),e + " - was a error");}
                 return;
@@ -280,6 +282,7 @@ public class MoveView extends View{
         if (northPossible) {
             
             MapControl.movePlayer(map, rowCurrent, (columnCurrent+1));
+            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
             open();
         }
         else this.console.println("Cant go that way");
@@ -290,6 +293,7 @@ public class MoveView extends View{
         if (southPossible) {
             
             MapControl.movePlayer(map, rowCurrent, (columnCurrent-1));
+            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
             open();
         }
         else this.console.println("Cant go that way");
@@ -299,10 +303,11 @@ public class MoveView extends View{
         this.console.println("***You have chosen East***");
         if (eastPossible) {
             if (rowCurrent==4&&columnCurrent!=0) {
-                MapControl.movePlayer(map, (rowCurrent+1), (columnCurrent-4));}
+                MapControl.movePlayer(map, (rowCurrent+1), (0));}
             else {
                 MapControl.movePlayer(map, (rowCurrent+1), columnCurrent);
             }
+            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
             open();
         }
         else this.console.println("Cant go that way");
@@ -312,6 +317,7 @@ public class MoveView extends View{
         this.console.println("***You have chosen West***");
         if (westPossible) {
             MapControl.movePlayer(map, (rowCurrent-1), columnCurrent);
+            System.out.println("\n"+map.getCurrentLocation().getScene().getDescription());
             open();
         }
         else this.console.println("Cant go that way");
@@ -323,6 +329,7 @@ public class MoveView extends View{
       
       private void openDracolich() throws BattleControlException {
             System.out.println(this.beforeBattle);
+            MapControl.movePlayer(map, 5, 1);
             GameControl.createNewBattle(map);
             if (!game.getWarrior().isDead()) System.out.println(this.afterBattle);
             else {System.out.println(this.deadAfterBattle);}
