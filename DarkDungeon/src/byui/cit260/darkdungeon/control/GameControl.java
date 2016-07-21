@@ -36,9 +36,10 @@ public class GameControl {
     
     
     public static Game game = new Game();
-
+    public static CharacterSelection warrior = new CharacterSelection();
     public static void createNewGame(Player player) throws MapControlException {
         game = new Game();
+        //CharacterSelection warrior = new CharacterSelection();
         
         DarkDungeonGame.setCurrentGame(game);
         game.setPlayer(player);
@@ -68,7 +69,7 @@ public class GameControl {
    
     public static CharacterSelection createWarrior() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection warrior = new CharacterSelection();
+        //CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Might Warrior -","- Brave attacker of all that is evil",110,20,50,10,30,50,50,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.warrior.ordinal()] = warrior;
@@ -76,7 +77,7 @@ public class GameControl {
     }
     public static CharacterSelection createPaladin() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection warrior = new CharacterSelection();
+        //CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Might Paladin Defender -","- Brave defender of the people for all that is good.", 120,20,40,10,30,40,60,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
@@ -84,7 +85,7 @@ public class GameControl {
     }
     public static CharacterSelection createMage() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection warrior = new CharacterSelection();
+        //CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Powerful Magi -","- Master of the mystic arts",80,15,40,5,60,80,80,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.mage.ordinal()] = warrior;
@@ -100,7 +101,7 @@ public class GameControl {
     }
     public static CharacterSelection createThief() {
         CharacterSelection[] fighter = new CharacterSelection[Actor.values().length];
-        CharacterSelection warrior = new CharacterSelection();
+        //CharacterSelection warrior = new CharacterSelection();
         warrior = new CharacterSelection("The Crafty Thief -","- Walker in the Shadows",60,10,30,10,30,40,40,true);
         game.setWarrior(warrior);
         fighter[CharacterSelection.Actor.paladin.ordinal()] = warrior;
